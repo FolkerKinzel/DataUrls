@@ -3,7 +3,7 @@
 
 ## .NET library that supports working with "data" URLs (RFC 2397)
 
-[Project Reference and Release Notes](https://github.com/FolkerKinzel/DataUrls/releases/tag/v5.2.1)
+[Project Reference and Release Notes](https://github.com/FolkerKinzel/DataUrls/releases/tag/v1.0.0-beta.1)
 
 The library contains:
 - The static `DataUrl` class that supports the "data" URL scheme ([RFC 2397](https://datatracker.ietf.org/doc/html/rfc2397)) that allows to embed data into a URI.  It allows 

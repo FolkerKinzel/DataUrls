@@ -50,11 +50,10 @@
       <DocumentationSource sourceFile="..\FolkerKinzel.DataUrls\FolkerKinzel.DataUrls.csproj" />
     </DocumentationSources>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="FolkerKinzel.Uris" isDocumented="True">Structures and Classes that support working with URIs.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="FolkerKinzel.Uris.Extensions" isDocumented="True">Contains static classes, which provide extension methods for String, Uri and ReadOnlySpan&lt;Char&gt;.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="FolkerKinzel.MimeTypes" isDocumented="True">Classes and Structures that support working with Internet Media Types ("MIME types").</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="(global)" isDocumented="False" />
-    </NamespaceSummaries>
+      <NamespaceSummaryItem name="FolkerKinzel.MimeTypes" isDocumented="True">Classes and structures that support working with Internet Media Types ("MIME types").</NamespaceSummaryItem>
+<NamespaceSummaryItem name="(global)" isDocumented="False" />
+<NamespaceSummaryItem name="FolkerKinzel.DataUrls" isDocumented="True">Classes and structures that support working with "data" URLs (RFC 2397) .</NamespaceSummaryItem>
+<NamespaceSummaryItem name="FolkerKinzel.DataUrls.Extensions" isDocumented="True">Static classes that provide extension methods for String, Uri and ReadOnlySpan&lt;Char&gt;.</NamespaceSummaryItem></NamespaceSummaries>
     <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
