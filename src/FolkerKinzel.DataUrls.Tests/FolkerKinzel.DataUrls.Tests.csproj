@@ -1,23 +1,77 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFrameworks>net8.0;net48</TargetFrameworks>
+    <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
+    <Authors>Folker Kinzel</Authors>
+    <Copyright>Copyright © 2024 Folker Kinzel</Copyright>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+  <ItemGroup>
+    <Using Include="FolkerKinzel.DataUrls" />
+    <Using Include="FolkerKinzel.MimeTypes" />
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+    <Using Include="FolkerKinzel.Strings" />
+    <Using Include="System.Text" />
+    <Using Remove="System.Net.Http" />
+  </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <Compile Remove="reports\html\**" />
+    <EmbeddedResource Remove="reports\html\**" />
+    <None Remove="reports\html\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Intls\AsciiDataDecoder.cs" />
+    <Compile Remove="Intls\MimeCacheTests.cs" />
+    <Compile Remove="Intls\TextEncodingConverterTests.cs" />
+    <Compile Remove="Intls\UrlEncodingTests.cs" />
+    <Compile Remove="MimeTypeTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.msbuild" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
     <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+    <ProjectReference Include="..\FolkerKinzel.DataUrls\FolkerKinzel.DataUrls.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(TargetFramework)' == 'net5.0'">
+    <Exec Command="echo $(ProjectDir) &gt; &quot;$(ProjectDir)\Resources\ProjDir.txt&quot;" />
+  </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(TargetFramework)' == 'net5.0'">
+    <Exec Command="@echo Project Directory: $(ProjectDir)" />
+  </Target>
+
 
 </Project>

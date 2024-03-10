@@ -1,9 +1,103 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFrameworks>net8.0;net7.0;net6.0;net5.0;netstandard2.1;netstandard2.0;net461</TargetFrameworks>
+    <NeutralLanguage>en</NeutralLanguage>
     <Nullable>enable</Nullable>
+    <LangVersion>12.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Authors>Folker Kinzel</Authors>
+    <Copyright>Copyright © 2024 Folker Kinzel</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageIcon>Logo.png</PackageIcon>
+    <PackageReadmeFile>NugetReadme.md</PackageReadmeFile>
+    <PackageVersion>1.0.0-beta.1</PackageVersion>
+    <FileVersion>1.0.0.2</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Description>.NET library that supports working with "data" URLs (RFC 2397)</Description>
+    <PackageTags>URI URL C# .NET</PackageTags>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v1.0.0-beta.1</PackageReleaseNotes>
+    <PackageIconUrl />
+    <PackageProjectUrl>https://github.com/FolkerKinzel/DataUrls</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/FolkerKinzel/DataUrls.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
-
+  <PropertyGroup>
+    <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net461' OR '$(TargetFramework)' == 'netstandard2.0'">
+    <NoWarn>$(NoWarn);8600;8601;8602;8603;8604</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Using Remove="System.Net.Http" />
+    <Using Include="System.Diagnostics.CodeAnalysis" />
+    <Using Include="System.Diagnostics" />
+    <Using Include="System.Text" />
+    <Using Include="System.Runtime.CompilerServices" />
+    <Using Include="FolkerKinzel.Strings" />
+    <Using Include="FolkerKinzel.Strings.Polyfills" />
+    <Using Include="FolkerKinzel.MimeTypes" />
+    <Using Include="OneOf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="alt\**" />
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="alt\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="alt\**" />
+    <None Remove="Resources\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="DataUrlInfo_Parser.cs" />
+    <Compile Remove="DataUrlInfo_ToString - OBSOLETE.cs" />
+    <Compile Remove="DataUrlInfo_ToString.cs" />
+    <Compile Remove="Intls\UrlEncoding.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Nuget-Logo\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="md\NugetReadme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FolkerKinzel.MimeTypes" Version="5.1.1" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Nullable" Version="1.3.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="OneOf" Version="3.0.263" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Res.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Res.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Res.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Res.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="if $(ConfigurationName) == Release if '$(TargetFramework)' == 'net6.0' dotnet $(SolutionDir)IncVersion\IncVersion.dll $(ProjectDir)$(ProjectFileName) --revision" />
+  </Target>
 </Project>

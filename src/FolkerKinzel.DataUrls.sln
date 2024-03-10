@@ -5,7 +5,23 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolkerKinzel.DataUrls", "FolkerKinzel.DataUrls\FolkerKinzel.DataUrls.csproj", "{0A7BF03B-394F-477F-BB88-52A638F27F84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolkerKinzel.DataUrls.Tests", "FolkerKinzel.DataUrls.Tests\FolkerKinzel.DataUrls.Tests.csproj", "{00A3B98A-267F-4FE5-AFF8-324472AD051D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolkerKinzel.DataUrls.Tests", "FolkerKinzel.DataUrls.Tests\FolkerKinzel.DataUrls.Tests.csproj", "{00A3B98A-267F-4FE5-AFF8-324472AD051D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benchmarks", "Benchmarks\Benchmarks.csproj", "{763B37D6-BD58-41CF-94AC-8C8B6586EE3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Examples", "Examples\Examples.csproj", "{B31413A6-9979-456F-A4A4-4C6FAE9334FA}"
+EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "FolkerKinzel.DataUrls.Reference.en", "FolkerKinzel.DataUrls.Reference.en\FolkerKinzel.DataUrls.Reference.en.shfbproj", "{34043AB9-64D3-4E67-9FB9-B5871CDE354D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0A7BF03B-394F-477F-BB88-52A638F27F84} = {0A7BF03B-394F-477F-BB88-52A638F27F84}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D21B040-C27D-4300-981F-3B1388C7B48D}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\ISSUE_TEMPLATE\bug_report.md = ..\.github\ISSUE_TEMPLATE\bug_report.md
+		..\.github\ISSUE_TEMPLATE\feature_request.md = ..\.github\ISSUE_TEMPLATE\feature_request.md
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +37,16 @@ Global
 		{00A3B98A-267F-4FE5-AFF8-324472AD051D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00A3B98A-267F-4FE5-AFF8-324472AD051D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00A3B98A-267F-4FE5-AFF8-324472AD051D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{763B37D6-BD58-41CF-94AC-8C8B6586EE3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{763B37D6-BD58-41CF-94AC-8C8B6586EE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{763B37D6-BD58-41CF-94AC-8C8B6586EE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{763B37D6-BD58-41CF-94AC-8C8B6586EE3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31413A6-9979-456F-A4A4-4C6FAE9334FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31413A6-9979-456F-A4A4-4C6FAE9334FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31413A6-9979-456F-A4A4-4C6FAE9334FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31413A6-9979-456F-A4A4-4C6FAE9334FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34043AB9-64D3-4E67-9FB9-B5871CDE354D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34043AB9-64D3-4E67-9FB9-B5871CDE354D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
