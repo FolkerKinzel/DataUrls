@@ -15,7 +15,7 @@
     <FileVersion>1.0.0.11</FileVersion>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description>.NET library that supports working with "data" URLs (RFC 2397)</Description>
-    <PackageTags>URI URL C# .NET</PackageTags>
+    <PackageTags>"data"URL RFC2397 C# .NET</PackageTags>
     <PackageReleaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v1.0.0-beta.1</PackageReleaseNotes>
     <PackageIconUrl />
     <PackageProjectUrl>https://github.com/FolkerKinzel/DataUrls</PackageProjectUrl>

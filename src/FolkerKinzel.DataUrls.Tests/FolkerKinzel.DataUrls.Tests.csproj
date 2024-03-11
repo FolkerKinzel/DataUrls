@@ -9,6 +9,12 @@
     <Copyright>Copyright © 2024 Folker Kinzel</Copyright>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="reports\**" />
+    <EmbeddedResource Remove="reports\**" />
+    <None Remove="reports\**" />
+  </ItemGroup>
   <ItemGroup>
     <Using Include="FolkerKinzel.DataUrls" />
     <Using Include="FolkerKinzel.MimeTypes" />
@@ -16,12 +22,6 @@
     <Using Include="FolkerKinzel.Strings" />
     <Using Include="System.Text" />
     <Using Remove="System.Net.Http" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="reports\html\**" />
-    <EmbeddedResource Remove="reports\html\**" />
-    <None Remove="reports\html\**" />
   </ItemGroup>
 
   <ItemGroup>
