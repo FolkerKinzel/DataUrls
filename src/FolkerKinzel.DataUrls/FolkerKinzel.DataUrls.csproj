@@ -11,12 +11,12 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>Logo.png</PackageIcon>
     <PackageReadmeFile>NugetReadme.md</PackageReadmeFile>
-    <PackageVersion>1.0.1</PackageVersion>
-    <FileVersion>1.0.1.4</FileVersion>
+    <PackageVersion>1.1.0-beta.1</PackageVersion>
+    <FileVersion>1.1.0.7</FileVersion>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description>.NET library that supports working with "data" URLs (RFC 2397)</Description>
     <PackageTags>"data"URL RFC2397 C# .NET</PackageTags>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v1.0.1</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v1.1.0-beta.1</PackageReleaseNotes>
     <PackageIconUrl />
     <PackageProjectUrl>https://github.com/FolkerKinzel/DataUrls</PackageProjectUrl>
     <RepositoryUrl>https://github.com/FolkerKinzel/DataUrls.git</RepositoryUrl>
@@ -45,7 +45,6 @@
     <Using Include="System.Text" />
     <Using Include="System.Runtime.CompilerServices" />
     <Using Include="FolkerKinzel.Strings" />
-    <Using Include="FolkerKinzel.Strings.Polyfills" />
     <Using Include="FolkerKinzel.MimeTypes" />
     <Using Include="OneOf" />
   </ItemGroup>
@@ -74,7 +73,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FolkerKinzel.MimeTypes" Version="5.1.2" />
+    <PackageReference Include="FolkerKinzel.MimeTypes" Version="5.2.0-beta.1" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
