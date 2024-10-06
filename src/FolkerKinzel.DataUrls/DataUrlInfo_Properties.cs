@@ -2,7 +2,7 @@
 
 namespace FolkerKinzel.DataUrls;
 
-#pragma warning disable CA1303 // Literale nicht als lokalisierte Parameter übergeben
+#pragma warning disable CA1303 // literals not as localized parameters
 
 [StructLayout(LayoutKind.Auto)]
 public readonly partial struct DataUrlInfo
@@ -20,7 +20,7 @@ public readonly partial struct DataUrlInfo
 
     private bool IncompleteMimeType => (_idx & INCOMPLETE_MIME_TYPE_VALUE) == INCOMPLETE_MIME_TYPE_VALUE;
 
-    private int EmbeddedDataStartIndex => IsEmpty ? 0 
+    private int EmbeddedDataStartIndex => IsEmpty ? 0
                                                   : MimeTypeLength
                                                     + (DataEncoding == DataEncoding.Base64 ? DataUrl.Base64.Length : 0)
                                                     + COMMA_LENGTH;
@@ -37,9 +37,9 @@ public readonly partial struct DataUrlInfo
     /// </para>
     /// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
     /// </example>
-    public ReadOnlyMemory<char> MimeType => 
+    public ReadOnlyMemory<char> MimeType =>
         MimeTypeLength == 0 ? DataUrl.DefaultMediaType.AsMemory()
-                            : IncompleteMimeType 
+                            : IncompleteMimeType
                                     ? (DataUrl.DefaultMediaType + _embeddedData.Span.Slice(0, MimeTypeLength).ToString()).AsMemory()
                                     : _embeddedData.Slice(0, MimeTypeLength);
 
@@ -117,7 +117,6 @@ public readonly partial struct DataUrlInfo
     /// Returns an empty <see cref="DataUrlInfo"/> instance.
     /// </summary>
     public static DataUrlInfo Empty => default;
-
 }
 
-#pragma warning restore CA1303 // Literale nicht als lokalisierte Parameter übergeben
+#pragma warning restore CA1303 // // literals not as localized parameters

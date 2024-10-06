@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace FolkerKinzel.DataUrls;
+﻿namespace FolkerKinzel.DataUrls;
 
 /// <summary>
 /// Provides the information stored in a "data" URL (RFC 2397).

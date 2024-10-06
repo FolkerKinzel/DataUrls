@@ -23,6 +23,4 @@ public readonly partial struct DataUrlInfo
     public static bool operator !=(DataUrlInfo value1, DataUrlInfo value2) => !value1.Equals(in value2);
 
     #endregion
-
-
 }

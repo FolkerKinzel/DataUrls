@@ -1,5 +1,4 @@
-﻿using System.Net;
-using FolkerKinzel.DataUrls.Intls;
+﻿using FolkerKinzel.DataUrls.Intls;
 
 namespace FolkerKinzel.DataUrls;
 
@@ -30,7 +29,7 @@ public readonly partial struct DataUrlInfo
         // als Base64 codierter Text:
         if (DataEncoding == DataEncoding.Base64)
         {
-            if(!Base64Helper.TryDecode(Data, out byte[]? data))
+            if (!Base64Helper.TryDecode(Data, out byte[]? data))
             {
                 return false;
             }
@@ -86,7 +85,6 @@ public readonly partial struct DataUrlInfo
                     : UrlEncoding.TryDecodeToBytes(Data, true, out embeddedBytes));
     }
 
-
     /// <summary>
     /// Tries to retrieve the embedded <see cref="Data"/> decoded either as a <see cref="string"/> 
     /// or as a byte array, depending on <see cref="MimeType"/>.
@@ -113,7 +111,6 @@ public readonly partial struct DataUrlInfo
         return false;
     }
 
-
     /// <summary>
     /// Returns an appropriate file type extension for the <see cref="Data"/> embedded in the 
     /// "data" URL. The file type extension contains the period (".").
@@ -131,7 +128,6 @@ public readonly partial struct DataUrlInfo
     /// </example>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public string GetFileTypeExtension() => MimeString.ToFileTypeExtension(MimeType.Span);
-
 
     private int GetEncoding(byte[] data, out Encoding enc)
     {
@@ -165,8 +161,4 @@ public readonly partial struct DataUrlInfo
 
         static bool Predicate(MimeTypeParameterInfo p) => p.IsCharSetParameter;
     }
-
-
-
-
 }

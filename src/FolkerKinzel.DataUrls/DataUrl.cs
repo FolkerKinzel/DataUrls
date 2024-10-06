@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using FolkerKinzel.MimeTypes;
-using FolkerKinzel.DataUrls.Intls;
+﻿using FolkerKinzel.DataUrls.Intls;
 using FolkerKinzel.DataUrls.Properties;
 
 namespace FolkerKinzel.DataUrls;
@@ -194,7 +192,7 @@ public static class DataUrl
                                   DataEncoding dataEncoding = DataEncoding.Base64)
         => AppendEmbeddedFileTo(new StringBuilder(), filePath, mimeType, dataEncoding)
            .ToString();
-    
+
     /// <summary>
     /// Embeds the content of a file into a "data" URL (RFC 2397).
     /// </summary>
@@ -326,7 +324,7 @@ public static class DataUrl
         => MimeTypeInfo.TryParse(string.IsNullOrWhiteSpace(mimeType) ? MimeString.OctetStream
                                                                      : mimeType,
                                  out MimeTypeInfo mimeTypeInfo)
-                ? builder?.AppendEmbeddedBytesIntl(bytes, in mimeTypeInfo, dataEncoding) 
+                ? builder?.AppendEmbeddedBytesIntl(bytes, in mimeTypeInfo, dataEncoding)
                          ?? throw new ArgumentNullException(nameof(builder))
                 : AppendEmbeddedBytesTo(builder, bytes, MimeString.OctetStream, dataEncoding);
 

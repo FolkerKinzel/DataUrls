@@ -20,7 +20,6 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool Equals(DataUrlInfo other) => Equals(in other);
 
-
     /// <summary>
     /// Determines whether the value of this instance is equal to the value of <paramref name="other"/>. 
     /// </summary>
@@ -64,7 +63,6 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
         return false;
     }
 
-
     private bool EqualsBytes(in DataUrlInfo other)
     {
         if (other.TryGetEmbeddedBytes(out byte[]? otherBytes))
@@ -79,5 +77,4 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
     }
 
     #endregion
-
 }

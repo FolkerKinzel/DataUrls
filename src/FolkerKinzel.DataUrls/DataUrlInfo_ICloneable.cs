@@ -26,7 +26,4 @@ public readonly partial struct DataUrlInfo : ICloneable
     /// </remarks>
     public DataUrlInfo Clone() => IsEmpty ? default
                                           : new DataUrlInfo(_idx, _embeddedData.ToString().AsMemory());
-
-
-
 }
