@@ -1,6 +1,7 @@
 # FolkerKinzel.DataUrls
 [![NuGet](https://img.shields.io/nuget/v/FolkerKinzel.DataUrls)](https://www.nuget.org/packages/FolkerKinzel.DataUrls/)
 [![GitHub](https://img.shields.io/github/license/FolkerKinzel/DataUrls)](https://github.com/FolkerKinzel/DataUrls/blob/master/LICENSE)
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
 ## .NET library that supports working with "data" URLs (RFC 2397)
 
