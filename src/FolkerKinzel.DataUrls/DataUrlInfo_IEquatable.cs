@@ -46,7 +46,7 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
     private bool EqualsData(in DataUrlInfo other)
         => this.DataType == DataType.Text
             ? EqualsText(in other)
-            : this.DataEncoding == DataEncoding.Base64 && other.DataEncoding == DataEncoding.Base64
+            : this.Encoding == DataEncoding.Base64 && other.Encoding == DataEncoding.Base64
                 ? this.Data.Equals(other.Data, StringComparison.Ordinal)
                 : EqualsBytes(in other);
 

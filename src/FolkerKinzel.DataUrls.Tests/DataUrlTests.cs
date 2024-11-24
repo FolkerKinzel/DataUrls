@@ -69,7 +69,7 @@ public class DataUrlTests
         Assert.AreEqual(dataUrl2.Data.ToString(), "Text");
         Assert.AreEqual(dataUrl2.MimeType.ToString(), "text/plain;charset=UTF-8");
 
-        Assert.AreEqual(dataUrl2.DataEncoding, DataEncoding.Url);
+        Assert.AreEqual(dataUrl2.Encoding, DataEncoding.Url);
         Assert.AreEqual(MimeTypeInfo.Parse(dataUrl2.MimeType).Parameters().First().Value.ToString(), "UTF-8");
 
 
@@ -84,7 +84,7 @@ public class DataUrlTests
         byte[] data = "ABC"u8.ToArray();
 
         Assert.IsTrue(DataUrl.TryParse(url, out DataUrlInfo dataUrl));
-        Assert.AreEqual(DataEncoding.Url, dataUrl.DataEncoding);
+        Assert.AreEqual(DataEncoding.Url, dataUrl.Encoding);
         Assert.AreEqual(DataType.Binary, dataUrl.DataType);
 
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? output));
@@ -136,7 +136,7 @@ public class DataUrlTests
         string urlString = DataUrl.FromText(text);
 
         Assert.IsTrue(DataUrl.TryParse(urlString, out DataUrlInfo dataUrl));
-        Assert.AreEqual(DataEncoding.Url, dataUrl.DataEncoding);
+        Assert.AreEqual(DataEncoding.Url, dataUrl.Encoding);
         Assert.AreEqual(DataType.Text, dataUrl.DataType);
         Assert.IsTrue(dataUrl.TryAsText(out string? outText));
         Assert.AreEqual(text, outText);
@@ -252,14 +252,14 @@ public class DataUrlTests
     [TestMethod]
     public void FromBytesTest4()
     {
-        string url = DataUrl.FromBytes(null, dataEncoding: DataEncoding.Url);
+        string url = DataUrl.FromBytes(null, encoding: DataEncoding.Url);
         Assert.AreNotEqual(0, url.Length);
     }
 
     [TestMethod]
     public void FromBytesTest4b()
     {
-        string url = DataUrl.FromBytes((IEnumerable<byte>?)null, dataEncoding: DataEncoding.Url);
+        string url = DataUrl.FromBytes((IEnumerable<byte>?)null, encoding: DataEncoding.Url);
         Assert.AreNotEqual(0, url.Length);
     }
 
@@ -267,7 +267,7 @@ public class DataUrlTests
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
     public void FromBytesTest4d()
     {
-        string url = DataUrl.FromBytes(ReadOnlySpan<byte>.Empty, dataEncoding: DataEncoding.Url);
+        string url = DataUrl.FromBytes(ReadOnlySpan<byte>.Empty, encoding: DataEncoding.Url);
         Assert.AreNotEqual(0, url.Length);
     }
 

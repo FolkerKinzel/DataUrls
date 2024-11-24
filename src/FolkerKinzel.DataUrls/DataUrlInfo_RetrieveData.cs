@@ -14,7 +14,7 @@ public readonly partial struct DataUrlInfo
     /// the embedded text.
     /// The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if the embedded <see cref="Data"/> in the "data" URL could 
-    /// be parsed as text, otherwise <c>false</c>.</returns>
+    /// be parsed as <see cref="string"/>, otherwise <c>false</c>.</returns>
     /// <remarks> The method tries to retrieve the embedded data as text only if the 
     /// <see cref="DataType"/> property returns <see cref="DataType.Text"/>.</remarks>
     public bool TryAsText([NotNullWhen(true)] out string? text)
@@ -27,7 +27,7 @@ public readonly partial struct DataUrlInfo
         }
 
         // base64-encoded text:
-        if (DataEncoding == DataEncoding.Base64)
+        if (Encoding == DataEncoding.Base64)
         {
             if (!Base64Helper.TryDecode(Data, out byte[]? data))
             {
@@ -63,25 +63,17 @@ public readonly partial struct DataUrlInfo
     /// the embedded binary data.
     /// The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if the <see cref="Data"/> embedded in the "data" URL could be 
-    /// parsed as binary data, otherwise <c>false</c>.</returns>
-    /// <remarks>If <see cref="DataEncoding"/> is <see cref="DataEncoding.Base64"/> the method
+    /// parsed as <see cref="byte"/> array, otherwise <c>false</c>.</returns>
+    /// <remarks>If <see cref="Encoding"/> is <see cref="DataEncoding.Base64"/> the method
     /// tries to retrieve the binary data in any case. Otherwise the embedded data is parsed only 
     /// if the <see cref="DataType"/> property returns <see cref="DataType.Binary"/>.</remarks>
     /// 
-    /// <example>
-    /// <note type="note">
-    /// For the sake of better readability, exception handling is ommitted in the example.
-    /// </note>
-    /// <para>
-    /// Creating and parsing a "data" URL:
-    /// </para>
-    /// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
-    /// </example>
+    /// 
     public bool TryAsBytes([NotNullWhen(true)] out byte[]? bytes)
     {
         bytes = null;
 
-        return this.DataEncoding == DataEncoding.Base64
+        return this.Encoding == DataEncoding.Base64
                     ? Base64Helper.TryDecode(Data, out bytes)
                     : (DataType == DataType.Binary) && UrlEncoding.TryDecodeToBytes(Data, true, out bytes);
     }
@@ -92,6 +84,16 @@ public readonly partial struct DataUrlInfo
     /// </summary>
     /// <param name="data">The embedded <see cref="Data"/>.  The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if <see cref="Data"/> could be converted to an <see cref="EmbeddedData"/> instance.</returns>
+    /// 
+    /// <example>
+    /// <note type="note">
+    /// For the sake of better readability, exception handling is ommitted in the example.
+    /// </note>
+    /// <para>
+    /// Creating and parsing a "data" URL:
+    /// </para>
+    /// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
+    /// </example>
     public bool TryGetData(out EmbeddedData data)
     {
         if (TryAsText(out string? embeddedText))

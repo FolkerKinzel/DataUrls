@@ -25,7 +25,7 @@ public static class DataUrlExample
         Console.WriteLine($"Data Type:      {info.DataType}");
         Console.WriteLine($"MIME Type:      {info.MimeType}");
         Console.WriteLine($"File Type Ext.: {info.GetFileTypeExtension()}");
-        Console.WriteLine($"Data Encoding:  {info.DataEncoding}");
+        Console.WriteLine($"Data Encoding:  {info.Encoding}");
 
         if (info.TryGetData(out EmbeddedData data))
         {

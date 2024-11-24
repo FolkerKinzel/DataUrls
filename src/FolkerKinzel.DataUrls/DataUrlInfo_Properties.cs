@@ -22,7 +22,7 @@ public readonly partial struct DataUrlInfo
 
     private int DataStartIndex => IsEmpty ? 0
                                   : MimeTypeLength
-                                    + (DataEncoding == DataEncoding.Base64 ? DataUrl.Base64.Length : 0)
+                                    + (Encoding == DataEncoding.Base64 ? DataUrl.Base64.Length : 0)
                                     + COMMA_LENGTH;
 
     /// <summary>
@@ -55,15 +55,25 @@ public readonly partial struct DataUrlInfo
     /// </para>
     /// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
     /// </example>
-    public DataEncoding DataEncoding => (DataEncoding)(_idx & DATA_ENCODING_MAX_VALUE);
+    public DataEncoding Encoding => (DataEncoding)(_idx & DATA_ENCODING_MAX_VALUE);
 
     /// <summary>
     /// The part of the "data" URL, which contains the embedded data.
     /// </summary>
     /// <remarks>
-    /// This part is either URL or Base64 encoded (see <see cref="DataEncoding"/>) and represents
+    /// This part is either URL- or base64-encoded (see <see cref="Encoding"/>) and represents
     /// either a <see cref="string"/> or an array of <see cref="byte"/>s.
     /// </remarks>
+    /// <example>
+    /// <note type="note">
+    /// For the sake of better readability, exception handling is ommitted in the example.
+    /// </note>
+    /// <para>
+    /// Creating and parsing a "data" URL:
+    /// </para>
+    /// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
+    /// </example>
+    /// 
     /// <seealso cref="DataType"/>
     public ReadOnlySpan<char> Data => _dataUrl.Span.Slice(DataStartIndex);
 
