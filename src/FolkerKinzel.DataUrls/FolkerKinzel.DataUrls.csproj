@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0;netstandard2.1;netstandard2.0;net462</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0;net462</TargetFrameworks>
     <NeutralLanguage>en</NeutralLanguage>
     <Nullable>enable</Nullable>
     <LangVersion>13.0</LangVersion>
@@ -11,12 +11,12 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>Logo.png</PackageIcon>
     <PackageReadmeFile>NugetReadme.md</PackageReadmeFile>
-    <PackageVersion>1.2.1</PackageVersion>
-    <FileVersion>1.2.1.0</FileVersion>
+    <PackageVersion>1.2.2</PackageVersion>
+    <FileVersion>1.2.2.0</FileVersion>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description>.NET library that supports working with "data" URLs (RFC 2397)</Description>
     <PackageTags>"data"URL RFC2397 C# .NET</PackageTags>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v1.2.1</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v1.2.2</PackageReleaseNotes>
     <PackageIconUrl />
     <PackageProjectUrl>https://github.com/FolkerKinzel/DataUrls</PackageProjectUrl>
     <RepositoryUrl>https://github.com/FolkerKinzel/DataUrls.git</RepositoryUrl>
@@ -73,7 +73,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FolkerKinzel.MimeTypes" Version="5.4.1" />
+    <PackageReference Include="FolkerKinzel.MimeTypes" Version="5.4.2" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
