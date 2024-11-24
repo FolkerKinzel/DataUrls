@@ -120,7 +120,11 @@ public readonly struct EmbeddedData
             _ => textFunc is null ? throw new ArgumentNullException(nameof(textFunc)) : textFunc((string)_object!, arg)
         };
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Returns a <see cref="string"/>-representation of the instance that
+    /// helps in debugging.
+    /// </summary>
+    /// <returns>A <see cref="string"/>-representation of the instance.</returns>
     public override string ToString()
         => Bytes is byte[] bytes
               ? $"{bytes.GetType().FullName}: {bytes.Length} Bytes"

@@ -62,9 +62,9 @@ public readonly partial struct DataUrlInfo
     /// </summary>
     /// <remarks>
     /// This part is either URL or Base64 encoded (see <see cref="DataEncoding"/>) and represents
-    /// either a <see cref="string"/> or a collection of bytes. (See <see cref="ContainsText"/> and
-    /// <see cref="ContainsBytes"/>.)
+    /// either a <see cref="string"/> or an array of <see cref="byte"/>s.
     /// </remarks>
+    /// <seealso cref="DataType"/>
     public ReadOnlySpan<char> Data => _dataUrl.Span.Slice(DataStartIndex);
 
     /// <summary>
@@ -79,46 +79,6 @@ public readonly partial struct DataUrlInfo
         || _dataUrl.Span.StartsWith("text/", StringComparison.OrdinalIgnoreCase) 
             ? DataType.Text 
             : DataType.Binary;
-
-
-    ///// <summary>
-    ///// Indicates whether <see cref="Data"/> represents text.
-    ///// </summary>
-    ///// <value>
-    ///// <c>true</c> if <see cref="Data"/> contains text, otherwise <c>false</c>.
-    ///// </value>
-    ///// <remarks>The return value depends on the <see cref="MimeType"/>.</remarks>
-    ///// <example>
-    ///// <note type="note">
-    ///// For the sake of better readability, exception handling is ommitted in the example.
-    ///// </note>
-    ///// <para>
-    ///// Creating and parsing a "data" URL:
-    ///// </para>
-    ///// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
-    ///// </example>
-    //public bool ContainsText => MimeTypeLength == 0 || IncompleteMimeType || _dataUrl.Span.StartsWith("text/".AsSpan(), StringComparison.OrdinalIgnoreCase);
-
-    ///// <summary>
-    ///// Indicates whether <see cref="Data"/> represents binary data.
-    ///// </summary>
-    ///// <value>
-    ///// <c>true</c> if <see cref="Data"/> contains binary data, otherwise <c>false</c>.
-    ///// </value>
-    ///// <remarks>
-    ///// This property has not an either/or relation to <see cref="ContainsText"/>: <see cref="Data"/>
-    ///// could represent binary encoded text.
-    ///// </remarks>
-    ///// <example>
-    ///// <note type="note">
-    ///// For the sake of better readability, exception handling is ommitted in the example.
-    ///// </note>
-    ///// <para>
-    ///// Creating and parsing a "data" URL:
-    ///// </para>
-    ///// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
-    ///// </example>
-    //public bool ContainsBytes => DataEncoding == DataEncoding.Base64 || !ContainsText;
 
     /// <summary>
     /// Indicates whether the instance contains no data.
