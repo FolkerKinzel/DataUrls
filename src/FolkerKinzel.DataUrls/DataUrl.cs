@@ -444,13 +444,12 @@ public static class DataUrl
                      : builder.AppendFileContentInternal(filePath, in mimeType, dataEncoding);
 
     /// <summary>
-    /// Tries to retrieve the embedded data from the <paramref name="dataUrl"/>.
+    /// Tries to retrieve the embedded data and the file type extension from the <paramref name="dataUrl"/>.
     /// </summary>
     /// <param name="dataUrl">A "data" URL according to RFC 2397.</param>
-    /// <param name="data">The embedded data. This can be either a <see cref="string"/> or a byte 
-    /// array. The parameter is passed uninitialized.</param>
-    /// <param name="fileTypeExtension">The file type extension for <paramref name="data"/>. The extension starts with the period ".".
-    /// The parameter is passed uninitialized.</param>
+    /// <param name="data">The embedded data. The parameter is passed uninitialized.</param>
+    /// <param name="fileTypeExtension">The file type extension for <paramref name="data"/>. The extension starts with 
+    /// the period ".". The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.</returns>
     /// <example>
     /// <note type="note">
@@ -463,22 +462,21 @@ public static class DataUrl
     /// </example>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool TryGetData(string? dataUrl,
-                                          out OneOf<string, byte[]> data,
-                                          [NotNullWhen(true)] out string? fileTypeExtension)
+                                  out EmbeddedData data,
+                                  [NotNullWhen(true)] out string? fileTypeExtension)
         => TryGetData(dataUrl.AsMemory(), out data, out fileTypeExtension);
 
     /// <summary>
-    /// Tries to retrieve the embedded data from the <paramref name="dataUrl"/>.
+    /// Tries to retrieve the embedded data and the file type extension from the <paramref name="dataUrl"/> .
     /// </summary>
     /// <param name="dataUrl">A read only memory that contains a "data" URL according to RFC 2397.</param>
-    /// <param name="data">The embedded data. This can be either a <see cref="string"/> or a byte array. 
-    /// The parameter is passed uninitialized.</param>
-    /// <param name="fileTypeExtension">The file type extension for <paramref name="data"/>.  The extension starts with the period ".". The parameter 
-    /// is passed uninitialized.</param>
+    /// <param name="data">The embedded data. The parameter is passed uninitialized.</param>
+    /// <param name="fileTypeExtension">The file type extension for <paramref name="data"/>.  The extension 
+    /// starts with the period ".". The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.</returns>
     public static bool TryGetData(ReadOnlyMemory<char> dataUrl,
-                                          out OneOf<string, byte[]> data,
-                                          [NotNullWhen(true)] out string? fileTypeExtension)
+                                  out EmbeddedData data,
+                                  [NotNullWhen(true)] out string? fileTypeExtension)
     {
         if (!DataUrlInfo.TryParseInternal(ref dataUrl, out DataUrlInfo info))
         {

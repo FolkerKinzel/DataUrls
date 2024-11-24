@@ -90,21 +90,19 @@ public readonly partial struct DataUrlInfo
     /// Tries to retrieve the embedded <see cref="Data"/> decoded either as a <see cref="string"/> 
     /// or as a byte array, depending on <see cref="MimeType"/>.
     /// </summary>
-    /// <param name="data">The embedded <see cref="Data"/>. This can be either a <see cref="string"/> 
-    /// or a byte array. The parameter is passed uninitialized.</param>
-    /// <returns><c>true</c> if <see cref="Data"/> could be converted either into a <see cref="string"/>
-    /// or a byte array.</returns>
-    public bool TryGetData(out OneOf<string, byte[]> data)
+    /// <param name="data">The embedded <see cref="Data"/>.  The parameter is passed uninitialized.</param>
+    /// <returns><c>true</c> if <see cref="Data"/> could be converted to an <see cref="EmbeddedData"/> instance.</returns>
+    public bool TryGetData(out EmbeddedData data)
     {
         if (TryAsText(out string? embeddedText))
         {
-            data = embeddedText;
+            data = EmbeddedData.FromText(embeddedText);
             return true;
         }
 
         if (TryAsBytes(out byte[]? embeddedBytes))
         {
-            data = embeddedBytes;
+            data = EmbeddedData.FromBytes(embeddedBytes);
             return true;
         }
 

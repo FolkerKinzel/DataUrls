@@ -1,6 +1,5 @@
 ﻿using FolkerKinzel.DataUrls.Intls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OneOf;
 using System.Diagnostics.CodeAnalysis;
 using System.Web;
 
@@ -691,8 +690,8 @@ public class DataUrlTests
     [TestMethod]
     public void TryGetEmbeddedDataTest2()
     {
-        Assert.IsTrue(DataUrl.TryGetData("data:image/jpeg,ABC", out OneOf<string, byte[]> data, out string? ext));
-        Assert.IsInstanceOfType(data.Value, typeof(byte[]));
+        Assert.IsTrue(DataUrl.TryGetData("data:image/jpeg,ABC", out EmbeddedData data, out string? ext));
+        Assert.IsNotNull(data.Bytes);
         Assert.AreEqual(".jpg", ext);
     }
 
@@ -704,9 +703,9 @@ public class DataUrlTests
     [TestMethod]
     public void TryGetEmbeddedDataTest4()
     {
-        Assert.IsTrue(DataUrl.TryGetData($"data:text/äöü,{Uri.EscapeDataString("ÄÖÜ")}", out OneOf<string, byte[]> data, out string? ext));
-        Assert.IsInstanceOfType(data.Value, typeof(string));
-        Assert.AreEqual("ÄÖÜ", data.Value.ToString());
+        Assert.IsTrue(DataUrl.TryGetData($"data:text/äöü,{Uri.EscapeDataString("ÄÖÜ")}", out EmbeddedData data, out string? ext));
+        Assert.IsNotNull(data.Text);
+        Assert.AreEqual("ÄÖÜ", data.Text);
         Assert.AreEqual(".bin", ext);
     }
 
