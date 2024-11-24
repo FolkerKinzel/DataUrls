@@ -1,9 +1,9 @@
 ﻿namespace FolkerKinzel.DataUrls.Intls;
 
 /// <summary>
-/// Extension methods, which support the <see cref="DataUrlInfo"/> structure.
+/// Extension methods, which support the <see cref="StringBuilder"/> class.
 /// </summary>
-internal static class DataUrlExtension
+internal static class StringBuilderExtension
 {
     internal static StringBuilder AppendMediaType(this StringBuilder builder, in MimeTypeInfo mimeType)
     {

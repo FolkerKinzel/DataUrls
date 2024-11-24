@@ -13,11 +13,11 @@ public readonly partial struct DataUrlInfo
         var hash = new HashCode();
         hash.Add(GetFileTypeExtension());
 
-        if (TryGetEmbeddedText(out string? text))
+        if (TryAsText(out string? text))
         {
             hash.Add(text);
         }
-        else if (TryGetEmbeddedBytes(out byte[]? bytes))
+        else if (TryAsBytes(out byte[]? bytes))
         {
             hash.AddBytes(bytes);
         }

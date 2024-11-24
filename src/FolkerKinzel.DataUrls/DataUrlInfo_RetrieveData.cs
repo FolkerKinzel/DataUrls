@@ -1,4 +1,5 @@
-﻿using FolkerKinzel.DataUrls.Intls;
+﻿using System.Text;
+using FolkerKinzel.DataUrls.Intls;
 
 namespace FolkerKinzel.DataUrls;
 
@@ -9,24 +10,23 @@ public readonly partial struct DataUrlInfo
     /// <summary>
     /// Tries to retrieve the text, which is embedded in the "data" URL.
     /// </summary>
-    /// <param name="embeddedText">If the method returns <c>true</c> the parameter contains 
+    /// <param name="text">If the method returns <c>true</c> the parameter contains 
     /// the embedded text.
     /// The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if the embedded <see cref="Data"/> in the "data" URL could 
     /// be parsed as text, otherwise <c>false</c>.</returns>
-    /// <remarks>It depends of the <see cref="MimeType"/> whether the <see cref="Data"/> 
-    /// in the "data" URL is treated as embedded text. The <see cref="MimeType"/>
-    /// should rather be empty or have the Top-Level Media Type "text".</remarks>
-    public bool TryGetEmbeddedText([NotNullWhen(true)] out string? embeddedText)
+    /// <remarks> The method tries to retrieve the embedded data as text only if the 
+    /// <see cref="DataType"/> property returns <see cref="DataType.Text"/>.</remarks>
+    public bool TryAsText([NotNullWhen(true)] out string? text)
     {
-        embeddedText = null;
+        text = null;
 
-        if (!ContainsEmbeddedText)
+        if (DataType != DataType.Text)
         {
             return false;
         }
 
-        // als Base64 codierter Text:
+        // base64-encoded text:
         if (DataEncoding == DataEncoding.Base64)
         {
             if (!Base64Helper.TryDecode(Data, out byte[]? data))
@@ -38,7 +38,7 @@ public readonly partial struct DataUrlInfo
 
             try
             {
-                embeddedText = enc.GetString(data, bomLength, data.Length - bomLength);
+                text = enc.GetString(data, bomLength, data.Length - bomLength);
                 return true;
             }
             catch
@@ -51,20 +51,22 @@ public readonly partial struct DataUrlInfo
             // URL encoded String:
             string? encodingName = TryGetEncodingFromMimeType(out encodingName) ? encodingName
                                                                                 : DataUrlBuilder.UTF_8;
-            return UrlEncoding.TryDecode(Data, encodingName, true, out embeddedText);
+            return UrlEncoding.TryDecode(Data, encodingName, true, out text);
         }
     }
 
     /// <summary>
-    /// Tries to retrieve the binary <see cref="Data"/>, which is embedded in the "data" URL.
+    /// Tries to retrieve the <see cref="Data"/>, which is embedded in the "data" URL, as a 
+    /// <see cref="byte"/> array.
     /// </summary>
-    /// <param name="embeddedBytes">If the method returns <c>true</c> the parameter contains 
+    /// <param name="bytes">If the method returns <c>true</c> the parameter contains 
     /// the embedded binary data.
     /// The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if the <see cref="Data"/> embedded in the "data" URL could be 
     /// parsed as binary data, otherwise <c>false</c>.</returns>
-    /// <remarks>It depends of the <see cref="MimeType"/> whether the embedded <see cref="Data"/> 
-    /// in the "data" URL is treated as binary data.</remarks>
+    /// <remarks>If <see cref="DataEncoding"/> is <see cref="DataEncoding.Base64"/> the method
+    /// tries to retrieve the binary data in any case. Otherwise the embedded data is parsed only 
+    /// if the <see cref="DataType"/> property returns <see cref="DataType.Binary"/>.</remarks>
     /// 
     /// <example>
     /// <note type="note">
@@ -75,14 +77,13 @@ public readonly partial struct DataUrlInfo
     /// </para>
     /// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
     /// </example>
-    public bool TryGetEmbeddedBytes([NotNullWhen(true)] out byte[]? embeddedBytes)
+    public bool TryAsBytes([NotNullWhen(true)] out byte[]? bytes)
     {
-        embeddedBytes = null;
+        bytes = null;
 
-        return ContainsEmbeddedBytes &&
-               (this.DataEncoding == DataEncoding.Base64
-                    ? Base64Helper.TryDecode(Data, out embeddedBytes)
-                    : UrlEncoding.TryDecodeToBytes(Data, true, out embeddedBytes));
+        return this.DataEncoding == DataEncoding.Base64
+                    ? Base64Helper.TryDecode(Data, out bytes)
+                    : (DataType == DataType.Binary) && UrlEncoding.TryDecodeToBytes(Data, true, out bytes);
     }
 
     /// <summary>
@@ -93,15 +94,15 @@ public readonly partial struct DataUrlInfo
     /// or a byte array. The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if <see cref="Data"/> could be converted either into a <see cref="string"/>
     /// or a byte array.</returns>
-    public bool TryGetEmbeddedData(out OneOf<string, byte[]> data)
+    public bool TryGetData(out OneOf<string, byte[]> data)
     {
-        if (TryGetEmbeddedText(out string? embeddedText))
+        if (TryAsText(out string? embeddedText))
         {
             data = embeddedText;
             return true;
         }
 
-        if (TryGetEmbeddedBytes(out byte[]? embeddedBytes))
+        if (TryAsBytes(out byte[]? embeddedBytes))
         {
             data = embeddedBytes;
             return true;

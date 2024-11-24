@@ -44,7 +44,7 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
     }
 
     private bool EqualsData(in DataUrlInfo other)
-        => this.ContainsEmbeddedText
+        => this.DataType == DataType.Text
             ? EqualsText(in other)
             : this.DataEncoding == DataEncoding.Base64 && other.DataEncoding == DataEncoding.Base64
                 ? this.Data.Equals(other.Data, StringComparison.Ordinal)
@@ -52,9 +52,9 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
 
     private bool EqualsText(in DataUrlInfo other)
     {
-        if (other.TryGetEmbeddedText(out string? otherText))
+        if (other.TryAsText(out string? otherText))
         {
-            if (TryGetEmbeddedText(out string? thisText))
+            if (TryAsText(out string? thisText))
             {
                 return StringComparer.Ordinal.Equals(thisText, otherText);
             }
@@ -65,9 +65,9 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
 
     private bool EqualsBytes(in DataUrlInfo other)
     {
-        if (other.TryGetEmbeddedBytes(out byte[]? otherBytes))
+        if (other.TryAsBytes(out byte[]? otherBytes))
         {
-            if (TryGetEmbeddedBytes(out byte[]? thisBytes))
+            if (TryAsBytes(out byte[]? thisBytes))
             {
                 return thisBytes.SequenceEqual(otherBytes);
             }

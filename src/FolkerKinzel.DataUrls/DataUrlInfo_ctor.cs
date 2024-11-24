@@ -31,7 +31,7 @@ public readonly partial struct DataUrlInfo
 {
     private DataUrlInfo(ushort idx, in ReadOnlyMemory<char> embeddedData)
     {
-        _embeddedData = embeddedData;
+        _dataUrl = embeddedData;
         _idx = idx;
     }
 }

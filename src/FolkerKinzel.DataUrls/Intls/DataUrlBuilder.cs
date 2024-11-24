@@ -151,7 +151,7 @@ internal static class DataUrlBuilder
     /// Appends the content of a file as "data" URL (RFC 2397) to the end of a <see cref="StringBuilder"/>.
     /// </summary>
     /// <param name="builder">The <see cref="StringBuilder"/> to which a "data" URL is appended.</param>
-    /// <param name="filePath">Abolute path to the file which content is to embed into the "data" URL.</param>
+    /// <param name="filePath">Abolute path to the file whose content is to embed in the "data" URL.</param>
     /// <param name="mimeType">The <see cref="MimeType"/> of the file whose content is to embed.</param>
     /// <param name="dataEncoding">The encoding to use to embed the file.</param>
     /// 
@@ -169,7 +169,6 @@ internal static class DataUrlBuilder
 
         return builder.AppendEmbeddedBytesIntl(LoadFile(filePath), in mimeType, dataEncoding);
     }
-
 
     [ExcludeFromCodeCoverage]
     private static byte[] LoadFile(string path)

@@ -30,28 +30,28 @@ public class DataUrlInfoTests
     public void TryGetEmbeddedTextTest1()
     {
         Assert.IsTrue(DataUrl.TryParse("data:;base64,A", out DataUrlInfo info));
-        Assert.IsFalse(info.TryGetEmbeddedText(out _));
+        Assert.IsFalse(info.TryAsText(out _));
     }
 
     [TestMethod]
     public void TryGetEmbeddedTextTest2()
     {
         Assert.IsTrue(DataUrl.TryParse("data:text/plain;charset=utf-8;base64,ABCD", out DataUrlInfo info));
-        Assert.IsFalse(info.TryGetEmbeddedText(out _));
+        Assert.IsFalse(info.TryAsText(out _));
     }
 
     [TestMethod]
-    public void TryGetEmbedddedTextTest3() => Assert.IsTrue(new DataUrlInfo().TryGetEmbeddedText(out _));
+    public void TryGetEmbedddedTextTest3() => Assert.IsTrue(new DataUrlInfo().TryAsText(out _));
 
 
     [TestMethod]
-    public void TryGetEmbedddedBytesTest1() => Assert.IsFalse(new DataUrlInfo().TryGetEmbeddedBytes(out _));
+    public void TryGetEmbedddedBytesTest1() => Assert.IsFalse(new DataUrlInfo().TryAsBytes(out _));
 
     [TestMethod]
     public void TryGetEmbeddedBytesTest2()
     {
         Assert.IsTrue(DataUrl.TryParse("data:application/octet-stream;base64,A", out DataUrlInfo info));
-        Assert.IsFalse(info.TryGetEmbeddedBytes(out _));
+        Assert.IsFalse(info.TryAsBytes(out _));
     }
 
 
@@ -61,8 +61,7 @@ public class DataUrlInfoTests
         const string input = "data:,This is unescaped ASCII text.";
 
         Assert.IsTrue(DataUrl.TryParse(input, out DataUrlInfo info));
-        Assert.IsTrue(info.ContainsEmbeddedText);
-        Assert.IsFalse(info.ContainsEmbeddedBytes);
+        Assert.AreEqual(DataType.Text, info.DataType);
     }
 
 
