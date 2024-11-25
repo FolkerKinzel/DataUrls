@@ -41,7 +41,8 @@ public static class DataUrlExample
 
         if (DataUrl.TryGetData(url, out EmbeddedData data, out string? fileTypeExtension))
         {
-            path = Path.Combine(Directory.GetCurrentDirectory(), $"{Guid.NewGuid()}{fileTypeExtension}");
+            path = Path.Combine(Directory.GetCurrentDirectory(),
+                                $"{Guid.NewGuid()}{fileTypeExtension}");
 
             data.Switch(path,
                 static (bytes, path) => File.WriteAllBytes(path, bytes),
