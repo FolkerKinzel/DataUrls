@@ -247,8 +247,6 @@ public class DataUrlTests
         CollectionAssert.AreEqual(bytes, outBytes);
     }
 
-   
-
     [TestMethod]
     public void FromBytesTest4()
     {
@@ -270,11 +268,6 @@ public class DataUrlTests
         string url = DataUrl.FromBytes(ReadOnlySpan<byte>.Empty, encoding: DataEncoding.Url);
         Assert.AreNotEqual(0, url.Length);
     }
-
-    //[TestMethod]
-    //[ExpectedException(typeof(ArgumentNullException))]
-    //public void FromBytesTest5() => _ = DataUrl.FromBytes(Array.Empty<byte>(), (MimeType?)null!);
-
 
     [TestMethod]
     public void FromBytesTest6()
@@ -395,10 +388,6 @@ public class DataUrlTests
         StringAssert.Contains(url1, "image/png");
     }
 
-    //[TestMethod]
-    //[ExpectedException(typeof(ArgumentNullException))]
-    //public void FromFileTest9() => _ = DataUrl.FromFile("test.jpg", (MimeType?)null!);
-
     [TestMethod]
     public void FromFileTest10()
     {
@@ -479,7 +468,6 @@ public class DataUrlTests
     public void FromTextTest3()
     {
         string text = "http://www.fölkerchen.de";
-        //string test = DATA_PROTOCOL + "text/plain;charset=utf-8" + ";" + DEFAULT_ENCODING + "," + Uri.EscapeDataString(text);
 
         string outText = DataUrl.FromText(text);
 
@@ -560,7 +548,7 @@ public class DataUrlTests
     public void LargeFileTest2()
     {
         const string chunk = "%01%02%03";
-        StringBuilder sb = new StringBuilder(chunk.Length * 20100);
+        var sb = new StringBuilder(chunk.Length * 20100);
 
         for (int i = 0; i < 20000; i++)
         {

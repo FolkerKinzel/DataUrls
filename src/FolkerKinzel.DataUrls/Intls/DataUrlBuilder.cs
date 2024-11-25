@@ -45,12 +45,12 @@ internal static class DataUrlBuilder
         static byte[] SerializeText(string text, MimeType mimeType, string charSet)
         {
             byte[] value;
-            try
+
+            if(TextEncodingConverter.TryGetEncoding(charSet, out Encoding? enc))
             {
-                Encoding enc = TextEncodingConverter.GetEncoding(charSet, throwOnInvalidWebName: true);
                 value = enc.GetBytes(text);
             }
-            catch
+            else
             {
                 value = Encoding.UTF8.GetBytes(text);
 

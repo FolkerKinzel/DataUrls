@@ -26,6 +26,7 @@ public static class DataUrlExample
         Console.WriteLine($"MIME Type:      {info.MimeType}");
         Console.WriteLine($"File Type Ext.: {info.GetFileTypeExtension()}");
         Console.WriteLine($"Data Encoding:  {info.Encoding}");
+        Console.WriteLine();
 
         if (info.TryGetData(out EmbeddedData data))
         {
@@ -67,5 +68,6 @@ Data Type:      Binary
 MIME Type:      image/jpeg
 File Type Ext.: .jpg
 Data Encoding:  Base64
+
 System.Byte[]: 2472 Bytes
  */

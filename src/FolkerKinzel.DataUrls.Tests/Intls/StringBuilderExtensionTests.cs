@@ -2,7 +2,7 @@
 namespace FolkerKinzel.DataUrls.Intls.Tests;
 
 [TestClass]
-public class DataUrlExtensionTests
+public class StringBuilderExtensionTests
 {
     //private const string DATA_URL_PROTOCOL = "data:";
     //private const string BASE64 = ";base64,";

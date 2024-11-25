@@ -5,6 +5,15 @@ namespace FolkerKinzel.DataUrls;
 /// This can be either an array of <see cref="byte"/>s 
 /// or a <see cref="string"/>.
 /// </summary>
+/// <example>
+/// <note type="note">
+/// For the sake of better readability, exception handling is ommitted in the example.
+/// </note>
+/// <para>
+/// Creating and parsing a "data" URL:
+/// </para>
+/// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
+/// </example>
 public readonly struct EmbeddedData
 {
     private readonly object? _object;
@@ -62,6 +71,15 @@ public readonly struct EmbeddedData
     /// is an array of <see cref="byte"/>s, or <c>null</c>.</param>
     /// <param name="textAction">The <see cref="Action{T}"/> to perform if the encapsulated
     /// value is a <see cref="string"/>, or <c>null</c>.</param>
+    /// <example>
+    /// <note type="note">
+    /// For the sake of better readability, exception handling is ommitted in the example.
+    /// </note>
+    /// <para>
+    /// Creating and parsing a "data" URL:
+    /// </para>
+    /// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
+    /// </example>
     public void Switch<TArg>(TArg arg,
                              Action<byte[], TArg>? bytesAction = null,
                              Action<string, TArg>? textAction = null)
