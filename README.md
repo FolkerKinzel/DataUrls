@@ -17,7 +17,6 @@ The library is designed to support performance and small heap allocation.
 
 [Version History](https://github.com/FolkerKinzel/DataUrls/releases)
 
-.
 ### Example:
 Creating and parsing a "data" URL:
 ```csharp
