@@ -7,11 +7,12 @@ namespace FolkerKinzel.DataUrls;
 [StructLayout(LayoutKind.Auto)]
 public readonly partial struct DataUrlInfo
 {
-    private const int MIME_TYPE_LENGTH_SHIFT = 2;
-    private const ushort DATA_ENCODING_MAX_VALUE = 1;
+    private const int MIME_TYPE_LENGTH_SHIFT = 3;
     private const int COMMA_LENGTH = 1;
-    private const ushort MIME_TYPE_LENGTH_MAX_VALUE = 0b0011_1111_1111_1111;
+    private const ushort MIME_TYPE_LENGTH_MAX_VALUE = 0b0001_1111_1111_1111;
+    private const ushort ENCODING_MAX_VALUE = 1;
     private const ushort INCOMPLETE_MIME_TYPE_VALUE = 2;
+    private const ushort DATA_TYPE_MAX_VALUE = 4;
 
     private readonly ReadOnlyMemory<char> _dataUrl;
     private readonly ushort _idx;
@@ -55,7 +56,7 @@ public readonly partial struct DataUrlInfo
     /// </para>
     /// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
     /// </example>
-    public DataEncoding Encoding => (DataEncoding)(_idx & DATA_ENCODING_MAX_VALUE);
+    public DataEncoding Encoding => (DataEncoding)(_idx & ENCODING_MAX_VALUE);
 
     /// <summary>
     /// The part of the "data" URL, which contains the embedded data.
@@ -83,12 +84,7 @@ public readonly partial struct DataUrlInfo
     /// <remarks>
     /// The return value depends on the <see cref="MimeType"/>.
     /// </remarks>
-    public DataType DataType 
-        => MimeTypeLength == 0
-        || IncompleteMimeType 
-        || _dataUrl.Span.StartsWith("text/", StringComparison.OrdinalIgnoreCase) 
-            ? DataType.Text 
-            : DataType.Binary;
+    public DataType DataType => (DataType)(_idx & DATA_TYPE_MAX_VALUE);
 
     /// <summary>
     /// Indicates whether the instance contains no data.

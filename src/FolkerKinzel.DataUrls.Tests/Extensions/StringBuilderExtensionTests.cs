@@ -91,7 +91,7 @@ public class StringBuilderExtensionTests
         var sb = new StringBuilder();
 
         Assert.IsTrue(DataUrl.TryParse("data:application/octet-stream,%01%02%03", out DataUrlInfo info));
-        Assert.IsTrue(info.TryAsBytes(out byte[]? embeddedBytes));
+        Assert.IsTrue(info.TryGetBytes(out byte[]? embeddedBytes));
         sb.AppendDataUrl(embeddedBytes, MimeType.Parse(MimeString.OctetStream).AsInfo());
         Assert.AreNotEqual(0, sb.Length);
     }
@@ -102,7 +102,7 @@ public class StringBuilderExtensionTests
         var sb = new StringBuilder();
 
         Assert.IsTrue(DataUrl.TryParse("data:application/octet-stream;base64,ABCD", out DataUrlInfo info));
-        Assert.IsTrue(info.TryAsBytes(out byte[]? embeddedBytes));
+        Assert.IsTrue(info.TryGetBytes(out byte[]? embeddedBytes));
         _ = sb.AppendDataUrl(embeddedBytes, MimeString.OctetStream);
         Assert.AreNotEqual(0, sb.Length);
     }
@@ -116,7 +116,7 @@ public class StringBuilderExtensionTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
     }
 
@@ -129,7 +129,7 @@ public class StringBuilderExtensionTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
     }
 
@@ -141,7 +141,7 @@ public class StringBuilderExtensionTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
     }
 
@@ -155,7 +155,7 @@ public class StringBuilderExtensionTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
     }
 

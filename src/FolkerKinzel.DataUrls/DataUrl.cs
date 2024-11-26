@@ -1,4 +1,5 @@
-﻿using FolkerKinzel.DataUrls.Intls;
+﻿using System.Diagnostics.Contracts;
+using FolkerKinzel.DataUrls.Intls;
 using FolkerKinzel.DataUrls.Properties;
 
 namespace FolkerKinzel.DataUrls;
@@ -469,7 +470,7 @@ public static class DataUrl
     /// <summary>
     /// Tries to retrieve the embedded data and the file type extension from the <paramref name="dataUrl"/> .
     /// </summary>
-    /// <param name="dataUrl">A read only memory that contains a "data" URL according to RFC 2397.</param>
+    /// <param name="dataUrl">A read-only memory that contains a "data" URL according to RFC 2397.</param>
     /// <param name="data">The embedded data. The parameter is passed uninitialized.</param>
     /// <param name="fileTypeExtension">The file type extension for <paramref name="data"/>.  The extension 
     /// starts with the period ".". The parameter is passed uninitialized.</param>
@@ -480,9 +481,7 @@ public static class DataUrl
     {
         if (!DataUrlInfo.TryParseInternal(ref dataUrl, out DataUrlInfo info))
         {
-            data = default;
-            fileTypeExtension = null;
-            return false;
+            goto Fail;
         }
 
         if (info.TryGetData(out data))
@@ -491,7 +490,62 @@ public static class DataUrl
             return true;
         }
 
+    Fail:
         data = default;
+        fileTypeExtension = null;
+        return false;
+    }
+
+    /// <summary>
+    /// Tries to retrieve the embedded data and the file type extension from the <paramref name="dataUrl"/>.
+    /// The retrieved data will be seríalized in a <see cref="byte"/> array.
+    /// </summary>
+    /// <param name="dataUrl">A "data" URL according to RFC 2397.</param>
+    /// <param name="data">The embedded data. The parameter is passed uninitialized.</param>
+    /// <param name="fileTypeExtension">The file type extension for <paramref name="data"/>. The extension starts with 
+    /// the period ".". The parameter is passed uninitialized.</param>
+    /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.</returns>
+    /// <example>
+    /// <note type="note">
+    /// For the sake of better readability, exception handling is ommitted in the example.
+    /// </note>
+    /// <para>
+    /// Creating and parsing a "data" URL:
+    /// </para>
+    /// <code language="c#" source="./../Examples/DataUrlExample.cs"/>
+    /// </example>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool TryGetBytes(string? dataUrl,
+                                  [NotNullWhen(true)] out byte[]? bytes,
+                                  [NotNullWhen(true)] out string? fileTypeExtension)
+        => TryGetBytes(dataUrl.AsMemory(), out bytes, out fileTypeExtension);
+
+    /// <summary>
+    /// Tries to retrieve the embedded data and the file type extension from the <paramref name="dataUrl"/>.
+    /// The retrieved data will be seríalized in a <see cref="byte"/> array.
+    /// </summary>
+    /// <param name="dataUrl">A read-only memory that contains a "data" URL according to RFC 2397.</param>
+    /// <param name="data">The embedded data. The parameter is passed uninitialized.</param>
+    /// <param name="fileTypeExtension">The file type extension for <paramref name="data"/>. The extension starts with 
+    /// the period ".". The parameter is passed uninitialized.</param>
+    /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.</returns>
+    /// 
+    public static bool TryGetBytes(ReadOnlyMemory<char> dataUrl,
+                                  [NotNullWhen(true)] out byte[]? bytes,
+                                  [NotNullWhen(true)] out string? fileTypeExtension)
+    {
+        if (!DataUrlInfo.TryParseInternal(ref dataUrl, out DataUrlInfo info))
+        {
+            goto Fail;
+        }
+
+        if (info.TryGetBytes(out bytes))
+        {
+            fileTypeExtension = info.GetFileTypeExtension();
+            return true;
+        }
+Fail:
+        bytes = default;
         fileTypeExtension = null;
         return false;
     }

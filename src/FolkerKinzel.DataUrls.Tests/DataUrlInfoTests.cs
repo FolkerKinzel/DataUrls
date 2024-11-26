@@ -45,13 +45,13 @@ public class DataUrlInfoTests
 
 
     [TestMethod]
-    public void TryGetEmbedddedBytesTest1() => Assert.IsFalse(new DataUrlInfo().TryAsBytes(out _));
+    public void TryGetEmbedddedBytesTest1() => Assert.IsFalse(new DataUrlInfo().TryGetBytes(out _));
 
     [TestMethod]
     public void TryGetEmbeddedBytesTest2()
     {
         Assert.IsTrue(DataUrl.TryParse("data:application/octet-stream;base64,A", out DataUrlInfo info));
-        Assert.IsFalse(info.TryAsBytes(out _));
+        Assert.IsFalse(info.TryGetBytes(out _));
     }
 
 

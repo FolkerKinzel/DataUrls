@@ -17,7 +17,7 @@ public readonly partial struct DataUrlInfo
         {
             hash.Add(text);
         }
-        else if (TryAsBytes(out byte[]? bytes))
+        else if (TryGetBytes(out byte[]? bytes))
         {
             hash.AddBytes(bytes);
         }

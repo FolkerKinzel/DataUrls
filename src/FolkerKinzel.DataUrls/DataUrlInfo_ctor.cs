@@ -29,9 +29,9 @@
 /// </example>
 public readonly partial struct DataUrlInfo
 {
-    private DataUrlInfo(ushort idx, in ReadOnlyMemory<char> embeddedData)
+    private DataUrlInfo(ushort idx, in ReadOnlyMemory<char> dataUrl)
     {
-        _dataUrl = embeddedData;
+        _dataUrl = dataUrl;
         _idx = idx;
     }
 }

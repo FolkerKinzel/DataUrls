@@ -14,5 +14,5 @@ public enum DataType
     /// The embedded data represents a <see cref="byte"/> array that can't be 
     /// converted to a <see cref="string"/>.
     /// </summary>
-    Binary
+    Binary = 4 
 }

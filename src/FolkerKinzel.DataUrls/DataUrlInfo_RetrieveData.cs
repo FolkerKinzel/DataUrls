@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using FolkerKinzel.DataUrls.Intls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FolkerKinzel.DataUrls;
 
@@ -15,7 +16,7 @@ public readonly partial struct DataUrlInfo
     /// The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if the embedded <see cref="Data"/> in the "data" URL could 
     /// be parsed as <see cref="string"/>, otherwise <c>false</c>.</returns>
-    /// <remarks> The method tries to retrieve the embedded data as text only if the 
+    /// <remarks> The method succeeds only if the 
     /// <see cref="DataType"/> property returns <see cref="DataType.Text"/>.</remarks>
     public bool TryAsText([NotNullWhen(true)] out string? text)
     {
@@ -63,27 +64,22 @@ public readonly partial struct DataUrlInfo
     /// the embedded binary data.
     /// The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if the <see cref="Data"/> embedded in the "data" URL could be 
-    /// parsed as <see cref="byte"/> array, otherwise <c>false</c>.</returns>
-    /// <remarks>If <see cref="Encoding"/> is <see cref="DataEncoding.Base64"/> the method
-    /// tries to retrieve the binary data in any case. Otherwise the embedded data is parsed only 
-    /// if the <see cref="DataType"/> property returns <see cref="DataType.Binary"/>.</remarks>
-    /// 
-    /// 
-    public bool TryAsBytes([NotNullWhen(true)] out byte[]? bytes)
-    {
-        bytes = null;
-
-        return this.Encoding == DataEncoding.Base64
+    /// parsed as a <see cref="byte"/> array, otherwise <c>false</c>.</returns>
+    /// <remarks> The method fails only if decoding errors occur. </remarks>
+    public bool TryGetBytes([NotNullWhen(true)] out byte[]? bytes)
+        => this.Encoding == DataEncoding.Base64
                     ? Base64Helper.TryDecode(Data, out bytes)
-                    : (DataType == DataType.Binary) && UrlEncoding.TryDecodeToBytes(Data, true, out bytes);
-    }
+                    : DataType == DataType.Binary
+                       ? UrlEncoding.TryDecodeToBytes(Data, true, out bytes)
+                       : TryConvertUrlEncodedStringToBytes(out bytes);
 
     /// <summary>
     /// Tries to retrieve the embedded <see cref="Data"/> decoded either as a <see cref="string"/> 
-    /// or as a byte array, depending on <see cref="MimeType"/>.
+    /// or as a byte array, depending on the value of the <see cref="MimeType"/> property.
     /// </summary>
-    /// <param name="data">The embedded <see cref="Data"/>.  The parameter is passed uninitialized.</param>
-    /// <returns><c>true</c> if <see cref="Data"/> could be converted to an <see cref="EmbeddedData"/> instance.</returns>
+    /// <param name="data">The embedded <see cref="Data"/>. The parameter is passed uninitialized.</param>
+    /// <returns><c>true</c> if <see cref="Data"/> could be converted to an <see cref="EmbeddedData"/> 
+    /// instance.</returns>
     /// 
     /// <example>
     /// <note type="note">
@@ -102,7 +98,7 @@ public readonly partial struct DataUrlInfo
             return true;
         }
 
-        if (TryAsBytes(out byte[]? embeddedBytes))
+        if (TryGetBytes(out byte[]? embeddedBytes))
         {
             data = EmbeddedData.FromBytes(embeddedBytes);
             return true;
@@ -130,6 +126,26 @@ public readonly partial struct DataUrlInfo
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public string GetFileTypeExtension() => MimeString.ToFileTypeExtension(MimeType.Span);
 
+
+    //public string SaveData(string filePath)
+    //{
+    //    _ArgumentNullException.ThrowIfNull(filePath, nameof(filePath));
+
+    //    string extension = GetFileTypeExtension();
+
+    //    if(!filePath.EndsWith(extension, StringComparison.OrdinalIgnoreCase))
+    //    {
+    //        filePath += extension;
+    //    }
+
+    //    if(TryGetBytes(out byte[]? bytes) && bytes.Length != 0)
+    //    {
+    //        FileService.SaveFile(filePath, bytes);
+    //    }
+
+    //    return filePath;
+    //}
+
     private int GetEncoding(byte[] data, out Encoding enc)
     {
         int codePage = TextEncodingConverter.GetCodePage(data, out int bomLength);
@@ -150,16 +166,34 @@ public readonly partial struct DataUrlInfo
         }
 
         MimeTypeParameterInfo charsetPara = info.Parameters().FirstOrDefault(Predicate);
+
         if (charsetPara.IsEmpty)
         {
             encodingName = null;
             return false;
         }
+
         encodingName = charsetPara.Value.ToString();
         return true;
 
         ///////////////////////////////////////////////////////////
 
         static bool Predicate(MimeTypeParameterInfo p) => p.IsCharSetParameter;
+    }
+
+    private bool TryConvertUrlEncodedStringToBytes([NotNullWhen(true)] out byte[]? bytes)
+    {
+
+        string? encodingName = TryGetEncodingFromMimeType(out encodingName) ? encodingName
+                                                                            : DataUrlBuilder.UTF_8;
+
+        if (!UrlEncoding.TryDecode(Data, encodingName, true, out string? text))
+        {
+            bytes = null;
+            return false;
+        }
+
+        bytes = TextEncodingConverter.GetEncoding(encodingName).GetBytes(text);
+        return true;
     }
 }
