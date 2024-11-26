@@ -1,6 +1,4 @@
-﻿using System.Text;
-using FolkerKinzel.DataUrls.Intls;
-using static System.Net.Mime.MediaTypeNames;
+﻿using FolkerKinzel.DataUrls.Intls;
 
 namespace FolkerKinzel.DataUrls;
 
@@ -11,10 +9,10 @@ public readonly partial struct DataUrlInfo
     /// <summary>
     /// Tries to retrieve the text, which is embedded in the "data" URL.
     /// </summary>
-    /// <param name="text">If the method returns <c>true</c> the parameter contains 
+    /// <param name="text">If the method returns <c>true</c>, the parameter contains 
     /// the embedded text. The parameter is passed uninitialized.</param>
-    /// <returns><c>true</c> if the embedded <see cref="Data"/> in the "data" URL could 
-    /// be parsed as <see cref="string"/>, otherwise <c>false</c>.</returns>
+    /// <returns><c>true</c> if the embedded <see cref="Data"/> could 
+    /// be converted to a <see cref="string"/>, otherwise <c>false</c>.</returns>
     /// <remarks>
     /// <para>
     /// The method succeeds only if the 
@@ -65,29 +63,29 @@ public readonly partial struct DataUrlInfo
     }
 
     /// <summary>
-    /// Tries to retrieve the <see cref="Data"/>, which is embedded in the "data" URL, as a 
-    /// <see cref="byte"/> array.
+    /// Tries to retrieve the embedded <see cref="Data"/> as a <see cref="byte"/> array.
     /// </summary>
-    /// <param name="bytes">If the method returns <c>true</c> the parameter contains 
-    /// the embedded binary data. The parameter is passed uninitialized.</param>
+    /// <param name="bytes">If the method returns <c>true</c>, the parameter contains 
+    /// the embedded data. The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if the <see cref="Data"/> embedded in the "data" URL could be 
-    /// parsed as a <see cref="byte"/> array, otherwise <c>false</c>.</returns>
+    /// converted to a <see cref="byte"/> array, otherwise <c>false</c>.</returns>
     /// <remarks> The method fails only if a decoding error occurs. The use of the method is particularly 
-    /// recommended if the data of the "data" URL should be saved in a file.</remarks>
+    /// recommended if the embedded data of the "data" URL should be saved in a file.</remarks>
     public bool TryAsBytes([NotNullWhen(true)] out byte[]? bytes)
         => this.Encoding == DataEncoding.Base64
                     ? Base64Helper.TryDecode(Data, out bytes)
                     : UrlEncoding.TryDecodeToBytes(Data, true, out bytes);
 
     /// <summary>
-    /// Tries to retrieve the embedded <see cref="Data"/> decoded either as a <see cref="string"/> 
-    /// or as a <see cref="byte"/> array, depending on the value of the <see cref="DataType"/> property.
+    /// Tries to retrieve the embedded <see cref="Data"/> as a union that contains either a <see cref="string"/> 
+    /// or an array of <see cref="byte"/>s (depending on the value of the <see cref="DataType"/> property).
     /// </summary>
-    /// <param name="data">If the method returns <c>true</c> the parameter contains the embedded
-    /// <see cref="Data"/> as an <see cref="EmbeddedData"/> union. The 
-    /// parameter is passed uninitialized.</param>
+    /// <param name="data">If the method returns <c>true</c>, the parameter contains the embedded
+    /// <see cref="Data"/> as an <see cref="EmbeddedData"/> union. The parameter is passed uninitialized.</param>
+    /// 
     /// <returns><c>true</c> if <see cref="Data"/> could be converted to an <see cref="EmbeddedData"/> 
     /// instance, otherwise <c>false</c>.</returns>
+    /// 
     /// <remarks>Use this method if you want to use the data in the application.</remarks>
     /// 
     /// <example>

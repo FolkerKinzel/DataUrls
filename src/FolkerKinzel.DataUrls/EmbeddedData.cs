@@ -1,13 +1,13 @@
 namespace FolkerKinzel.DataUrls;
 
 /// <summary>
-/// Encapsulates the data embedded in a "data" URL.
-/// This can be either an array of <see cref="byte"/>s 
-/// or a <see cref="string"/>.
+/// A union that contains either an array of <see cref="byte"/>s 
+/// or a <see cref="string"/> (text).
 /// </summary>
 /// <example>
 /// <note type="note">
-/// For the sake of better readability, exception handling is ommitted in the example.
+/// For the sake of better readability, exception handling is ommitted in 
+/// the example.
 /// </note>
 /// <para>
 /// Creating and parsing a "data" URL:
@@ -25,15 +25,14 @@ public readonly struct EmbeddedData
     internal static EmbeddedData FromText(string str) => new(str);
 
     /// <summary>
-    /// Gets the embedded <see cref="byte"/> array,
-    /// or <c>null</c>, if the embedded data is a <see cref="string"/>.
+    /// Gets the array of <see cref="byte"/>s,
+    /// or <c>null</c> if the union contains text.
     /// </summary>
     public byte[]? Bytes => _object is null ? [] : _object as byte[];
 
     /// <summary>
-    /// Gets the embedded text,
-    /// or <c>null</c>, if the embedded value can't be converted to
-    /// a <see cref="string"/>.
+    /// Gets the text,
+    /// or <c>null</c> if the union contains an array of <see cref="byte"/>s.
     /// </summary>
     public string? Text => _object as string;
 
@@ -41,11 +40,10 @@ public readonly struct EmbeddedData
     /// Performs an <see cref="Action{T}"/> depending on the <see cref="Type"/> of the 
     /// embedded data.
     /// </summary>
-    /// <param name="bytesAction">The <see cref="Action{T}"/> to perform if the encapsulated value
-    /// is an array of <see cref="byte"/>s, or <c>null</c>.</param>
-    ///
-    /// <param name="textAction">The <see cref="Action{T}"/> to perform if the encapsulated
-    /// value is a <see cref="string"/>, or <c>null</c>.</param>
+    /// <param name="bytesAction"><c>null</c>, or the <see cref="Action{T}"/> to be executed 
+    /// if the encapsulated value is an array of <see cref="byte"/>s.</param>
+    /// <param name="textAction"><c>null</c>, or the <see cref="Action{T}"/> to be executed 
+    /// if the encapsulated value is a <see cref="string"/>.</param>
     /// 
     public void Switch(Action<byte[]>? bytesAction = null,
                        Action<string>? textAction = null)
@@ -67,10 +65,10 @@ public readonly struct EmbeddedData
     /// <typeparam name="TArg">Generic type parameter for the type of the argument to pass
     /// to the delegates.</typeparam>
     /// <param name="arg">The argument to pass to the delegates.</param>
-    /// <param name="bytesAction">The <see cref="Action{T}"/> to perform if the encapsulated value
-    /// is an array of <see cref="byte"/>s, or <c>null</c>.</param>
-    /// <param name="textAction">The <see cref="Action{T}"/> to perform if the encapsulated
-    /// value is a <see cref="string"/>, or <c>null</c>.</param>
+    /// <param name="bytesAction"><c>null</c>, or the <see cref="Action{T}"/> to be executed 
+    /// if the encapsulated value is an array of <see cref="byte"/>s.</param>
+    /// <param name="textAction"><c>null</c>, or the <see cref="Action{T}"/> to be executed 
+    /// if the encapsulated value is a <see cref="string"/>.</param>
     /// <example>
     /// <note type="note">
     /// For the sake of better readability, exception handling is ommitted in the example.
@@ -102,7 +100,7 @@ public readonly struct EmbeddedData
     /// value is an array of <see cref="byte"/>s.</param>
     /// <param name="textFunc">The <see cref="Func{T, TResult}"/> to call if the encapsulated
     /// value is a <see cref="string"/>.</param>
-    /// <returns>A <typeparamref name="TResult"/>.</returns>
+    /// <returns>An instance of <typeparamref name="TResult"/>.</returns>
     /// <exception cref="ArgumentNullException">
     /// One of the arguments is <c>null</c> and the encapsulated value is of that <see cref="Type"/>.
     /// </exception>
@@ -110,8 +108,10 @@ public readonly struct EmbeddedData
                                     Func<string, TResult> textFunc)
         => Bytes switch 
         {
-            byte[] bytes => bytesFunc is null ? throw new ArgumentNullException(nameof(bytesFunc)) : bytesFunc(bytes),
-            _ => textFunc is null ? throw new ArgumentNullException(nameof(textFunc)) : textFunc((string)_object!)
+            byte[] bytes => bytesFunc is null ? throw new ArgumentNullException(nameof(bytesFunc)) 
+                                              : bytesFunc(bytes),
+            _ => textFunc is null ? throw new ArgumentNullException(nameof(textFunc)) 
+                                  : textFunc((string)_object!)
         };
 
     /// <summary>
@@ -126,7 +126,7 @@ public readonly struct EmbeddedData
     /// value is an array of <see cref="byte"/>s.</param>
     /// <param name="textFunc">The <see cref="Func{T, TResult}"/> to call if the encapsulated
     /// value is a <see cref="string"/>.</param>
-    /// <returns>A <typeparamref name="TResult"/>.</returns>
+    /// <returns>An instance of <typeparamref name="TResult"/>.</returns>
     /// <exception cref="ArgumentNullException">
     /// One of the arguments is <c>null</c> and the encapsulated value is of that <see cref="Type"/>.
     /// </exception>
@@ -134,12 +134,14 @@ public readonly struct EmbeddedData
                                           Func<byte[], TArg, TResult> bytesFunc,
                                           Func<string, TArg, TResult> textFunc)
         => Bytes switch {
-            byte[] bytes => bytesFunc is null ? throw new ArgumentNullException(nameof(bytesFunc)) : bytesFunc(bytes, arg),
-            _ => textFunc is null ? throw new ArgumentNullException(nameof(textFunc)) : textFunc((string)_object!, arg)
+            byte[] bytes => bytesFunc is null ? throw new ArgumentNullException(nameof(bytesFunc)) 
+                                              : bytesFunc(bytes, arg),
+            _ => textFunc is null ? throw new ArgumentNullException(nameof(textFunc)) 
+                                  : textFunc((string)_object!, arg)
         };
 
     /// <summary>
-    /// Returns a <see cref="string"/>-representation of the instance that
+    /// Returns a <see cref="string"/> representation of the instance that
     /// helps in debugging.
     /// </summary>
     /// <returns>A <see cref="string"/>-representation of the instance.</returns>
