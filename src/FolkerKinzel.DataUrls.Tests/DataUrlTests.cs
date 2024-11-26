@@ -87,7 +87,7 @@ public class DataUrlTests
         Assert.AreEqual(DataEncoding.Url, dataUrl.Encoding);
         Assert.AreEqual(DataType.Binary, dataUrl.DataType);
 
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? output));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? output));
 
         CollectionAssert.AreEqual(data, output);
     }
@@ -120,7 +120,7 @@ public class DataUrlTests
 
         Assert.IsTrue(DataUrl.TryParse($"data:application/octet-stream,{sb}", out DataUrlInfo dataUrl));
         Assert.AreEqual(DataType.Binary, dataUrl.DataType);
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? bytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? bytes));
         Assert.AreEqual(256, bytes!.Length);
 
         for (int i = 0; i < bytes!.Length; i++)
@@ -157,7 +157,7 @@ public class DataUrlTests
         byte[] data = [1, 2, 3];
         string url = DataUrl.FromBytes(data, MimeType.Parse("application/x-stuff; key=\";bla,blabla\"").AsInfo());
         Assert.IsTrue(DataUrl.TryParse(url, out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? parsed));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? parsed));
         CollectionAssert.AreEqual(data, parsed);
     }
 
@@ -201,7 +201,7 @@ public class DataUrlTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText, out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(bytes, outBytes);
     }
 
@@ -215,7 +215,7 @@ public class DataUrlTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText, out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(bytes, outBytes);
     }
 
@@ -229,7 +229,7 @@ public class DataUrlTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText, out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(bytes, outBytes);
     }
 
@@ -243,7 +243,7 @@ public class DataUrlTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText, out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(bytes, outBytes);
     }
 
@@ -310,7 +310,7 @@ public class DataUrlTests
 
         Assert.IsTrue(DataUrl.TryParse(url, out DataUrlInfo dataUrl));
 
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
 
         CollectionAssert.AreEqual(outBytes, File.ReadAllBytes(path));
     }
@@ -322,7 +322,7 @@ public class DataUrlTests
         string url = DataUrl.FromFile(path);
         Assert.IsNotNull(url);
         Assert.IsTrue(DataUrl.TryParse(url, out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(outBytes, File.ReadAllBytes(path));
     }
 
@@ -541,7 +541,7 @@ public class DataUrlTests
 
         string url = DataUrl.FromBytes(buf, "application/octet-stream");
         Assert.IsTrue(DataUrl.TryParse(url, out DataUrlInfo info));
-        Assert.IsTrue(info.TryGetBytes(out _));
+        Assert.IsTrue(info.TryAsBytes(out _));
     }
 
     [TestMethod]
@@ -557,7 +557,7 @@ public class DataUrlTests
 
         string url = "data:application/octet-stream," + sb.ToString();
         Assert.IsTrue(DataUrl.TryParse(url, out DataUrlInfo info));
-        Assert.IsTrue(info.TryGetBytes(out _));
+        Assert.IsTrue(info.TryAsBytes(out _));
     }
 
     [TestMethod]
@@ -596,7 +596,7 @@ public class DataUrlTests
         var sb = new StringBuilder();
 
         Assert.IsTrue(DataUrl.TryParse("data:application/octet-stream,%01%02%03", out DataUrlInfo info));
-        Assert.IsTrue(info.TryGetBytes(out byte[]? embeddedBytes));
+        Assert.IsTrue(info.TryAsBytes(out byte[]? embeddedBytes));
         DataUrl.AppendBytesTo(sb, embeddedBytes, MimeType.Parse(MimeString.OctetStream).AsInfo());
         Assert.AreNotEqual(0, sb.Length);
     }
@@ -607,7 +607,7 @@ public class DataUrlTests
         var sb = new StringBuilder();
 
         Assert.IsTrue(DataUrl.TryParse("data:application/octet-stream;base64,ABCD", out DataUrlInfo info));
-        Assert.IsTrue(info.TryGetBytes(out byte[]? embeddedBytes));
+        Assert.IsTrue(info.TryAsBytes(out byte[]? embeddedBytes));
         _ = DataUrl.AppendBytesTo(sb, embeddedBytes, MimeString.OctetStream);
         Assert.AreNotEqual(0, sb.Length);
     }
@@ -629,7 +629,7 @@ public class DataUrlTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
     }
 
@@ -640,7 +640,7 @@ public class DataUrlTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
     }
 
@@ -651,7 +651,7 @@ public class DataUrlTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
     }
 
@@ -663,7 +663,7 @@ public class DataUrlTests
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
-        Assert.IsTrue(dataUrl.TryGetBytes(out byte[]? outBytes));
+        Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
         CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
     }
 

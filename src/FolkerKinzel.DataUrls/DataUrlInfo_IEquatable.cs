@@ -65,9 +65,9 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
 
     private bool EqualsBytes(in DataUrlInfo other)
     {
-        if (other.TryGetBytes(out byte[]? otherBytes))
+        if (other.TryAsBytes(out byte[]? otherBytes))
         {
-            if (TryGetBytes(out byte[]? thisBytes))
+            if (TryAsBytes(out byte[]? thisBytes))
             {
                 return thisBytes.SequenceEqual(otherBytes);
             }

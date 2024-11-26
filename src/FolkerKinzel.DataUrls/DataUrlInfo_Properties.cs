@@ -82,7 +82,7 @@ public readonly partial struct DataUrlInfo
     /// Gets the data type of the embedded data.
     /// </summary>
     /// <remarks>
-    /// The return value depends on the <see cref="MimeType"/>.
+    /// The return value depends on the <see cref="MimeType"/> property.
     /// </remarks>
     public DataType DataType => (DataType)(_idx & DATA_TYPE_MAX_VALUE);
 

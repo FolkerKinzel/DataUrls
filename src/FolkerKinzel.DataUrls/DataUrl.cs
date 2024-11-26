@@ -539,13 +539,57 @@ public static class DataUrl
             goto Fail;
         }
 
-        if (info.TryGetBytes(out bytes))
+        if (info.TryAsBytes(out bytes))
         {
             fileTypeExtension = info.GetFileTypeExtension();
             return true;
         }
 Fail:
         bytes = default;
+        fileTypeExtension = null;
+        return false;
+    }
+
+    /// <summary>
+    /// Tries to retrieve the embedded text and the file type extension from the <paramref name="dataUrl"/>.
+    /// </summary>
+    /// <param name="dataUrl">A "data" URL according to RFC 2397.</param>
+    /// <param name="text">The embedded text. The parameter is passed uninitialized.</param>
+    /// <param name="fileTypeExtension">The file type extension for <paramref name="text"/>. The extension starts with 
+    /// the period ".". The parameter is passed uninitialized.</param>
+    /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.</returns>
+    /// 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool TryGetText(string? dataUrl,
+                                  [NotNullWhen(true)] out string? text,
+                                  [NotNullWhen(true)] out string? fileTypeExtension)
+        => TryGetText(dataUrl.AsMemory(), out text, out fileTypeExtension);
+
+    /// <summary>
+    /// Tries to retrieve the embedded text and the file type extension from the <paramref name="dataUrl"/>.
+    /// </summary>
+    /// <param name="dataUrl">A read-only memory that contains a "data" URL according to RFC 2397.</param>
+    /// <param name="text">The embedded text. The parameter is passed uninitialized.</param>
+    /// <param name="fileTypeExtension">The file type extension for <paramref name="text"/>. The extension starts with 
+    /// the period ".". The parameter is passed uninitialized.</param>
+    /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.</returns>
+    /// 
+    public static bool TryGetText(ReadOnlyMemory<char> dataUrl,
+                                 [NotNullWhen(true)] out string? text,
+                                 [NotNullWhen(true)] out string? fileTypeExtension)
+    {
+        if (!DataUrlInfo.TryParseInternal(ref dataUrl, out DataUrlInfo info))
+        {
+            goto Fail;
+        }
+
+        if (info.TryAsText(out text))
+        {
+            fileTypeExtension = info.GetFileTypeExtension();
+            return true;
+        }
+    Fail:
+        text = default;
         fileTypeExtension = null;
         return false;
     }
