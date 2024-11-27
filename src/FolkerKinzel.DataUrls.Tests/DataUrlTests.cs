@@ -578,11 +578,11 @@ public class DataUrlTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendEmbeddedTextToTest1() => _ = DataUrl.AppendTextTo(null!, "", MimeType.Parse(MimeString.OctetStream));
+    public void AppendTextToTest1() => _ = DataUrl.AppendTextTo(null!, "", MimeType.Parse(MimeString.OctetStream));
 
 
     [TestMethod]
-    public void AppendEmbeddedTextToTest2()
+    public void AppendTextToTest2()
     {
         var stringBuilder = new StringBuilder();
         _ = DataUrl.AppendTextTo(stringBuilder, null, MimeType.Parse(MimeString.OctetStream));
@@ -591,7 +591,7 @@ public class DataUrlTests
 
 
     [TestMethod]
-    public void AppendEmbeddedBytesToTest1()
+    public void AppendBytesToTest1()
     {
         var sb = new StringBuilder();
 
@@ -602,7 +602,7 @@ public class DataUrlTests
     }
 
     [TestMethod]
-    public void AppendEmbeddedBytesToTest2()
+    public void AppendBytesToTest2()
     {
         var sb = new StringBuilder();
 
@@ -615,15 +615,15 @@ public class DataUrlTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendEmbeddedBytesToTest3() => _ = DataUrl.AppendBytesTo(null!, Array.Empty<byte>());
+    public void AppendBytesToTest3() => _ = DataUrl.AppendBytesTo(null!, Array.Empty<byte>());
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
-    public void AppendEmbeddedBytesToTest3b() => _ = DataUrl.AppendBytesTo(null!, ReadOnlySpan<byte>.Empty, MimeTypeInfo.Parse("image/png"));
+    public void AppendBytesToTest3b() => _ = DataUrl.AppendBytesTo(null!, ReadOnlySpan<byte>.Empty, MimeTypeInfo.Parse("image/png"));
 
     [TestMethod]
-    public void AppendEmbeddedBytesToTest4()
+    public void AppendBytesToTest4()
     {
         StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(), (byte[]?)null, MimeType.Parse("text/plain").AsInfo());
 
@@ -634,7 +634,7 @@ public class DataUrlTests
     }
 
     [TestMethod]
-    public void AppendEmbeddedBytesToTest5()
+    public void AppendBytesToTest5()
     {
         StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(), (IEnumerable<byte>?)null);
 
@@ -645,7 +645,7 @@ public class DataUrlTests
     }
 
     [TestMethod]
-    public void AppendEmbeddedBytesToTest6()
+    public void AppendBytesToTest6()
     {
         StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(), (IEnumerable<byte>?)null, MimeType.Parse("text/plain").AsInfo());
 
@@ -657,7 +657,7 @@ public class DataUrlTests
 
     [TestMethod]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
-    public void AppendEmbeddedBytesToTest7()
+    public void AppendBytesToTest7()
     {
         StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(), ReadOnlySpan<byte>.Empty, MimeType.Parse("text/plain").AsInfo());
 
@@ -669,14 +669,14 @@ public class DataUrlTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendEmbeddedFileToTest1() => _ = DataUrl.AppendFileTo(null!, "path");
+    public void AppendFileToTest1() => _ = DataUrl.AppendFileTo(null!, "path");
 
 
     [TestMethod]
-    public void TryGetEmbeddedDataTest1() => Assert.IsFalse(DataUrl.TryGetData((string?)null, out _, out _));
+    public void TryGetDataTest1() => Assert.IsFalse(DataUrl.TryGetData((string?)null, out _, out _));
 
     [TestMethod]
-    public void TryGetEmbeddedDataTest2()
+    public void TryGetDataTest2()
     {
         Assert.IsTrue(DataUrl.TryGetData("data:image/jpeg,ABC", out EmbeddedData data, out string? ext));
         Assert.IsNotNull(data.Bytes);
@@ -685,11 +685,11 @@ public class DataUrlTests
 
 
     [TestMethod]
-    public void TryGetEmbeddedDataTest3() => Assert.IsFalse(DataUrl.TryGetData("data:image/jpeg;base64,ÄÖÜ", out _, out _));
+    public void TryGetDataTest3() => Assert.IsFalse(DataUrl.TryGetData("data:image/jpeg;base64,ÄÖÜ", out _, out _));
 
 
     [TestMethod]
-    public void TryGetEmbeddedDataTest4()
+    public void TryGetDataTest4()
     {
         Assert.IsTrue(DataUrl.TryGetData($"data:text/äöü,{Uri.EscapeDataString("ÄÖÜ")}", out EmbeddedData data, out string? ext));
         Assert.IsNotNull(data.Text);
@@ -697,4 +697,37 @@ public class DataUrlTests
         Assert.AreEqual(".bin", ext);
     }
 
+    [TestMethod]
+    public void TryGetBytesTest1()
+        => Assert.IsFalse(DataUrl.TryGetBytes("data:application/octet-stream;base64,A", out _, out _));
+
+    [TestMethod]
+    public void TryGetBytesTest2()
+        => Assert.IsTrue(DataUrl.TryGetBytes("data:application/octet-stream;base64,ABC", out _, out _));
+
+    [TestMethod]
+    public void TryGetBytesTest3() => Assert.IsTrue(DataUrl.TryGetBytes("data:,ABCDE", out _, out _));
+
+    [TestMethod]
+    public void TryGetBytesTest4() => Assert.IsFalse(DataUrl.TryGetBytes("blabla", out _, out _));
+
+    [TestMethod]
+    public void TryGetTextTest1() => Assert.IsFalse(DataUrl.TryGetText("data:;base64,A", out _, out _));
+
+    [TestMethod]
+    public void TryGetTextTest2()
+    {
+        Assert.IsTrue(DataUrl.TryGetText("data:text/plain;charset=utf-8;base64,ABC", out _, out string? ext));
+        Assert.AreEqual(".txt", ext);
+    }
+
+    [TestMethod]
+    public void TryGetTextTest3() => Assert.IsFalse(DataUrl.TryGetText("blabla", out _, out _));
+
+    [TestMethod]
+    public void TryGetTextTest4()
+    {
+        string base64 = Convert.ToBase64String([190, 208]);
+        Assert.IsFalse(DataUrl.TryGetText($"data:text/plain;charset=utf-8;base64,{base64}", out _, out string? ext));
+    }
 }

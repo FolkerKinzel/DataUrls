@@ -15,12 +15,13 @@ public readonly partial struct DataUrlInfo
 
         if (TryAsText(out string? text))
         {
-            hash.Add(text);
+            hash.Add(text, StringComparer.Ordinal);
         }
         else if (TryAsBytes(out byte[]? bytes))
         {
             hash.AddBytes(bytes);
         }
+
         return hash.ToHashCode();
     }
 }

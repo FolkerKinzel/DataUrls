@@ -11,12 +11,12 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>Logo.png</PackageIcon>
     <PackageReadmeFile>NugetReadme.md</PackageReadmeFile>
-    <PackageVersion>2.0.0-alpha.1</PackageVersion>
+    <PackageVersion>2.0.0-alpha.2</PackageVersion>
     <FileVersion>2.0.0.0</FileVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <Description>.NET library that supports working with "data" URLs (RFC 2397)</Description>
     <PackageTags>"data"URL RFC2397 C# .NET</PackageTags>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v2.0.0-alpha.1</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v2.0.0-alpha.2</PackageReleaseNotes>
     <PackageIconUrl />
     <PackageProjectUrl>https://github.com/FolkerKinzel/DataUrls</PackageProjectUrl>
     <RepositoryUrl>https://github.com/FolkerKinzel/DataUrls.git</RepositoryUrl>
@@ -60,6 +60,7 @@
     <Compile Remove="DataUrlInfo_ToString - OBSOLETE.cs" />
     <Compile Remove="DataUrlInfo_ToString.cs" />
     <Compile Remove="Intls\UrlEncoding.cs" />
+    <Compile Remove="Intls\_ArgumentNullException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\Nuget-Logo\Logo.png">

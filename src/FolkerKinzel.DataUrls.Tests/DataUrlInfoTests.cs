@@ -16,7 +16,6 @@ public class DataUrlInfoTests
         _ = DataUrl.TryParse("data:,abc", out DataUrlInfo dataUrl);
         Assert.IsFalse(dataUrl.IsEmpty);
     }
-
  
     [TestMethod]
     public void GetFileTypeExtensionTest()
@@ -25,35 +24,32 @@ public class DataUrlInfoTests
         Assert.AreEqual(".txt", dataUrl.GetFileTypeExtension());
     }
 
-
     [TestMethod]
-    public void TryGetEmbeddedTextTest1()
+    public void TryAsTextTest1()
     {
         Assert.IsTrue(DataUrl.TryParse("data:;base64,A", out DataUrlInfo info));
         Assert.IsFalse(info.TryAsText(out _));
     }
 
     [TestMethod]
-    public void TryGetEmbeddedTextTest2()
+    public void TryAsTextTest2()
     {
-        Assert.IsTrue(DataUrl.TryParse("data:text/plain;charset=utf-8;base64,ABCD", out DataUrlInfo info));
-        Assert.IsFalse(info.TryAsText(out _));
+        Assert.IsTrue(DataUrl.TryParse("data:text/plain;charset=utf-8;base64,ABC", out DataUrlInfo info));
+        Assert.IsTrue(info.TryAsText(out _));
     }
 
     [TestMethod]
-    public void TryGetEmbedddedTextTest3() => Assert.IsTrue(new DataUrlInfo().TryAsText(out _));
-
-
-    [TestMethod]
-    public void TryGetEmbedddedBytesTest1() => Assert.IsFalse(new DataUrlInfo().TryAsBytes(out _));
+    public void TryAsTextTest3() => Assert.IsTrue(new DataUrlInfo().TryAsText(out _));
 
     [TestMethod]
-    public void TryGetEmbeddedBytesTest2()
+    public void TryAsBytesTest1() => Assert.IsTrue(new DataUrlInfo().TryAsBytes(out _));
+
+    [TestMethod]
+    public void TryAsBytesTest2()
     {
         Assert.IsTrue(DataUrl.TryParse("data:application/octet-stream;base64,A", out DataUrlInfo info));
         Assert.IsFalse(info.TryAsBytes(out _));
     }
-
 
     [TestMethod]
     public void PropertiesTest1()
@@ -63,7 +59,6 @@ public class DataUrlInfoTests
         Assert.IsTrue(DataUrl.TryParse(input, out DataUrlInfo info));
         Assert.AreEqual(DataType.Text, info.DataType);
     }
-
 
     [TestMethod]
     public void EqualsTest1()
@@ -96,7 +91,6 @@ public class DataUrlInfoTests
         Assert.AreEqual(o1.GetHashCode(), o2.GetHashCode());
     }
 
-
     [TestMethod]
     public void EqualsTest2()
     {
@@ -110,10 +104,8 @@ public class DataUrlInfoTests
         Assert.IsTrue(dataUrl1 == dataUrl2);
     }
 
-
     [TestMethod]
     public void EqualsTest3() => Assert.IsFalse(new DataUrlInfo().Equals(""));
-
 
     [TestMethod]
     public void EqualsTest4()
@@ -144,13 +136,11 @@ public class DataUrlInfoTests
         Assert.IsFalse(info2.Equals(info1));
     }
 
-
     [TestMethod]
     public void EqualsTest7() => Assert.AreNotEqual<object?>(DataUrlInfo.Empty, 42);
 
     [TestMethod]
     public void EqualsTest8() => Assert.AreEqual(DataUrlInfo.Empty, (object)DataUrlInfo.Empty);
-
 
     [TestMethod]
     public void EqualsTest9()
@@ -189,8 +179,6 @@ public class DataUrlInfoTests
         Assert.IsTrue(DataUrl.TryParse("data:text/plain;charset=utf-8,A", out DataUrlInfo info2));
         Assert.AreEqual(info1, info2);
     }
-
-    
 
     [TestMethod]
     public void EqualsTest12()
@@ -249,8 +237,4 @@ public class DataUrlInfoTests
         Assert.IsTrue(DataUrl.TryParse("data:application/octet-stream;base64,ABCD", out DataUrlInfo info2));
         Assert.AreNotEqual(new DataUrlInfo().GetHashCode(), info2.GetHashCode());
     }
-
-
-    
-
 }
