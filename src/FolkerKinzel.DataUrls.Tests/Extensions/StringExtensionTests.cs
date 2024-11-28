@@ -10,6 +10,7 @@ public class StringExtensionTests
     [DataTestMethod]
     [DataRow(DATA_URL_PROTOCOL, true)]
     [DataRow("data:bla", true)]
+    [DataRow("          data:bla", true)]
     [DataRow("DATA:bla", true)]
     [DataRow("dotu:bla", false)]
     [DataRow("", false)]
@@ -18,10 +19,9 @@ public class StringExtensionTests
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void IsDataUrlTest2()
     {
         string? input = null;
-        _ = input!.IsDataUrl();
+        Assert.IsFalse(input.IsDataUrl());
     }
 }
