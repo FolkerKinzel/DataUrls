@@ -51,10 +51,13 @@
     </DocumentationSources>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="FolkerKinzel.MimeTypes" isDocumented="True">Classes and structs that support working with Internet Media Types ("MIME types").</NamespaceSummaryItem>
-<NamespaceSummaryItem name="(global)" isDocumented="False" />
-<NamespaceSummaryItem name="FolkerKinzel.DataUrls" isDocumented="True">Classes and structs that support working with "data" URLs (RFC 2397) .</NamespaceSummaryItem>
-<NamespaceSummaryItem name="FolkerKinzel.DataUrls.Extensions" isDocumented="True">Static classes that provide extension methods for String, Uri and ReadOnlySpan&amp;lt;Char&amp;gt;.</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="False" />
+      <NamespaceSummaryItem name="FolkerKinzel.DataUrls" isDocumented="True">Classes and structs that support working with "data" URLs (RFC 2397) .</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="FolkerKinzel.DataUrls.Extensions" isDocumented="True">Static classes that provide extension methods for String, Uri and ReadOnlySpan&amp;lt;Char&amp;gt;.</NamespaceSummaryItem>
+    </NamespaceSummaries>
     <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
+    <PlugInConfigurations>
+    </PlugInConfigurations>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->
