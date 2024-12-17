@@ -63,10 +63,10 @@ public static class DataUrlExample
         // Parse the content of the "data" URL:
         _ = DataUrl.TryParse(dataUrl, out DataUrlInfo info);
 
-        Console.WriteLine($"Data Type:      {info.DataType}");
-        Console.WriteLine($"MIME Type:      {info.MimeType}");
-        Console.WriteLine($"File Type Ext.: {info.GetFileTypeExtension()}");
-        Console.WriteLine($"Data Encoding:  {info.Encoding}");
+        Console.WriteLine("Data Type:      {0}", info.DataType);
+        Console.WriteLine("MIME Type:      {0}", info.MimeType);
+        Console.WriteLine("File Type Ext.: {0}", info.GetFileTypeExtension());
+        Console.WriteLine("Data Encoding:  {0}", info.Encoding);
         Console.WriteLine();
 
         if (info.TryGetData(out EmbeddedData data))
