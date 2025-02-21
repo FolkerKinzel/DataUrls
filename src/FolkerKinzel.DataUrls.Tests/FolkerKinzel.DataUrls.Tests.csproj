@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Compile Remove="Intls\AsciiDataDecoder.cs" />
+    <Compile Remove="Intls\HashCodeExtensionTests.cs" />
     <Compile Remove="Intls\MimeCacheTests.cs" />
     <Compile Remove="Intls\TextEncodingConverterTests.cs" />
     <Compile Remove="Intls\UrlEncodingTests.cs" />
@@ -72,6 +73,14 @@
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(TargetFramework)' == 'net9.0'">
     <Exec Command="@echo Project Directory: $(ProjectDir)" />
   </Target>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\fkinz\source\repos\FolkerKinzel.DataUrls\src\FolkerKinzel.DataUrls.Tests\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\fkinz\source\repos\FolkerKinzel.DataUrls\src\FolkerKinzel.DataUrls.Tests\.editorconfig" />
+  </ItemGroup>
 
 
 </Project>

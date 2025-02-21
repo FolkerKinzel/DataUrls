@@ -59,6 +59,7 @@
     <Compile Remove="DataUrlInfo_Parser.cs" />
     <Compile Remove="DataUrlInfo_ToString - OBSOLETE.cs" />
     <Compile Remove="DataUrlInfo_ToString.cs" />
+    <Compile Remove="Intls\HashCodeExtension.cs" />
     <Compile Remove="Intls\UrlEncoding.cs" />
     <Compile Remove="Intls\_ArgumentNullException.cs" />
   </ItemGroup>

@@ -1,4 +1,6 @@
-﻿namespace FolkerKinzel.DataUrls.Intls.Tests;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace FolkerKinzel.DataUrls.Intls.Tests;
 
 [TestClass]
 public class Base64ParserTests

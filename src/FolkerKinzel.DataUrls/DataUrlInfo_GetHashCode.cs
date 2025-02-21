@@ -19,7 +19,16 @@ public readonly partial struct DataUrlInfo
         }
         else if (TryAsBytes(out byte[]? bytes))
         {
+#if NET462 || NETSTANDARD2_0 || NETSTANDARD2_1
+            ReadOnlySpan<byte> span = bytes;
+
+            for (int i = 0; i < span.Length; i++)
+            {
+                hash.Add(span[i]);
+            }
+#else
             hash.AddBytes(bytes);
+#endif
         }
 
         return hash.ToHashCode();
