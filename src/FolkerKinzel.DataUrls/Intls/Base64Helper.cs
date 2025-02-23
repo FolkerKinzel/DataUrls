@@ -2,7 +2,8 @@
 
 internal static class Base64Helper
 {
-    internal static bool TryDecode(ReadOnlySpan<char> base64, [NotNullWhen(true)] out byte[]? decoded)
+    internal static bool TryDecode(ReadOnlySpan<char> base64,
+                                   [NotNullWhen(true)] out byte[]? decoded)
     {
         try
         {
@@ -17,5 +18,4 @@ internal static class Base64Helper
             return false;
         }
     }
-
 }

@@ -9,8 +9,9 @@ public static class StringExtension
     /// Returns <c>true</c> if the <see cref="string"/> is a "data" URL. (RFC 2397)
     /// </summary>
     /// <param name="urlString">The <see cref="string"/> to examine, or <c>null</c>.</param>
-    /// <returns><c>true</c> if <paramref name="urlString"/> is a "data" URL. If <paramref name="urlString"/> is 
-    /// <c>null</c>, <see cref="string.Empty"/> or consists only of white space characters <c>false</c> is returned.</returns>
+    /// <returns><c>true</c> if <paramref name="urlString"/> is a "data" URL. If 
+    /// <paramref name="urlString"/> is <c>null</c>, <see cref="string.Empty"/>, or consists
+    /// only of white space characters, <c>false</c> is returned.</returns>
     /// <remarks>Leading white space is skipped.</remarks>
     /// <example>
     /// <note type="note">

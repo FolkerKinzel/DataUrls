@@ -1,4 +1,6 @@
-﻿namespace FolkerKinzel.DataUrls.Intls;
+﻿using FolkerKinzel.Helpers;
+
+namespace FolkerKinzel.DataUrls.Intls;
 
 /// <summary>
 /// Provides functionality to build a "data" URL (RFC 2397) that 
@@ -16,7 +18,8 @@ internal static class DataUrlBuilder
     /// Appends embedded text as "data" URL (RFC 2397) to the end of a <see cref="StringBuilder"/>.
     /// </summary>
     /// <param name="builder">The <see cref="StringBuilder"/> to which a "data" URL is appended.</param>
-    /// <param name="text">The text to embed into the "data" URL. <paramref name="text"/> MUST not be URL encoded.</param>
+    /// <param name="text">The text to embed into the "data" URL. <paramref name="text"/> MUST not be 
+    /// URL-encoded.</param>
     /// <param name="mimeType">The <see cref="MimeType"/> of the <paramref name="text"/>.</param>
     /// <param name="dataEncoding">The encoding to use to embed the <paramref name="text"/>.</param>
     /// 
@@ -64,7 +67,8 @@ internal static class DataUrlBuilder
 
             [ExcludeFromCodeCoverage]
             [Conditional("DEBUG")]
-            static void AssertMimeTypeHasCharSetParameter(MimeType mimeType) => Debug.Assert(mimeType.Parameters.Any(IsCharSetParameter));
+            static void AssertMimeTypeHasCharSetParameter(MimeType mimeType)
+                => Debug.Assert(mimeType.Parameters.Any(IsCharSetParameter));
         }
 
         static string InitCharSet(string text, MimeType mimeType)
@@ -137,12 +141,12 @@ internal static class DataUrlBuilder
         _ = builder.EnsureCapacity(builder.Length
                                    + DataUrl.Scheme.Length
                                    + ESTIMATED_MIME_TYPE_LENGTH
-                                   + DataUrl.Base64.Length
+                                   + DataUrl.BASE_64.Length
                                    + COMMA_LENGTH
                                    + Base64.GetEncodedLength(bytes.Length));
 
         return builder
-            .Append(DataUrl.Scheme).AppendMediaType(in mimeType).Append(DataUrl.Base64).Append(',').AppendBase64(bytes);
+            .Append(DataUrl.Scheme).AppendMediaType(in mimeType).Append(DataUrl.BASE_64).Append(',').AppendBase64(bytes);
 
         // $"data:{mediaTypeString};base64,{Convert.ToBase64String(bytes)}"
     }
@@ -167,6 +171,6 @@ internal static class DataUrlBuilder
         Debug.Assert(builder != null);
         Debug.Assert(filePath != null);
 
-        return builder.AppendEmbeddedBytesIntl(FileService.LoadFile(filePath), in mimeType, dataEncoding);
+        return builder.AppendEmbeddedBytesIntl(BinaryFile.Load(filePath), in mimeType, dataEncoding);
     }
 }

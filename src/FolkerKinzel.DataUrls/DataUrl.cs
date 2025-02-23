@@ -27,7 +27,7 @@ public static class DataUrl
     /// </summary>
     public const string DefaultMediaType = "text/plain";
 
-    internal const string Base64 = ";base64";
+    internal const string BASE_64 = ";base64";
 
     /// <summary>
     /// Embeds text URL-encoded in a "data" URL (RFC 2397).
@@ -88,12 +88,12 @@ public static class DataUrl
     /// Embeds binary data in a "data" URL (RFC 2397).
     /// </summary>
     /// <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
-    /// <param name="mimeType">The Internet Media Type of the <paramref name="bytes"/>, or <c>null</c> for 
-    /// <see cref="MimeString.OctetStream"/>.</param>
+    /// <param name="mimeType">The Internet Media Type of the <paramref name="bytes"/>, or 
+    /// <c>null</c> for <see cref="MimeString.OctetStream"/>.</param>
     /// <param name="encoding">The encoding to use to embed the <paramref name="bytes"/>.</param>
     /// 
-    /// <returns>A "data" URL, into which the binary data provided by the parameter <paramref name="bytes"/>
-    /// is embedded.</returns>
+    /// <returns>A "data" URL, into which the binary data provided by the parameter 
+    /// <paramref name="bytes"/> is embedded.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string FromBytes(IEnumerable<byte>? bytes,
                                    string? mimeType = MimeString.OctetStream,
@@ -104,12 +104,12 @@ public static class DataUrl
     /// Embeds binary data in a "data" URL (RFC 2397).
     /// </summary>
     /// <param name="bytes">The binary data to embed in the "data" URL.</param>
-    /// <param name="mimeType">The Internet Media Type of the <paramref name="bytes"/>, or <c>null</c> for 
-    /// <see cref="MimeString.OctetStream"/>.</param>
+    /// <param name="mimeType">The Internet Media Type of the <paramref name="bytes"/>, or 
+    /// <c>null</c> for <see cref="MimeString.OctetStream"/>.</param>
     /// <param name="encoding">The encoding to use to embed the <paramref name="bytes"/>.</param>
     /// 
-    /// <returns>A "data" URL, into which the binary data provided by the parameter <paramref name="bytes"/>
-    /// is embedded.</returns>
+    /// <returns>A "data" URL, into which the binary data provided by the parameter 
+    /// <paramref name="bytes"/> is embedded.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string FromBytes(ReadOnlySpan<byte> bytes,
                                    string? mimeType = MimeString.OctetStream,
@@ -123,8 +123,8 @@ public static class DataUrl
     /// <param name="mimeType">The <see cref="MimeType"/> of the <paramref name="bytes"/>.</param>
     /// <param name="encoding">The encoding to use to embed the <paramref name="bytes"/>.</param>
     /// 
-    /// <returns>A "data" URL, into which the binary data provided by the parameter <paramref name="bytes"/>
-    /// is embedded.</returns>
+    /// <returns>A "data" URL, into which the binary data provided by the parameter 
+    /// <paramref name="bytes"/> is embedded.</returns>
     /// 
     /// <exception cref="ArgumentException"><paramref name="mimeType"/> is an empty struct.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -140,8 +140,8 @@ public static class DataUrl
     /// <param name="mimeType">The <see cref="MimeType"/> of the <paramref name="bytes"/>.</param>
     /// <param name="encoding">The encoding to use to embed the <paramref name="bytes"/>.</param>
     /// 
-    /// <returns>A "data" URL, into which the binary data provided by the parameter <paramref name="bytes"/> 
-    /// is embedded.</returns>
+    /// <returns>A "data" URL, into which the binary data provided by the parameter 
+    /// <paramref name="bytes"/> is embedded.</returns>
     /// 
     /// <exception cref="ArgumentException"><paramref name="mimeType"/> is an empty struct.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -157,8 +157,8 @@ public static class DataUrl
     /// <param name="mimeType">The <see cref="MimeType"/> of the <paramref name="bytes"/>.</param>
     /// <param name="encoding">The encoding to use to embed the <paramref name="bytes"/>.</param>
     /// 
-    /// <returns>A "data" URL, into which the binary data provided by the parameter <paramref name="bytes"/>
-    /// is embedded.</returns>
+    /// <returns>A "data" URL, into which the binary data provided by the parameter 
+    /// <paramref name="bytes"/> is embedded.</returns>
     /// 
     /// <exception cref="ArgumentException"><paramref name="mimeType"/> is an empty struct.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -171,10 +171,9 @@ public static class DataUrl
     /// Embeds the content of a file in a "data" URL (RFC 2397).
     /// </summary>
     /// <param name="filePath">Path to the file whose content is to embed in the "data" URL.</param>
-    /// <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed, 
-    /// or <c>null</c> 
-    /// to let the method automatically
-    /// retrieve the <paramref name="mimeType"/> from the file type extension.</param>
+    /// <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to
+    /// embed, or <c>null</c> to let the method automatically retrieve the <paramref name="mimeType"/>
+    /// from the file type extension.</param>
     /// <param name="encoding">The encoding to use to embed the file content.</param>
     /// 
     /// <returns>A "data" URL, into which the content of the file provided by the parameter 
@@ -204,12 +203,15 @@ public static class DataUrl
     /// Embeds the content of a file in a "data" URL (RFC 2397).
     /// </summary>
     /// <param name="filePath">Path to the file whose content is to embed in the "data" URL.</param>
-    /// <param name="mimeType">The Internet media Type ("MIME type") of the file whose content is to embed.</param>
+    /// <param name="mimeType">The Internet media Type ("MIME type") of the file whose content is to embed.
+    /// </param>
     /// <param name="encoding">The encoding to use to embed the file content.</param>
     /// 
-    /// <returns>A "data" URL into which the content of the file provided by the parameter <paramref name="filePath"/> is embedded.</returns>
+    /// <returns>A "data" URL into which the content of the file provided by the parameter 
+    /// <paramref name="filePath"/> is embedded.</returns>
     /// 
-    ///<exception cref="ArgumentNullException"><paramref name="filePath"/> or <paramref name="mimeType"/> is <c>null</c>.</exception>
+    ///<exception cref="ArgumentNullException"><paramref name="filePath"/> or <paramref name="mimeType"/>
+    ///is <c>null</c>.</exception>
     /// <exception cref="ArgumentException">
     /// <para>
     /// <paramref name="filePath"/> is not a valid file path
@@ -243,8 +245,9 @@ public static class DataUrl
                                              string? text,
                                              string? mimeType = DataUrl.DefaultMediaType,
                                              DataEncoding encoding = DataEncoding.Url)
-        => MimeType.TryParse(string.IsNullOrWhiteSpace(mimeType) ? DataUrl.DefaultMediaType
-                                                                 : mimeType,
+        => MimeType.TryParse(string.IsNullOrWhiteSpace(mimeType) 
+                                    ? DataUrl.DefaultMediaType
+                                    : mimeType,
                              out MimeType? mimeTypeObject)
                 ? AppendTextTo(builder, text, mimeTypeObject, encoding)
                 : AppendTextTo(builder, text, DataUrl.DefaultMediaType, encoding);
@@ -400,13 +403,15 @@ public static class DataUrl
     /// </summary>
     /// <param name="builder">The <see cref="StringBuilder"/> to which a "data" URL is appended.</param>
     /// <param name="filePath">Abolute path to the file whose content is to embed in the "data" URL.</param>
-    /// <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed, or <c>null</c> 
-    /// to let the method automatically retrieve the <see cref="MimeType"/> from the file type extension.</param>
+    /// <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed, 
+    /// or <c>null</c> to let the method automatically retrieve the <see cref="MimeType"/> from the file type
+    /// extension.</param>
     /// <param name="encoding">The encoding to use to embed the file content.</param>
     /// 
     /// <returns>A reference to <paramref name="builder"/>.</returns>
     /// 
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> or <paramref name="filePath"/> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="builder"/> or <paramref name="filePath"/> is
+    /// <c>null</c>.</exception>
     /// <exception cref="ArgumentException"><paramref name="filePath"/> is not a valid file path.</exception>
     /// <exception cref="IOException">I/O error.</exception>
     public static StringBuilder AppendFileTo(StringBuilder builder,
@@ -424,7 +429,8 @@ public static class DataUrl
     /// </summary>
     /// <param name="builder">The <see cref="StringBuilder"/> to which a "data" URL is appended.</param>
     /// <param name="filePath">Abolute path to the file whose content is to embed in the "data" URL.</param>
-    /// <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed.</param>
+    /// <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed.
+    /// </param>
     /// <param name="encoding">The encoding to use to embed the file content.</param>
     /// 
     /// <returns>A reference to <paramref name="builder"/>.</returns>
@@ -492,10 +498,10 @@ public static class DataUrl
     /// appropriate file type extension for <paramref name="data"/>. The extension starts with 
     /// the period ".". The parameter is passed uninitialized.</param>
     /// 
-    /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.</returns>
+    /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.
+    /// </returns>
     /// 
     /// <remarks>Use this method if you want to use the data in the application.</remarks>
-    /// 
     public static bool TryGetData(ReadOnlyMemory<char> dataUrl,
                                   out EmbeddedData data,
                                   [NotNullWhen(true)] out string? fileTypeExtension)
@@ -527,7 +533,8 @@ public static class DataUrl
     /// <param name="fileTypeExtension">If the method returns <c>true</c>, the parameter contains an 
     /// appropriate file type extension for <paramref name="bytes"/>. The extension
     /// starts with the period ".". The parameter is passed uninitialized.</param>
-    /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.</returns>
+    /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.
+    /// </returns>
     /// 
     /// <remarks> The method fails only if a decoding error occurs. The use of the method is particularly 
     /// recommended if the embedded data of the "data" URL should be saved in a file.</remarks>
@@ -558,11 +565,11 @@ public static class DataUrl
     /// appropriate file type extension for <paramref name="bytes"/>. The extension
     /// starts with the period ".". The parameter is passed uninitialized.</param>
     /// 
-    /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.</returns>
+    /// <returns><c>true</c> if <paramref name="dataUrl"/> is a valid "data" URL, otherwise <c>false</c>.
+    /// </returns>
     /// 
     /// <remarks> The method fails only if a decoding error occurs. The use of the method is particularly 
     /// recommended if the embedded data of the "data" URL should be saved in a file.</remarks>
-    /// 
     public static bool TryGetBytes(ReadOnlyMemory<char> dataUrl,
                                   [NotNullWhen(true)] out byte[]? bytes,
                                   [NotNullWhen(true)] out string? fileTypeExtension)

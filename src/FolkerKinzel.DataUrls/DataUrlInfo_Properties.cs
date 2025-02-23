@@ -2,8 +2,6 @@
 
 namespace FolkerKinzel.DataUrls;
 
-#pragma warning disable CA1303 // literals not as localized parameters
-
 [StructLayout(LayoutKind.Auto)]
 public readonly partial struct DataUrlInfo
 {
@@ -23,7 +21,7 @@ public readonly partial struct DataUrlInfo
 
     private int DataStartIndex => IsEmpty ? 0
                                   : MimeTypeLength
-                                    + (Encoding == DataEncoding.Base64 ? DataUrl.Base64.Length : 0)
+                                    + (Encoding == DataEncoding.Base64 ? DataUrl.BASE_64.Length : 0)
                                     + COMMA_LENGTH;
 
     /// <summary>
@@ -99,5 +97,3 @@ public readonly partial struct DataUrlInfo
     /// </summary>
     public static DataUrlInfo Empty => default;
 }
-
-#pragma warning restore CA1303 // // literals not as localized parameters

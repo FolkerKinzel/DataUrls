@@ -171,14 +171,15 @@ public static class StringBuilderExtension
     /// </summary>
     /// <param name="builder">The <see cref="StringBuilder"/> to which a "data" URL is appended.</param>
     /// <param name="filePath">Abolute path to the file whose content is to embed in the "data" URL.</param>
-    /// <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed, or <c>null</c> 
-    /// to let the method automatically
-    /// retrieve the <see cref="MimeType"/> from the file type extension.</param>
+    /// <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed, or 
+    /// <c>null</c> to let the method automatically retrieve the <see cref="MimeType"/> from the file type 
+    /// extension.</param>
     /// <param name="encoding">The encoding to use to embed the file content.</param>
     /// 
     /// <returns>A reference to <paramref name="builder"/>.</returns>
     /// 
-    /// <exception cref="ArgumentNullException"><paramref name="builder"/> or <paramref name="filePath"/> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="builder"/> or <paramref name="filePath"/> is 
+    /// <c>null</c>.</exception>
     /// <exception cref="ArgumentException"><paramref name="filePath"/> is not a valid file path.</exception>
     /// <exception cref="IOException">I/O error.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -193,7 +194,8 @@ public static class StringBuilderExtension
     /// </summary>
     /// <param name="builder">The <see cref="StringBuilder"/> to which a "data" URL is appended.</param>
     /// <param name="filePath">Abolute path to the file whose content is to embed in the "data" URL.</param>
-    /// <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed.</param>
+    /// <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed.
+    /// </param>
     /// <param name="encoding">The encoding to use to embed the file content.</param>
     /// 
     /// <returns>A reference to <paramref name="builder"/>.</returns>

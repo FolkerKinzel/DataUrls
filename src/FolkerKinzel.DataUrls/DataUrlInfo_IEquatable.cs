@@ -16,7 +16,8 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
     /// Determines whether the value of this instance is equal to the value of <paramref name="other"/>. 
     /// </summary>
     /// <param name="other">The <see cref="DataUrlInfo"/> instance to compare with.</param>
-    /// <returns><c>true</c> if this the value of this instance is equal to that of <paramref name="other"/>; <c>false</c>, otherwise.</returns>
+    /// <returns><c>true</c> if this the value of this instance is equal to that of <paramref name="other"/>;
+    /// <c>false</c>, otherwise.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool Equals(DataUrlInfo other) => Equals(in other);
 
@@ -24,16 +25,15 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
     /// Determines whether the value of this instance is equal to the value of <paramref name="other"/>. 
     /// </summary>
     /// <param name="other">The <see cref="DataUrlInfo"/> instance to compare with.</param>
-    /// <returns><c>true</c> if this the value of this instance is equal to that of <paramref name="other"/>; <c>false</c>, otherwise.</returns>
-    /// <remarks>This is the most performant overload of the Equals methods but unfortunately it's not CLS compliant.
-    /// Use it if you can.</remarks>
+    /// <returns><c>true</c> if this the value of this instance is equal to that of <paramref name="other"/>;
+    /// <c>false</c>, otherwise.</returns>
+    /// <remarks>This is the most performant overload of the Equals methods but unfortunately it's not CLS 
+    /// compliant. Use it if you can!</remarks>
     [CLSCompliant(false)]
     public bool Equals(in DataUrlInfo other)
         => this.IsEmpty || other.IsEmpty
             ? this.IsEmpty && other.IsEmpty
             : EqualsMimeType(in other) && EqualsData(in other);
-
-    #region private
 
     private bool EqualsMimeType(in DataUrlInfo other)
     {
@@ -75,6 +75,4 @@ public readonly partial struct DataUrlInfo : IEquatable<DataUrlInfo>
 
         return false;
     }
-
-    #endregion
 }

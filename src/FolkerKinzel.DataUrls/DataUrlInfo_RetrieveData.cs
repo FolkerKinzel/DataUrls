@@ -56,8 +56,9 @@ public readonly partial struct DataUrlInfo
         else
         {
             // URL encoded String:
-            string? encodingName = TryGetEncodingFromMimeType(out encodingName) ? encodingName
-                                                                                : DataUrlBuilder.UTF_8;
+            string? encodingName = TryGetEncodingFromMimeType(out encodingName)
+                                     ? encodingName
+                                     : DataUrlBuilder.UTF_8;
             return UrlEncoding.TryDecode(Data, encodingName, true, out text);
         }
     }
@@ -69,22 +70,25 @@ public readonly partial struct DataUrlInfo
     /// the embedded data. The parameter is passed uninitialized.</param>
     /// <returns><c>true</c> if the <see cref="Data"/> embedded in the "data" URL could be 
     /// converted to a <see cref="byte"/> array, otherwise <c>false</c>.</returns>
-    /// <remarks> The method fails only if a decoding error occurs. The use of the method is particularly 
-    /// recommended if the embedded data of the "data" URL should be saved in a file.</remarks>
+    /// <remarks> The method fails only if a decoding error occurs. The use of the method 
+    /// is particularly recommended if the embedded data of the "data" URL should be saved
+    /// in a file.</remarks>
     public bool TryAsBytes([NotNullWhen(true)] out byte[]? bytes)
         => this.Encoding == DataEncoding.Base64
                     ? Base64Helper.TryDecode(Data, out bytes)
                     : UrlEncoding.TryDecodeToBytes(Data, true, out bytes);
 
     /// <summary>
-    /// Tries to retrieve the embedded <see cref="Data"/> as a union that contains either a <see cref="string"/> 
-    /// or an array of <see cref="byte"/>s (depending on the value of the <see cref="DataType"/> property).
+    /// Tries to retrieve the embedded <see cref="Data"/> as a union that contains either a 
+    /// <see cref="string"/> or an array of <see cref="byte"/>s (depending on the value of 
+    /// the <see cref="DataType"/> property).
     /// </summary>
-    /// <param name="data">If the method returns <c>true</c>, the parameter contains the embedded
-    /// <see cref="Data"/> as an <see cref="EmbeddedData"/> union. The parameter is passed uninitialized.</param>
+    /// <param name="data">If the method returns <c>true</c>, the parameter contains the 
+    /// embedded <see cref="Data"/> as an <see cref="EmbeddedData"/> union. The parameter is 
+    /// passed uninitialized.</param>
     /// 
-    /// <returns><c>true</c> if <see cref="Data"/> could be converted to an <see cref="EmbeddedData"/> 
-    /// instance, otherwise <c>false</c>.</returns>
+    /// <returns><c>true</c> if <see cref="Data"/> could be converted to an 
+    /// <see cref="EmbeddedData"/> instance, otherwise <c>false</c>.</returns>
     /// 
     /// <remarks>Use this method if you want to use the data in the application.</remarks>
     /// 
@@ -122,7 +126,8 @@ public readonly partial struct DataUrlInfo
     /// <returns>An appropriate file type extension for the embedded <see cref="Data"/>. The 
     /// extension starts with the period ".".</returns>
     /// <remarks>
-    /// The returned file name extension depends on the value of the <see cref="MimeType"/> property.
+    /// The returned file name extension depends on the value of the <see cref="MimeType"/> 
+    /// property.
     /// </remarks>
     ///<example>
     /// <note type="note">

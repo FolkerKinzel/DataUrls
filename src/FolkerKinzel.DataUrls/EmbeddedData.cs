@@ -37,14 +37,14 @@ public readonly struct EmbeddedData
     public string? Text => _object as string;
 
     /// <summary>
-    /// Performs an <see cref="Action{T}"/> depending on the <see cref="Type"/> of the 
-    /// embedded data.
+    /// Performs an <see cref="Action{T}"/> depending on the <see cref="Type"/> of 
+    /// the embedded data.
     /// </summary>
-    /// <param name="bytesAction"><c>null</c>, or the <see cref="Action{T}"/> to be executed 
-    /// if the encapsulated value is an array of <see cref="byte"/>s.</param>
-    /// <param name="textAction"><c>null</c>, or the <see cref="Action{T}"/> to be executed 
-    /// if the encapsulated value is a <see cref="string"/>.</param>
-    /// 
+    /// <param name="bytesAction"><c>null</c>, or the <see cref="Action{T}"/> to 
+    /// be executed if the encapsulated value is an array of <see cref="byte"/>s.
+    /// </param>
+    /// <param name="textAction"><c>null</c>, or the <see cref="Action{T}"/> to be
+    /// executed if the encapsulated value is a <see cref="string"/>.</param>
     public void Switch(Action<byte[]>? bytesAction = null,
                        Action<string>? textAction = null)
     {
@@ -95,7 +95,8 @@ public readonly struct EmbeddedData
     /// <summary>
     /// Converts the encapsulated value to <typeparamref name="TResult"/>.
     /// </summary>
-    /// <typeparam name="TResult">Generic type parameter for the return type of the delegates.</typeparam>
+    /// <typeparam name="TResult">Generic type parameter for the return type of the delegates.
+    /// </typeparam>
     /// <param name="bytesFunc">The <see cref="Func{T, TResult}"/> to call if the encapsulated 
     /// value is an array of <see cref="byte"/>s.</param>
     /// <param name="textFunc">The <see cref="Func{T, TResult}"/> to call if the encapsulated
@@ -115,12 +116,13 @@ public readonly struct EmbeddedData
         };
 
     /// <summary>
-    /// Converts the encapsulated value to <typeparamref name="TResult"/> and allows to specify an
-    /// argument for the conversion.
+    /// Converts the encapsulated value to <typeparamref name="TResult"/> and allows to specify 
+    /// an argument for the conversion.
     /// </summary>
     /// <typeparam name="TArg">Generic type parameter for the type of the argument to pass
     /// to the delegates.</typeparam>
-    /// <typeparam name="TResult">Generic type parameter for the return type of the delegates.</typeparam>
+    /// <typeparam name="TResult">Generic type parameter for the return type of the delegates.
+    /// </typeparam>
     /// <param name="arg">The argument to pass to the delegates.</param>
     /// <param name="bytesFunc">The <see cref="Func{T, TResult}"/> to call if the encapsulated 
     /// value is an array of <see cref="byte"/>s.</param>
