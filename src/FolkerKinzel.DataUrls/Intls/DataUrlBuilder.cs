@@ -1,4 +1,6 @@
-﻿namespace FolkerKinzel.DataUrls.Intls;
+﻿using FolkerKinzel.Helpers;
+
+namespace FolkerKinzel.DataUrls.Intls;
 
 /// <summary>
 /// Provides functionality to build a "data" URL (RFC 2397) that 
