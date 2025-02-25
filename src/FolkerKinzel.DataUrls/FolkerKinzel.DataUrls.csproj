@@ -46,6 +46,7 @@
     <Using Include="System.Runtime.CompilerServices" />
     <Using Include="FolkerKinzel.Strings" />
     <Using Include="FolkerKinzel.MimeTypes" />
+    <Using Include="FolkerKinzel.Helpers" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="alt\**" />

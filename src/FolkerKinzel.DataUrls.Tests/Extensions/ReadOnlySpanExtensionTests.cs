@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.DataUrls.Extensions.Tests;
+﻿namespace FolkerKinzel.DataUrls.Extensions.Tests;
 
 [TestClass]
 public class ReadOnlySpanExtensionTests
@@ -18,5 +16,5 @@ public class ReadOnlySpanExtensionTests
     public void IsDataUrlTest1(string? input, bool expected)
         => Assert.AreEqual(expected, input.AsSpan().IsDataUrl());
 
-    
+
 }

@@ -1,5 +1,4 @@
 ﻿using FolkerKinzel.DataUrls.Intls;
-using FolkerKinzel.DataUrls.Properties;
 
 namespace FolkerKinzel.DataUrls.Extensions;
 
@@ -50,7 +49,7 @@ public static class StringBuilderExtension
                                               MimeType mimeType,
                                               DataEncoding encoding = DataEncoding.Url)
         => DataUrl.AppendTextTo(builder, text, mimeType, encoding);
-        
+
 
     /// <summary>
     /// Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="StringBuilder"/>.

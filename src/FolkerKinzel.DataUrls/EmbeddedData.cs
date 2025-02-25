@@ -107,11 +107,10 @@ public readonly struct EmbeddedData
     /// </exception>
     public TResult Convert<TResult>(Func<byte[], TResult> bytesFunc,
                                     Func<string, TResult> textFunc)
-        => Bytes switch 
-        {
-            byte[] bytes => bytesFunc is null ? throw new ArgumentNullException(nameof(bytesFunc)) 
+        => Bytes switch {
+            byte[] bytes => bytesFunc is null ? throw new ArgumentNullException(nameof(bytesFunc))
                                               : bytesFunc(bytes),
-            _ => textFunc is null ? throw new ArgumentNullException(nameof(textFunc)) 
+            _ => textFunc is null ? throw new ArgumentNullException(nameof(textFunc))
                                   : textFunc((string)_object!)
         };
 
@@ -136,9 +135,9 @@ public readonly struct EmbeddedData
                                           Func<byte[], TArg, TResult> bytesFunc,
                                           Func<string, TArg, TResult> textFunc)
         => Bytes switch {
-            byte[] bytes => bytesFunc is null ? throw new ArgumentNullException(nameof(bytesFunc)) 
+            byte[] bytes => bytesFunc is null ? throw new ArgumentNullException(nameof(bytesFunc))
                                               : bytesFunc(bytes, arg),
-            _ => textFunc is null ? throw new ArgumentNullException(nameof(textFunc)) 
+            _ => textFunc is null ? throw new ArgumentNullException(nameof(textFunc))
                                   : textFunc((string)_object!, arg)
         };
 

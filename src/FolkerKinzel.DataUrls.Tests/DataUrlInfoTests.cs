@@ -1,8 +1,4 @@
-﻿using FolkerKinzel.DataUrls.Intls;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text;
-
-namespace FolkerKinzel.DataUrls.Tests;
+﻿namespace FolkerKinzel.DataUrls.Tests;
 
 [TestClass]
 public class DataUrlInfoTests
@@ -16,7 +12,7 @@ public class DataUrlInfoTests
         _ = DataUrl.TryParse("data:,abc", out DataUrlInfo dataUrl);
         Assert.IsFalse(dataUrl.IsEmpty);
     }
- 
+
     [TestMethod]
     public void GetFileTypeExtensionTest()
     {

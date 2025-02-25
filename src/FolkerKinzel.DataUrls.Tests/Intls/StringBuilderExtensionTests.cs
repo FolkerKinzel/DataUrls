@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace FolkerKinzel.DataUrls.Intls.Tests;
+﻿namespace FolkerKinzel.DataUrls.Intls.Tests;
 
 [TestClass]
 public class StringBuilderExtensionTests
@@ -7,7 +6,7 @@ public class StringBuilderExtensionTests
     //private const string DATA_URL_PROTOCOL = "data:";
     //private const string BASE64 = ";base64,";
 
-    
+
 
     //[TestMethod]
     //public void AppendDataUrlProtocolTest()

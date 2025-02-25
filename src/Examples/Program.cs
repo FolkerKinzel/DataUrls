@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Examples;
+﻿namespace Examples;
 
 internal class Program
 {

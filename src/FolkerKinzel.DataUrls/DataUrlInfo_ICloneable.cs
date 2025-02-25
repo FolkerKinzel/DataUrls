@@ -26,7 +26,7 @@ public readonly partial struct DataUrlInfo : ICloneable
     /// The copy is built on a separate <see cref="string"/>,
     /// which is case-normalized and only as long as needed.
     /// </remarks>
-    public DataUrlInfo Clone() => IsEmpty 
+    public DataUrlInfo Clone() => IsEmpty
                                    ? default
                                    : new DataUrlInfo(_idx, _dataUrl.ToString().AsMemory());
 }

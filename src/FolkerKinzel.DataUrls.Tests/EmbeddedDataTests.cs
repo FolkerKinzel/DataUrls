@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace FolkerKinzel.DataUrls.Tests;
+﻿namespace FolkerKinzel.DataUrls.Tests;
 
 [TestClass]
 public class EmbeddedDataTests
@@ -116,7 +114,7 @@ public class EmbeddedDataTests
     {
         bool b = false;
         var data = EmbeddedData.FromBytes([]);
-        b = data.Convert<bool>( bt =>  true, str => false);
+        b = data.Convert<bool>(bt => true, str => false);
         Assert.IsTrue(b);
     }
 
@@ -126,7 +124,7 @@ public class EmbeddedDataTests
         bool b = false;
 
         var data = EmbeddedData.FromText("");
-        b = data.Convert<bool>( bt =>  false, str => true);
+        b = data.Convert<bool>(bt => false, str => true);
         Assert.IsTrue(b);
     }
 
@@ -136,7 +134,7 @@ public class EmbeddedDataTests
         bool b = false;
 
         var data = EmbeddedData.FromBytes([]);
-        b = data.Convert<bool,bool>(b, static  (bt, bl) =>  !bl, static (str, bl) => bl);
+        b = data.Convert<bool, bool>(b, static (bt, bl) => !bl, static (str, bl) => bl);
         Assert.IsTrue(b);
     }
 
@@ -146,7 +144,7 @@ public class EmbeddedDataTests
         bool b = false;
 
         var data = EmbeddedData.FromText("");
-        b = data.Convert<bool,bool>(b, static  (bt, bl) =>  bl, static (str, bl) => !bl);
+        b = data.Convert<bool, bool>(b, static (bt, bl) => bl, static (str, bl) => !bl);
         Assert.IsTrue(b);
     }
 

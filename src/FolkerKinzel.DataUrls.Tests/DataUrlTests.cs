@@ -1,7 +1,5 @@
 ﻿using FolkerKinzel.DataUrls.Intls;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
-using System.Web;
 
 namespace FolkerKinzel.DataUrls.Tests;
 

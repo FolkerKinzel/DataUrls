@@ -112,7 +112,7 @@ public class StringBuilderExtensionTests
     {
         StringBuilder outText = new();
 
-        outText = outText.AppendDataUrl( (byte[]?)null, MimeType.Parse("text/plain").AsInfo());
+        outText = outText.AppendDataUrl((byte[]?)null, MimeType.Parse("text/plain").AsInfo());
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));

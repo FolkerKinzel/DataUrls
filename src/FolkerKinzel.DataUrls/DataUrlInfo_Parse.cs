@@ -36,8 +36,8 @@ public readonly partial struct DataUrlInfo
         }
 
         // if text/plain is omitted and only the parameters are provided:
-        ushort hasIncompleteMimeType = mimeTypeLength > 0 && span.StartsWith(';') 
-                                         ? INCOMPLETE_MIME_TYPE_VALUE 
+        ushort hasIncompleteMimeType = mimeTypeLength > 0 && span.StartsWith(';')
+                                         ? INCOMPLETE_MIME_TYPE_VALUE
                                          : (ushort)0;
 
         DataType dataType = mimeTypeLength == 0 ||

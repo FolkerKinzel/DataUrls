@@ -14,6 +14,6 @@ public static class UriExtension
     /// 
     /// <exception cref="ArgumentNullException"><paramref name="uri"/> is <c>null</c>.</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsDataUrl([NotNullWhen(true)] this Uri uri) => 
+    public static bool IsDataUrl([NotNullWhen(true)] this Uri uri) =>
         uri?.OriginalString.AsSpan().IsDataUrl() ?? throw new ArgumentNullException(nameof(uri));
 }

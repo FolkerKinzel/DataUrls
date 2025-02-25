@@ -16,7 +16,7 @@ public class UriExtensionTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
-    public void IsDataUrlTest3() 
+    public void IsDataUrlTest3()
     {
         Uri? uri = null;
         _ = uri!.IsDataUrl();

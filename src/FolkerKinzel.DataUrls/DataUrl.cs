@@ -245,7 +245,7 @@ public static class DataUrl
                                              string? text,
                                              string? mimeType = DataUrl.DefaultMediaType,
                                              DataEncoding encoding = DataEncoding.Url)
-        => MimeType.TryParse(string.IsNullOrWhiteSpace(mimeType) 
+        => MimeType.TryParse(string.IsNullOrWhiteSpace(mimeType)
                                     ? DataUrl.DefaultMediaType
                                     : mimeType,
                              out MimeType? mimeTypeObject)

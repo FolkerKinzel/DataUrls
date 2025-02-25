@@ -1,6 +1,4 @@
-﻿using FolkerKinzel.Helpers;
-
-namespace FolkerKinzel.DataUrls.Intls;
+﻿namespace FolkerKinzel.DataUrls.Intls;
 
 /// <summary>
 /// Provides functionality to build a "data" URL (RFC 2397) that 
@@ -49,7 +47,7 @@ internal static class DataUrlBuilder
         {
             byte[] value;
 
-            if(TextEncodingConverter.TryGetEncoding(charSet, out Encoding? enc))
+            if (TextEncodingConverter.TryGetEncoding(charSet, out Encoding? enc))
             {
                 value = enc.GetBytes(text);
             }
@@ -73,7 +71,7 @@ internal static class DataUrlBuilder
 
         static string InitCharSet(string text, MimeType mimeType)
         {
-            if(mimeType.IsTextPlain && text.IsAscii())
+            if (mimeType.IsTextPlain && text.IsAscii())
             {
                 mimeType.RemoveParameter(CHARSET);
                 return UTF_8;
@@ -111,8 +109,8 @@ internal static class DataUrlBuilder
     internal static StringBuilder AppendEmbeddedBytesIntl(this StringBuilder builder,
                                                               ReadOnlySpan<byte> bytes,
                                                               in MimeTypeInfo mimeType,
-                                                              DataEncoding dataEncoding) 
-        =>  dataEncoding == DataEncoding.Base64 ? builder.AppendEmbeddedBytesBase64Encoded(bytes, in mimeType)
+                                                              DataEncoding dataEncoding)
+        => dataEncoding == DataEncoding.Base64 ? builder.AppendEmbeddedBytesBase64Encoded(bytes, in mimeType)
                                                 : builder.AppendEmbeddedBytesUrlEncoded(bytes, in mimeType);
 
     private static StringBuilder AppendEmbeddedBytesUrlEncoded(this StringBuilder builder,

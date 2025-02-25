@@ -1,6 +1,4 @@
-﻿using FolkerKinzel.DataUrls.Intls;
-
-namespace FolkerKinzel.DataUrls;
+﻿namespace FolkerKinzel.DataUrls;
 
 public readonly partial struct DataUrlInfo
 {
