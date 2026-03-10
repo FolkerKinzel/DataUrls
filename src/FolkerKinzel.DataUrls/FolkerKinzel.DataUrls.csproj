@@ -11,12 +11,12 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>Logo.png</PackageIcon>
     <PackageReadmeFile>NugetReadme.md</PackageReadmeFile>
-    <PackageVersion>2.0.5</PackageVersion>
-    <FileVersion>2.0.5.5</FileVersion>
+    <PackageVersion>2.0.6</PackageVersion>
+    <FileVersion>2.0.6.3</FileVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <Description>.NET library that supports working with "data" URLs (RFC 2397)</Description>
     <PackageTags>dataURL RFC2397</PackageTags>
-    <PackageReleaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v2.0.5</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/FolkerKinzel/DataUrls/releases/tag/v2.0.6</PackageReleaseNotes>
     <PackageIconUrl />
     <PackageProjectUrl>https://github.com/FolkerKinzel/DataUrls</PackageProjectUrl>
     <RepositoryUrl>https://github.com/FolkerKinzel/DataUrls.git</RepositoryUrl>
@@ -76,8 +76,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FolkerKinzel.MimeTypes" Version="5.5.1" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.103">
+    <PackageReference Include="FolkerKinzel.MimeTypes" Version="5.5.2" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.200">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
