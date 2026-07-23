@@ -78,35 +78,35 @@ public class EmbeddedDataTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void ConvertTest1()
     {
         var data = EmbeddedData.FromBytes([]);
-        _ = data.Convert<bool>(null!, null!);
+        _ = Assert.ThrowsExactly<ArgumentNullException>(
+                () => data.Convert<bool>(null!, null!));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void ConvertTest2()
     {
         var data = EmbeddedData.FromText("");
-        _ = data.Convert<bool>(null!, null!);
+        _ = Assert.ThrowsExactly<ArgumentNullException>(
+                () => data.Convert<bool>(null!, null!));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void ConvertTest3()
     {
         var data = EmbeddedData.FromBytes([]);
-        _ = data.Convert<bool, bool>(true, null!, null!);
+        _ = Assert.ThrowsExactly<ArgumentNullException>(
+               () => data.Convert<bool, bool>(true, null!, null!));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void ConvertTest4()
     {
         var data = EmbeddedData.FromText("");
-        _ = data.Convert<bool, bool>(true, null!, null!);
+        _ = Assert.ThrowsExactly<ArgumentNullException>(
+               () => data.Convert<bool, bool>(true, null!, null!));
     }
 
     [TestMethod]

@@ -28,7 +28,7 @@ public class DataUrlTests
 
         Assert.IsTrue(MimeType.TryParse("application/x-octet", out MimeType? mime));
 
-        outText = DataUrl.FromBytes(new byte[] { 1, 2, 3 }, mime.AsInfo());
+        outText = DataUrl.FromBytes([1, 2, 3], mime.AsInfo());
 
         Assert.IsNotNull(outText);
     }
@@ -45,12 +45,12 @@ public class DataUrlTests
 
         Assert.IsTrue(MimeType.TryParse("application/x-octet", out MimeType? mime));
 
-        outText = DataUrl.FromBytes(new byte[] { 1, 2, 3 }, mime.AsInfo());
+        outText = DataUrl.FromBytes([1, 2, 3], mime.AsInfo());
 
         Assert.IsNotNull(outText);
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow(null)]
     [DataRow("")]
     [DataRow("http://wwww.folker-kinzel.de/index.htm")]
@@ -64,11 +64,12 @@ public class DataUrlTests
 
         Assert.IsTrue(DataUrl.TryParse(test, out DataUrlInfo dataUrl2));
 
-        Assert.AreEqual(dataUrl2.Data.ToString(), "Text");
-        Assert.AreEqual(dataUrl2.MimeType.ToString(), "text/plain;charset=UTF-8");
+        Assert.AreEqual("Text", dataUrl2.Data.ToString());
+        Assert.AreEqual("text/plain;charset=UTF-8", dataUrl2.MimeType.ToString());
 
-        Assert.AreEqual(dataUrl2.Encoding, DataEncoding.Url);
-        Assert.AreEqual(MimeTypeInfo.Parse(dataUrl2.MimeType).Parameters().First().Value.ToString(), "UTF-8");
+        Assert.AreEqual(DataEncoding.Url, dataUrl2.Encoding);
+        Assert.AreEqual("UTF-8", 
+                        MimeTypeInfo.Parse(dataUrl2.MimeType).Parameters().First().Value.ToString());
 
 
         Assert.IsTrue(dataUrl2.TryAsText(out string? outString));
@@ -87,10 +88,10 @@ public class DataUrlTests
 
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? output));
 
-        CollectionAssert.AreEqual(data, output);
+        Assert.AreSequenceEqual(data, output);
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow("data:abc")]
     //[DataRow("data:,a bc")]
     public void TryParseTest7(string input) => Assert.IsFalse(DataUrl.TryParse(input, out _));
@@ -119,7 +120,7 @@ public class DataUrlTests
         Assert.IsTrue(DataUrl.TryParse($"data:application/octet-stream,{sb}", out DataUrlInfo dataUrl));
         Assert.AreEqual(DataType.Binary, dataUrl.DataType);
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? bytes));
-        Assert.AreEqual(256, bytes!.Length);
+        Assert.HasCount(256, bytes);
 
         for (int i = 0; i < bytes!.Length; i++)
         {
@@ -156,7 +157,7 @@ public class DataUrlTests
         string url = DataUrl.FromBytes(data, MimeType.Parse("application/x-stuff; key=\";bla,blabla\"").AsInfo());
         Assert.IsTrue(DataUrl.TryParse(url, out DataUrlInfo dataUrl));
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? parsed));
-        CollectionAssert.AreEqual(data, parsed);
+        Assert.AreSequenceEqual(data, parsed);
     }
 
     [TestMethod]
@@ -200,7 +201,7 @@ public class DataUrlTests
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText, out DataUrlInfo dataUrl));
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
-        CollectionAssert.AreEqual(bytes, outBytes);
+        Assert.AreSequenceEqual(bytes, outBytes);
     }
 
     [TestMethod]
@@ -214,7 +215,7 @@ public class DataUrlTests
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText, out DataUrlInfo dataUrl));
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
-        CollectionAssert.AreEqual(bytes, outBytes);
+        Assert.AreSequenceEqual(bytes, outBytes);
     }
 
     [TestMethod]
@@ -228,7 +229,7 @@ public class DataUrlTests
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText, out DataUrlInfo dataUrl));
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
-        CollectionAssert.AreEqual(bytes, outBytes);
+        Assert.AreSequenceEqual(bytes, outBytes);
     }
 
     [TestMethod]
@@ -242,7 +243,7 @@ public class DataUrlTests
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText, out DataUrlInfo dataUrl));
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
-        CollectionAssert.AreEqual(bytes, outBytes);
+        Assert.AreSequenceEqual(bytes, outBytes);
     }
 
     [TestMethod]
@@ -295,8 +296,9 @@ public class DataUrlTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
-    public void FromBytesTest9() => _ = DataUrl.FromBytes(new byte[] { 1, 2, 3 }, new MimeTypeInfo());
+    public void FromBytesTest9()
+        => _ = Assert.ThrowsExactly<ArgumentException>(
+                () => DataUrl.FromBytes([1, 2, 3], new MimeTypeInfo()));
 
 
     [TestMethod]
@@ -310,7 +312,7 @@ public class DataUrlTests
 
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
 
-        CollectionAssert.AreEqual(outBytes, File.ReadAllBytes(path));
+        Assert.AreSequenceEqual(outBytes, File.ReadAllBytes(path));
     }
 
     [TestMethod]
@@ -321,16 +323,18 @@ public class DataUrlTests
         Assert.IsNotNull(url);
         Assert.IsTrue(DataUrl.TryParse(url, out DataUrlInfo dataUrl));
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
-        CollectionAssert.AreEqual(outBytes, File.ReadAllBytes(path));
+        Assert.AreSequenceEqual(outBytes, File.ReadAllBytes(path));
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void FromFileTest3() => _ = DataUrl.FromFile(null!);
+    public void FromFileTest3()
+        => _ = Assert.ThrowsExactly<ArgumentNullException>(
+                () => DataUrl.FromFile(null!));
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
-    public void FromFileTest4() => _ = DataUrl.FromFile("   ");
+    public void FromFileTest4() 
+        => _ = Assert.ThrowsExactly<ArgumentException>(
+                () => DataUrl.FromFile("   "));
 
     [TestMethod]
     public void FromFileTest5()
@@ -369,7 +373,7 @@ public class DataUrlTests
         File.WriteAllBytes(path, testData);
 
         string url1 = DataUrl.FromFile(path);
-        StringAssert.Contains(url1, "image/jpeg");
+        Assert.Contains("image/jpeg", url1);
     }
 
     [TestMethod]
@@ -380,10 +384,10 @@ public class DataUrlTests
         string path = Path.Combine(TestContext.TestRunResultsDirectory!, fileName);
         File.WriteAllBytes(path, testData);
 
-        MimeTypeInfo mime = MimeTypeInfo.Parse("image/png");
+        var mime = MimeTypeInfo.Parse("image/png");
 
         string url1 = DataUrl.FromFile(path, in mime);
-        StringAssert.Contains(url1, "image/png");
+        Assert.Contains("image/png", url1);
     }
 
     [TestMethod]
@@ -405,8 +409,9 @@ public class DataUrlTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
-    public void FromFileTest12() => _ = DataUrl.FromFile(TestFiles.FolkerPng, new MimeTypeInfo());
+    public void FromFileTest12() 
+        => _ = Assert.ThrowsExactly<ArgumentException>(
+                () => DataUrl.FromFile(TestFiles.FolkerPng, new MimeTypeInfo()));
 
 
     [TestMethod]
@@ -436,11 +441,8 @@ public class DataUrlTests
         string dataUrl1 = DataUrl.FromText(TEXT);
 
         Assert.IsTrue(DataUrl.TryParse(dataUrl1, out DataUrlInfo info));
-
-        Assert.AreEqual(info.MimeType.ToString(), "text/plain;charset=utf-8");
-
-        Assert.AreEqual(1, MimeTypeInfo.Parse(info.MimeType).Parameters().Count());
-
+        Assert.AreEqual("text/plain;charset=utf-8", info.MimeType.ToString());
+        Assert.HasCount(1, MimeTypeInfo.Parse(info.MimeType).Parameters());
         Assert.IsTrue(info.TryAsText(out string? outText));
         Assert.AreEqual(TEXT, outText);
     }
@@ -453,10 +455,7 @@ public class DataUrlTests
         string dataUrl1 = DataUrl.FromText(TEXT);
 
         Assert.IsTrue(DataUrl.TryParse(dataUrl1, out DataUrlInfo info));
-
         Assert.AreEqual("text/plain", info.MimeType.ToString());
-
-
         Assert.IsTrue(info.TryAsText(out string? outText));
         Assert.AreEqual(TEXT, outText);
     }
@@ -479,14 +478,14 @@ public class DataUrlTests
     public void FromTextTest4()
     {
         string url = DataUrl.FromText("äöü", "text/plain; charset=nixda");
-        StringAssert.Contains(url, ";charset=utf-8");
+        Assert.Contains(";charset=utf-8", url);
     }
 
     [TestMethod()]
     public void FromTextTest5()
     {
         string url = DataUrl.FromText("äöü", "text/plain; charset=\"\"");
-        StringAssert.Contains(url, ";charset=utf-8");
+        Assert.Contains(";charset=utf-8", url);
     }
 
     [TestMethod()]
@@ -499,18 +498,16 @@ public class DataUrlTests
         string dataUrl1 = DataUrl.FromText(TEXT, mime);
 
         Assert.IsTrue(DataUrl.TryParse(dataUrl1, out DataUrlInfo info));
-
-        Assert.AreEqual(info.MimeType.ToString(), "text/plain;charset=iso-8859-1");
-
-        Assert.AreEqual(1, MimeTypeInfo.Parse(info.MimeType).Parameters().Count());
-
+        Assert.AreEqual("text/plain;charset=iso-8859-1", info.MimeType.ToString());
+        Assert.HasCount(1, MimeTypeInfo.Parse(info.MimeType).Parameters());
         Assert.IsTrue(info.TryAsText(out string? outText));
         Assert.AreEqual(TEXT, outText);
     }
 
     [TestMethod()]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void FromTextTest7() => _ = DataUrl.FromText("text", (MimeType?)null!);
+    public void FromTextTest7()
+        => _ = Assert.ThrowsExactly<ArgumentNullException>(
+                () => DataUrl.FromText("text", (MimeType?)null!));
 
     [TestMethod]
     public void FromTextTest8()
@@ -562,7 +559,7 @@ public class DataUrlTests
     public void LargeFileTest3()
     {
         const string chunk = "%01%02%03";
-        StringBuilder sb = new StringBuilder(chunk.Length * 20100);
+        var sb = new StringBuilder(chunk.Length * 20100);
 
         for (int i = 0; i < 20000; i++)
         {
@@ -575,9 +572,9 @@ public class DataUrlTests
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendTextToTest1() => _ = DataUrl.AppendTextTo(null!, "", MimeType.Parse(MimeString.OctetStream));
-
+    public void AppendTextToTest1()
+        => _ = Assert.ThrowsExactly<ArgumentNullException>(
+                () => DataUrl.AppendTextTo(null!, "", MimeType.Parse(MimeString.OctetStream)));
 
     [TestMethod]
     public void AppendTextToTest2()
@@ -586,7 +583,6 @@ public class DataUrlTests
         _ = DataUrl.AppendTextTo(stringBuilder, null, MimeType.Parse(MimeString.OctetStream));
         Assert.AreNotEqual(0, stringBuilder.Length);
     }
-
 
     [TestMethod]
     public void AppendBytesToTest1()
@@ -612,84 +608,105 @@ public class DataUrlTests
 
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendBytesToTest3() => _ = DataUrl.AppendBytesTo(null!, Array.Empty<byte>());
+    [SuppressMessage("Style", "IDE0301:Simplify collection initialization",
+                     Justification = "Needed for testing.")]
+    public void AppendBytesToTest3() 
+        => _ = Assert.ThrowsExactly<ArgumentNullException>(
+                () => DataUrl.AppendBytesTo(null!, Array.Empty<byte>()));
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
-    public void AppendBytesToTest3b() => _ = DataUrl.AppendBytesTo(null!, ReadOnlySpan<byte>.Empty, MimeTypeInfo.Parse("image/png"));
+    [SuppressMessage("Style", "IDE0301:Simplify collection initialization", 
+                     Justification = "Needed for testing.")]
+    public void AppendBytesToTest3b()
+        => _ = Assert.ThrowsExactly<ArgumentNullException>(
+                () => DataUrl.AppendBytesTo(null!, 
+                                            ReadOnlySpan<byte>.Empty,
+                                            MimeTypeInfo.Parse("image/png")));
 
     [TestMethod]
     public void AppendBytesToTest4()
     {
-        StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(), (byte[]?)null, MimeType.Parse("text/plain").AsInfo());
+        StringBuilder outText = 
+            DataUrl.AppendBytesTo(new StringBuilder(),
+                                  (byte[]?)null,
+                                  MimeType.Parse("text/plain").AsInfo());
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
-        CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
+        Assert.AreSequenceEqual([], outBytes);
     }
 
     [TestMethod]
     public void AppendBytesToTest5()
     {
-        StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(), (IEnumerable<byte>?)null);
+        StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(),
+                                                      (IEnumerable<byte>?)null);
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
-        CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
+        Assert.AreSequenceEqual([], outBytes);
     }
 
     [TestMethod]
     public void AppendBytesToTest6()
     {
-        StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(), (IEnumerable<byte>?)null, MimeType.Parse("text/plain").AsInfo());
+        StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(),
+                                                      (IEnumerable<byte>?)null,
+                                                      MimeType.Parse("text/plain").AsInfo());
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
-        CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
+        Assert.AreSequenceEqual([], outBytes);
     }
 
     [TestMethod]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
+    [SuppressMessage("Style", "IDE0301:Simplify collection initialization", Justification = "<Pending>")]
     public void AppendBytesToTest7()
     {
-        StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(), ReadOnlySpan<byte>.Empty, MimeType.Parse("text/plain").AsInfo());
+        StringBuilder outText = DataUrl.AppendBytesTo(new StringBuilder(),
+                                                      ReadOnlySpan<byte>.Empty,
+                                                      MimeType.Parse("text/plain").AsInfo());
 
         Assert.IsNotNull(outText);
         Assert.IsTrue(DataUrl.TryParse(outText.ToString(), out DataUrlInfo dataUrl));
         Assert.IsTrue(dataUrl.TryAsBytes(out byte[]? outBytes));
-        CollectionAssert.AreEqual(Array.Empty<byte>(), outBytes);
+        Assert.AreSequenceEqual([], outBytes);
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
-    public void AppendFileToTest1() => _ = DataUrl.AppendFileTo(null!, "path");
+    public void AppendFileToTest1() 
+        => _ = Assert.ThrowsExactly<ArgumentNullException>(
+                () => DataUrl.AppendFileTo(null!, "path"));
 
 
     [TestMethod]
-    public void TryGetDataTest1() => Assert.IsFalse(DataUrl.TryGetData((string?)null, out _, out _));
+    public void TryGetDataTest1()
+        => Assert.IsFalse(DataUrl.TryGetData((string?)null, out _, out _));
 
     [TestMethod]
     public void TryGetDataTest2()
     {
-        Assert.IsTrue(DataUrl.TryGetData("data:image/jpeg,ABC", out EmbeddedData data, out string? ext));
+        Assert.IsTrue(DataUrl.TryGetData("data:image/jpeg,ABC",
+                                         out EmbeddedData data,
+                                         out string? ext));
         Assert.IsNotNull(data.Bytes);
         Assert.AreEqual(".jpg", ext);
     }
 
-
     [TestMethod]
-    public void TryGetDataTest3() => Assert.IsFalse(DataUrl.TryGetData("data:image/jpeg;base64,ÄÖÜ", out _, out _));
+    public void TryGetDataTest3()
+        => Assert.IsFalse(DataUrl.TryGetData("data:image/jpeg;base64,ÄÖÜ", out _, out _));
 
 
     [TestMethod]
     public void TryGetDataTest4()
     {
-        Assert.IsTrue(DataUrl.TryGetData($"data:text/äöü,{Uri.EscapeDataString("ÄÖÜ")}", out EmbeddedData data, out string? ext));
+        Assert.IsTrue(DataUrl.TryGetData($"data:text/äöü,{Uri.EscapeDataString("ÄÖÜ")}",
+                                         out EmbeddedData data,
+                                         out string? ext));
         Assert.IsNotNull(data.Text);
         Assert.AreEqual("ÄÖÜ", data.Text);
         Assert.AreEqual(".bin", ext);
@@ -704,18 +721,23 @@ public class DataUrlTests
         => Assert.IsTrue(DataUrl.TryGetBytes("data:application/octet-stream;base64,ABC", out _, out _));
 
     [TestMethod]
-    public void TryGetBytesTest3() => Assert.IsTrue(DataUrl.TryGetBytes("data:,ABCDE", out _, out _));
+    public void TryGetBytesTest3()
+        => Assert.IsTrue(DataUrl.TryGetBytes("data:,ABCDE", out _, out _));
 
     [TestMethod]
-    public void TryGetBytesTest4() => Assert.IsFalse(DataUrl.TryGetBytes("blabla", out _, out _));
+    public void TryGetBytesTest4()
+        => Assert.IsFalse(DataUrl.TryGetBytes("blabla", out _, out _));
 
     [TestMethod]
-    public void TryGetTextTest1() => Assert.IsFalse(DataUrl.TryGetText("data:;base64,A", out _, out _));
+    public void TryGetTextTest1()
+        => Assert.IsFalse(DataUrl.TryGetText("data:;base64,A", out _, out _));
 
     [TestMethod]
     public void TryGetTextTest2()
     {
-        Assert.IsTrue(DataUrl.TryGetText("data:text/plain;charset=utf-8;base64,ABC", out _, out string? ext));
+        Assert.IsTrue(DataUrl.TryGetText("data:text/plain;charset=utf-8;base64,ABC",
+                                         out _,
+                                         out string? ext));
         Assert.AreEqual(".txt", ext);
     }
 
@@ -726,6 +748,8 @@ public class DataUrlTests
     public void TryGetTextTest4()
     {
         string base64 = Convert.ToBase64String([190, 208]);
-        Assert.IsFalse(DataUrl.TryGetText($"data:text/plain;charset=utf-8;base64,{base64}", out _, out string? ext));
+        Assert.IsFalse(DataUrl.TryGetText($"data:text/plain;charset=utf-8;base64,{base64}",
+                                          out _,
+                                          out _));
     }
 }

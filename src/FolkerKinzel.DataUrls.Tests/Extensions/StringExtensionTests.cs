@@ -6,7 +6,7 @@ public class StringExtensionTests
     private const string DATA_URL_PROTOCOL = "data:";
 
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow(DATA_URL_PROTOCOL, true)]
     [DataRow("data:bla", true)]
     [DataRow("          data:bla", true)]

@@ -3,22 +3,22 @@
 [TestClass]
 public class UriExtensionTests
 {
-    [DataTestMethod]
+    [TestMethod]
     [DataRow("data:,", true)]
     [DataRow("DATA:,bla", true)]
     [DataRow("dotu:,bla", false)]
     [DataRow("http://www.contoso.com/", false)]
     public void IsDataUrlTest2(string input, bool expected)
     {
-        Uri? uri = new Uri(input);
+        var uri = new Uri(input);
         Assert.AreEqual(expected, uri.IsDataUrl());
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void IsDataUrlTest3()
     {
         Uri? uri = null;
-        _ = uri!.IsDataUrl();
+        _ = Assert.ThrowsExactly<ArgumentNullException>(
+               () => uri!.IsDataUrl());
     }
 }

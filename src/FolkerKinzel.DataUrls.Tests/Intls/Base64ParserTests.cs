@@ -3,7 +3,7 @@
 [TestClass]
 public class Base64ParserTests
 {
-    [DataTestMethod]
+    [TestMethod]
     [DataRow("ABCD")]
     [DataRow("ABC")]
     [DataRow("AB")]

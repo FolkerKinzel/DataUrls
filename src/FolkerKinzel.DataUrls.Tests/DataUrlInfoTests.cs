@@ -133,9 +133,12 @@ public class DataUrlInfoTests
     }
 
     [TestMethod]
-    public void EqualsTest7() => Assert.AreNotEqual<object?>(DataUrlInfo.Empty, 42);
+    public void EqualsTest7() => Assert.AreNotEqual<object?>(42, DataUrlInfo.Empty);
 
     [TestMethod]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        "Design",
+        "MSTEST0032:Assertion condition is always true", Justification = "<Pending>")]
     public void EqualsTest8() => Assert.AreEqual(DataUrlInfo.Empty, (object)DataUrlInfo.Empty);
 
     [TestMethod]
