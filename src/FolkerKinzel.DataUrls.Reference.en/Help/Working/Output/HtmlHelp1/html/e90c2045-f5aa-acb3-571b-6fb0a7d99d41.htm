@@ -1,0 +1,133 @@
+﻿<html><head><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="Microsoft.Help.SelfBranded" content="true" /><meta name="Language" content="en-us" /><meta name="Microsoft.Help.Locale" content="en-us" /><meta name="Microsoft.Help.TopicLocale" content="en-us" /><link rel="shortcut icon" href="../icons/favicon.ico" /><link rel="stylesheet" type="text/css" href="../styles/branding.css" /><link rel="stylesheet" type="text/css" href="../styles/branding-en-US.css" /><script type="text/javascript" src="../scripts/branding.js"></script><title>EmbeddedData.Switch&lt;TArg&gt;(TArg, Action&lt;Byte[], TArg&gt;, Action&lt;String, TArg&gt;) Method</title><meta name="Title" content="Switch&lt;TArg&gt;(TArg, Action&lt;Byte[], TArg&gt;, Action&lt;String, TArg&gt;) Method" /><meta name="Microsoft.Help.Id" content="M:FolkerKinzel.DataUrls.EmbeddedData.Switch``1(``0,System.Action{System.Byte[],``0},System.Action{System.String,``0})" /><meta name="Microsoft.Help.ContentType" content="Reference" /><meta name="container" content="FolkerKinzel.DataUrls" /><meta name="file" content="e90c2045-f5aa-acb3-571b-6fb0a7d99d41" /><meta name="guid" content="e90c2045-f5aa-acb3-571b-6fb0a7d99d41" /><meta name="Microsoft.Help.Category" content="CSharp" /><meta name="Description" content="Performs an depending on the of the encapsulated value and allows to pass an argument to the delegates." /><link type="text/css" rel="stylesheet" href="../styles/highlight.css" /><script type="text/javascript" src="../scripts/highlight.js"> </script><link rel="stylesheet" type="text/css" href="../styles/branding-Help1.css" /></head><body onload="SetDefaultLanguage('cs');"><input type="hidden" id="userDataCache" class="userDataStyle" /><div id="PageHeader" class="pageHeader">FolkerKinzel.DataUrls</div><div class="pageBody"><div id="TopicContent" class="topicContent"><table class="titleTable"><tr><td class="logoColumn"><img src="../icons/Help.png" /></td><td class="titleColumn"><h1>Embedded<wbr />Data<span id="LSTB6614EBD_0" data-languageSpecificText="cpp=::|nu=."></span>Switch<span id="LSTB6614EBD_1" data-languageSpecificText="cpp=&lt;|cs=&lt;|fs=&lt;|vb=(Of |nu=("></span><span class="typeparameter">TArg</span><span id="LSTB6614EBD_2" data-languageSpecificText="cpp=&gt;|cs=&gt;|fs=&gt;|vb=)|nu=)"></span>(<span class="typeparameter">TArg</span>, Action<span id="LSTB6614EBD_3" data-languageSpecificText="cpp=&lt;|cs=&lt;|fs=&lt;|vb=(Of |nu=("></span><span id="LSTB6614EBD_4" data-languageSpecificText="cpp=array&lt;"></span>Byte<span id="LSTB6614EBD_5" data-languageSpecificText="cpp=&gt;|vb=()|nu=[]"></span>, <span class="typeparameter">TArg</span><span id="LSTB6614EBD_6" data-languageSpecificText="cpp=&gt;|cs=&gt;|fs=&gt;|vb=)|nu=)"></span>, Action<span id="LSTB6614EBD_7" data-languageSpecificText="cpp=&lt;|cs=&lt;|fs=&lt;|vb=(Of |nu=("></span>String, <span class="typeparameter">TArg</span><span id="LSTB6614EBD_8" data-languageSpecificText="cpp=&gt;|cs=&gt;|fs=&gt;|vb=)|nu=)"></span>) Method</h1></td></tr></table><div class="summary">
+            Performs an <a href="https://learn.microsoft.com/dotnet/api/system.action-1" target="_blank" rel="noopener noreferrer">Action<span id="LSTB6614EBD_9" data-languageSpecificText="cs=&lt;|vb=(Of |cpp=&lt;|nu=(|fs=&lt;'"></span>T<span id="LSTB6614EBD_10" data-languageSpecificText="cs=&gt;|vb=)|cpp=&gt;|nu=)|fs=&gt;"></span></a> depending on the <a href="https://learn.microsoft.com/dotnet/api/system.type" target="_blank" rel="noopener noreferrer">Type</a> of the 
+            encapsulated value and allows to pass an argument to the delegates.
+            </div><br /><strong>Namespace:</strong> <a href="5a5c6fb9-a62e-7daf-0129-3315b2761470.htm">FolkerKinzel.DataUrls</a><br /><strong>Assembly:</strong> FolkerKinzel.DataUrls (in FolkerKinzel.DataUrls.dll) Version: 1.0.0+aa407c6e6fb358bd8e1599929787cf4f4a6fb8e8<div class="collapsibleAreaRegion"><span class="collapsibleRegionTitle" onclick="SectionExpandCollapse('IDB')" onkeypress="SectionExpandCollapse_CheckKey('IDB', event)" tabindex="0"><img id="IDBToggle" class="collapseToggle" src="../icons/SectionExpanded.png" />Syntax</span></div><div id="IDBSection" class="collapsibleSection"><div id="IDAB" class="codeSnippetContainer"><div class="codeSnippetContainerTabs"><div id="IDAB_tab1" class="codeSnippetContainerTab"><a href="#" onclick="ChangeTab('IDAB','cs','1','4');return false;">C#</a></div><div id="IDAB_tab2" class="codeSnippetContainerTab"><a href="#" onclick="ChangeTab('IDAB','vb','2','4');return false;">VB</a></div><div id="IDAB_tab3" class="codeSnippetContainerTab"><a href="#" onclick="ChangeTab('IDAB','cpp','3','4');return false;">C++</a></div><div id="IDAB_tab4" class="codeSnippetContainerTab"><a href="#" onclick="ChangeTab('IDAB','fs','4','4');return false;">F#</a></div></div><div class="codeSnippetContainerCodeContainer"><div class="codeSnippetToolBar"><div class="codeSnippetToolBarText"><a id="IDAB_copyCode" href="#" class="copyCodeSnippet" onclick="CopyToClipboard('IDAB');return false;" title="Copy">Copy</a></div></div><div id="IDAB_code_Div1" class="codeSnippetContainerCode" style="display: block"><pre xml:space="preserve"><span class="keyword">public</span> <span class="keyword">void</span> <span class="identifier">Switch</span>&lt;TArg&gt;(
+	TArg <span class="parameter">arg</span>,
+	<span class="identifier">Action</span>&lt;<span class="identifier">byte</span>[], TArg&gt;? <span class="parameter">bytesAction</span> = <span class="keyword">null</span>,
+	<span class="identifier">Action</span>&lt;<span class="identifier">string</span>, TArg&gt;? <span class="parameter">textAction</span> = <span class="keyword">null</span>
+)
+</pre></div><div id="IDAB_code_Div2" class="codeSnippetContainerCode" style="display: none"><pre xml:space="preserve"><span class="keyword">Public</span> <span class="keyword">Sub</span> <span class="identifier">Switch</span>(<span class="keyword">Of</span> TArg) ( 
+	<span class="parameter">arg</span> <span class="keyword">As</span> TArg,
+	Optional <span class="parameter">bytesAction</span> <span class="keyword">As</span> <span class="identifier">Action</span>(<span class="keyword">Of</span> <span class="identifier">Byte</span>(), TArg) = <span class="keyword">Nothing</span>,
+	Optional <span class="parameter">textAction</span> <span class="keyword">As</span> <span class="identifier">Action</span>(<span class="keyword">Of</span> <span class="identifier">String</span>, TArg) = <span class="keyword">Nothing</span>
+)</pre></div><div id="IDAB_code_Div3" class="codeSnippetContainerCode" style="display: none"><pre xml:space="preserve"><span class="keyword">public</span>:
+<span class="keyword">generic</span>&lt;<span class="keyword">typename</span> TArg&gt;
+<span class="keyword">void</span> <span class="identifier">Switch</span>(
+	TArg <span class="parameter">arg</span>, 
+	<span class="identifier">Action</span>&lt;<span class="keyword">array</span>&lt;<span class="identifier">unsigned char</span>&gt;^, TArg&gt;^ <span class="parameter">bytesAction</span> = <span class="keyword">nullptr</span>, 
+	<span class="identifier">Action</span>&lt;<span class="identifier">String</span>^, TArg&gt;^ <span class="parameter">textAction</span> = <span class="keyword">nullptr</span>
+)</pre></div><div id="IDAB_code_Div4" class="codeSnippetContainerCode" style="display: none"><pre xml:space="preserve"><span class="keyword">member</span> <span class="identifier">Switch</span> : 
+        <span class="parameter">arg</span> : 'TArg * 
+        ?<span class="parameter">bytesAction</span> : <span class="identifier">Action</span>&lt;<span class="identifier">byte</span>[], 'TArg&gt; * 
+        ?<span class="parameter">textAction</span> : <span class="identifier">Action</span>&lt;<span class="identifier">string</span>, 'TArg&gt; 
+(* Defaults:
+        <span class="keyword">let </span><span class="identifier">_</span><span class="identifier">bytesAction</span> = defaultArg <span class="identifier">bytesAction</span> <span class="keyword">null</span>
+        <span class="keyword">let </span><span class="identifier">_</span><span class="identifier">textAction</span> = defaultArg <span class="identifier">textAction</span> <span class="keyword">null</span>
+*)
+<span class="keyword">-&gt;</span> <span class="keyword">unit</span> </pre></div></div></div><h4>Parameters</h4><dl><dt class="has-text-weight-normal"><span class="parameter">arg</span>  <span class="selflink"><span class="typeparameter">TArg</span></span></dt><dd>The argument to pass to the delegates.</dd><dt class="has-text-weight-normal"><span class="parameter">bytesAction</span>  <a href="https://learn.microsoft.com/dotnet/api/system.action-2" target="_blank" rel="noopener noreferrer">Action</a><span id="LSTB6614EBD_11" data-languageSpecificText="cpp=&lt;|cs=&lt;|fs=&lt;|vb=(Of |nu=("></span><span id="LSTB6614EBD_12" data-languageSpecificText="cpp=array&lt;"></span><a href="https://learn.microsoft.com/dotnet/api/system.byte" target="_blank" rel="noopener noreferrer">Byte</a><span id="LSTB6614EBD_13" data-languageSpecificText="cpp=&gt;|vb=()|nu=[]"></span>, <span class="selflink"><span class="typeparameter">TArg</span></span><span id="LSTB6614EBD_14" data-languageSpecificText="cpp=&gt;|cs=&gt;|fs=&gt;|vb=)|nu=)"></span>  (Optional)</dt><dd><span class="code">null</span>, or the <a href="https://learn.microsoft.com/dotnet/api/system.action-1" target="_blank" rel="noopener noreferrer">Action<span id="LSTB6614EBD_15" data-languageSpecificText="cs=&lt;|vb=(Of |cpp=&lt;|nu=(|fs=&lt;'"></span>T<span id="LSTB6614EBD_16" data-languageSpecificText="cs=&gt;|vb=)|cpp=&gt;|nu=)|fs=&gt;"></span></a> to be executed 
+            if the encapsulated value is an array of <a href="https://learn.microsoft.com/dotnet/api/system.byte" target="_blank" rel="noopener noreferrer">Byte</a>s.</dd><dt class="has-text-weight-normal"><span class="parameter">textAction</span>  <a href="https://learn.microsoft.com/dotnet/api/system.action-2" target="_blank" rel="noopener noreferrer">Action</a><span id="LSTB6614EBD_17" data-languageSpecificText="cpp=&lt;|cs=&lt;|fs=&lt;|vb=(Of |nu=("></span><a href="https://learn.microsoft.com/dotnet/api/system.string" target="_blank" rel="noopener noreferrer">String</a>, <span class="selflink"><span class="typeparameter">TArg</span></span><span id="LSTB6614EBD_18" data-languageSpecificText="cpp=&gt;|cs=&gt;|fs=&gt;|vb=)|nu=)"></span>  (Optional)</dt><dd><span class="code">null</span>, or the <a href="https://learn.microsoft.com/dotnet/api/system.action-1" target="_blank" rel="noopener noreferrer">Action<span id="LSTB6614EBD_19" data-languageSpecificText="cs=&lt;|vb=(Of |cpp=&lt;|nu=(|fs=&lt;'"></span>T<span id="LSTB6614EBD_20" data-languageSpecificText="cs=&gt;|vb=)|cpp=&gt;|nu=)|fs=&gt;"></span></a> to be executed 
+            if the encapsulated value is a <a href="https://learn.microsoft.com/dotnet/api/system.string" target="_blank" rel="noopener noreferrer">String</a>.</dd></dl><h4>Type Parameters</h4><dl><dt class="has-text-weight-normal"><span class="parameter">TArg</span></dt><dd>Generic type parameter for the type of the argument to pass
+            to the delegates.</dd></dl></div><div class="collapsibleAreaRegion"><span class="collapsibleRegionTitle" onclick="SectionExpandCollapse('IDFC')" onkeypress="SectionExpandCollapse_CheckKey('IDFC', event)" tabindex="0"><img id="IDFCToggle" class="collapseToggle" src="../icons/SectionExpanded.png" />Example</span></div><div id="IDFCSection" class="collapsibleSection"><div class="alert"><table><tr><th><img src="../icons/AlertNote.png" alt="Note" />  Note</th></tr><tr><td>
+            For the sake of better readability, exception handling is ommitted in the example.
+            </td></tr></table></div><p>
+            Creating and parsing a "data" URL:
+            </p><div id="IDCFC" class="codeSnippetContainer"><div class="codeSnippetContainerTabs"><div id="IDCFC_tab1" class="codeSnippetContainerTabSingle">C#</div></div><div class="codeSnippetContainerCodeContainer"><div class="codeSnippetToolBar"><div class="codeSnippetToolBarText"><a id="IDCFC_copyCode" href="#" class="copyCodeSnippet" onclick="CopyToClipboard('IDCFC');return false;" title="Copy">Copy</a></div></div><div id="IDCFC_code_Div1" class="codeSnippetContainerCode" style="display: block"><pre xml:space="preserve"><span class="highlight-keyword">using</span> FolkerKinzel.DataUrls;
+<span class="highlight-keyword">using</span> FolkerKinzel.DataUrls.Extensions;
+<span class="highlight-keyword">using</span> System.Diagnostics;
+
+<span class="highlight-keyword">namespace</span> Examples;
+
+<span class="highlight-keyword">public</span> <span class="highlight-keyword">static</span> <span class="highlight-keyword">class</span> DataUrlExample
+{
+    <span class="highlight-keyword">public</span> <span class="highlight-keyword">static</span> <span class="highlight-keyword">void</span> Example()
+    {
+        <span class="highlight-comment">// Creates a temporary JPG file for testing.</span>
+        <span class="highlight-keyword">string</span> photoFilePath = CreatePhotoFile();
+
+        <span class="highlight-comment">// Creates a "data" URL string from the file.</span>
+        <span class="highlight-comment">// The MIME type comes from the file type extension</span>
+        <span class="highlight-comment">// (if not provided as argument):</span>
+        <span class="highlight-keyword">string</span> dataUrl = DataUrl.FromFile(photoFilePath);
+
+        <span class="highlight-comment">// (The photo file is no longer needed.)</span>
+        File.Delete(photoFilePath);
+
+        <span class="highlight-comment">// Uncomment this to show the content of the</span>
+        <span class="highlight-comment">// "data" URL in the Microsoft Edge browser.</span>
+        <span class="highlight-comment">// (Make shure you have this browser installed.):</span>
+        <span class="highlight-comment">// ShowPictureInMicrosoftEdge(dataUrl);</span>
+
+        Console.WriteLine(dataUrl);
+        Console.WriteLine();
+        Console.WriteLine(<span class="highlight-literal">"Is \"data\" URL:  {0}"</span>, dataUrl.IsDataUrl());
+        Console.WriteLine();
+
+        <span class="highlight-comment">// Parse the content of the "data" URL:</span>
+        _ = DataUrl.TryParse(dataUrl, <span class="highlight-keyword">out</span> DataUrlInfo info);
+
+        Console.WriteLine(<span class="highlight-literal">"Data Type:      {0}"</span>, info.DataType);
+        Console.WriteLine(<span class="highlight-literal">"MIME Type:      {0}"</span>, info.MimeType);
+        Console.WriteLine(<span class="highlight-literal">"File Type Ext.: {0}"</span>, info.GetFileTypeExtension());
+        Console.WriteLine(<span class="highlight-literal">"Data Encoding:  {0}"</span>, info.Encoding);
+        Console.WriteLine();
+
+        <span class="highlight-keyword">if</span> (info.TryGetData(<span class="highlight-keyword">out</span> EmbeddedData data))
+        {
+            <span class="highlight-comment">// EmbeddedData is a union that contains either a</span>
+            <span class="highlight-comment">// byte array or a string.</span>
+
+            Console.WriteLine(data);
+        }
+    }
+
+    <span class="highlight-comment">/// &lt;summary&gt;</span>
+    <span class="highlight-comment">/// Creates a temporary photo file. The data comes from a given "data" URL.</span>
+    <span class="highlight-comment">/// &lt;/summary&gt;</span>
+    <span class="highlight-comment">/// &lt;returns&gt;The file path.&lt;/returns&gt;</span>
+    <span class="highlight-keyword">private</span> <span class="highlight-keyword">static</span> <span class="highlight-keyword">string</span> CreatePhotoFile()
+    {
+        <span class="highlight-keyword">const</span> <span class="highlight-keyword">string</span> url = <span class="highlight-literal">"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABLAAD/4QM1aHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzE0NSA3OS4xNjIzMTksIDIwMTgvMDIvMTUtMjA6Mjk6NDMgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBFbGVtZW50cyAxNy4wIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyMzQ2NjhFMTA5OTExMUVDODNGQ0U1Q0EzN0JFMDUxNSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyMzQ2NjhFMjA5OTExMUVDODNGQ0U1Q0EzN0JFMDUxNSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjIzNDY2OERGMDk5MTExRUM4M0ZDRTVDQTM3QkUwNTE1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjIzNDY2OEUwMDk5MTExRUM4M0ZDRTVDQTM3QkUwNTE1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+/+4ADkFkb2JlAGTAAAAAAf/bAIQAAwICAgICAwICAwUDAwMFBQQDAwQFBgUFBQUFBggGBwcHBwYICAkKCgoJCAwMDAwMDA4ODg4OEBAQEBAQEBAQEAEDBAQGBgYMCAgMEg4MDhIUEBAQEBQREBAQEBARERAQEBAQEBEQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/8AAEQgAMAAwAwERAAIRAQMRAf/EAIgAAAIDAQEBAAAAAAAAAAAAAAUGAwQHAQIIAQACAwEBAAAAAAAAAAAAAAACBAMFBgEAEAACAQMEAgEEAQEJAAAAAAABAgMRBAUAIRIGMQdBUSIyE3FhgZHBQmIjFRYXEQACAgEEAQIEBwAAAAAAAAABAgADESExEgRBURORoTIF8GFxgcEiFP/aAAwDAQACEQMRAD8AVLtsW4uLFMdaLcpNHjjIhnSVZbkmWPiWYH58n+NU5Dn8eksgyCZ++Sy2Kv7uwvv2yCBpYZLfmCfsqCAa00s6ZGRH07DbHWIM/uXrGBEkFjFNkLmGUCW1YMVgjY1JUg7mvxXTIRiJCpA28fKQ3fuT1/fsxurHIYuZgK5UxtwJb8qgkinwNtHwYeIDBTuCJonQru9uL+0kwl409nOyGG6/YxjkjI5b/K1PkaW46kes4AQcx37DispfXkDW0skjtc8YkkUTLCHcCoBFAanbf+3XK2ZQJNYA+cxt6xmZL/uw65n+sSJZ3UqmDKhAyBwD+uS4DD8lAp5+3401xPHOYiDrjEZPc/X8D03033XtmKFrLkrWxuXQlFeQTXDLDyUg1qvPlpbOcCT4I8Tvpb1x62wXRcVhbrD2k8r28Ul7d3SIXuLiRAzuzMN+ROquy5i51m669AWocRHftGC9f3uM/wCJmxNjLEUMRt0jioEIpQCmoXc50jPt6HlPibpVr/577h7R68tpXWxx5F7jYnFeMUjjjw/0gPTVxy51Kx/SYy1OFzL+80+HsMk969HP+zOgPkE8SD4/x0uBB9YKm7D7EvBK8tjkDcszKlYJUUgnbdqeNGbVzK8Wr+fwnlrTvubxl5gs3j7p4MjA1gV5xngsgKljybwCQa0OonuA1EZqZTYFbIBIGY7X/SbS1jxGSzHbJMYYhBHFbHikURRVV+bsSQoANQdtJMwLajeb2nrsFznaSJ1DpXYe35G7se5PPWSQQiCVHhaFT+AqPyX5A8edACBpjQxg0FxnyIG7j6yXIdgyHesSY58hDDa4u2vbqRYUaONi3Co2BK7kkGumEuKjB+n+ZQ9+ilKmsP1ggCCLfpvcXl4vfYscmDcjdkkb7qQqeNF/or9Zl2vPjHxhe4uokkYSTogcseTy7rQ0psTWulyqwhQsqWmYsknSSW9hjbf8XJ3XdSNcKjG0JaVBlq3xtr364nMeTdL11KmRHRknQEGROMqsBX520K6Pmbbpdj3KgpMvX/r2y63brlMxdOiWu2OsBNEsQkbfkP1IpJI81Opbm/rH9K9RFPNdvs7d5LaWa4SRf1tBFC44OrAEEoQdz9fpryVuQNN5jfuN4Llc6CVoe3xC7EbWkjREqrc5nFVPnZQN6aP2XztKvkspthpzd3EQAaNCAHM0cZBkO9VYEnVmnW5RbnidyvW4MU6tLfAkKQkaKGc7bAeAN/JP92nR9uB86SD34vf9mtcFmLDBZNza2uU5Lb3qtxa2vdihLCn2uPtP9aai7n24e3mvcfMSy+3d0pZxbY/Iw5dLHi1us33G9uJrXGI0k6zuzNQeI15GlXNAKaz9dLuwVdzNRd2QqlmOgid0fM3vZLO/7ZmYkkmvryadYW2VIoyI1RNxQKooNbpKERAmNBMBbczuXO5jpZY/A5O4SWG4ltzKyndv2R0r8A0O/wDOoD1E8TvumTZrtkcvYMrHj7f9KLM8aAAM1I2KNVqD/MD8al63E1K2MEiRMzbGBppry4pJICxetaqT/XTEGZz7nx2QvOqJPBzWWC4j5ycTyCSVRqbbedCd56IPae++wuz9Qw3UcvkJjHgiUhRFKvcqKmKSdwKu0a/YK/FPnfSyddUcsBqY3Z2HesKToJr/AE7FX2O6li8dJG0kq26PLUEVeT72rT+dNxSMNq10iJOUKtyWi0JFFIH0+uvTs//Z"</span>;
+        <span class="highlight-keyword">string</span> path = <span class="highlight-literal">""</span>;
+
+        <span class="highlight-comment">// Tries to get the embedded data as Byte array</span>
+        <span class="highlight-comment">// (and an appropriate file type extension too):</span>
+        <span class="highlight-keyword">if</span> (DataUrl.TryGetBytes(url,
+                                <span class="highlight-keyword">out</span> <span class="highlight-keyword">byte</span>[]? bytes,
+                                <span class="highlight-keyword">out</span> <span class="highlight-keyword">string</span>? fileTypeExtension) &amp;&amp; bytes.Length &gt; <span class="highlight-number">0</span>)
+        {
+            path = Path.Combine(
+                Directory.GetCurrentDirectory(), $<span class="highlight-literal">"{Guid.NewGuid()}{fileTypeExtension}"</span>);
+            File.WriteAllBytes(path, bytes);
+        }
+
+        <span class="highlight-keyword">return</span> path;
+    }
+
+    <span class="highlight-comment">/// &lt;summary&gt;</span>
+    <span class="highlight-comment">/// Displays the content of a "data" URL in the Edge browser.</span>
+    <span class="highlight-comment">/// &lt;/summary&gt;</span>
+    <span class="highlight-comment">/// &lt;param name="dataUrl"&gt;The "data" URL.&lt;/param&gt;</span>
+    <span class="highlight-keyword">private</span> <span class="highlight-keyword">static</span> <span class="highlight-keyword">void</span> ShowPictureInMicrosoftEdge(<span class="highlight-keyword">string</span> dataUrl)
+    {
+        <span class="highlight-keyword">var</span> process = <span class="highlight-keyword">new</span> Process();
+        process.StartInfo.UseShellExecute = <span class="highlight-keyword">true</span>;
+        process.StartInfo.FileName = <span class="highlight-literal">"msedge"</span>;
+        process.StartInfo.Arguments = dataUrl;
+        _ = process.Start();
+    }
+}
+
+<span class="highlight-comment">/*
+Console Output:
+
+data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABLAAD/4QM1aHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzE0NSA3OS4xNjIzMTksIDIwMTgvMDIvMTUtMjA6Mjk6NDMgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBFbGVtZW50cyAxNy4wIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyMzQ2NjhFMTA5OTExMUVDODNGQ0U1Q0EzN0JFMDUxNSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyMzQ2NjhFMjA5OTExMUVDODNGQ0U1Q0EzN0JFMDUxNSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjIzNDY2OERGMDk5MTExRUM4M0ZDRTVDQTM3QkUwNTE1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjIzNDY2OEUwMDk5MTExRUM4M0ZDRTVDQTM3QkUwNTE1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+/+4ADkFkb2JlAGTAAAAAAf/bAIQAAwICAgICAwIC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
+
+Is "data" URL:  True
+
+Data Type:      Binary
+MIME Type:      image/jpeg
+File Type Ext.: .jpg
+Data Encoding:  Base64
+
+System.Byte[]: 2472 Bytes
+ */</span></pre></div></div></div></div><div class="collapsibleAreaRegion"><span class="collapsibleRegionTitle" onclick="SectionExpandCollapse('seeAlso')" onkeypress="SectionExpandCollapse_CheckKey('seeAlso', event)" tabindex="0"><img id="seeAlsoToggle" class="collapseToggle" src="../icons/SectionExpanded.png" />See Also</span></div><div id="seeAlsoSection" class="collapsibleSection"><h4>Reference</h4><div><a href="63fe239a-f8cd-7c20-b854-4b60d38e5f3a.htm">EmbeddedData Structure</a></div><div><a href="fea9b644-33fa-681a-c68b-ce4dbf1e831e.htm">Switch Overload</a></div><div><a href="5a5c6fb9-a62e-7daf-0129-3315b2761470.htm">FolkerKinzel.DataUrls Namespace</a></div></div></div></div><div id="PageFooter" class="pageFooter"><p>Copyright © 2024 Folker Kinzel</p></div></body></html>

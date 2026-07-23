@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FolkerKinzel.Helpers</name>
+    </assembly>
+    <members>
+        <member name="T:FolkerKinzel.Helpers.BinaryFile">
+            <summary>
+            Helper class for operations with binary files.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.Helpers.BinaryFile.Load(System.String)">
+            <summary>
+            Loads a binary file.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <returns>The content of the binary file as byte array.</returns>
+            <exception cref="T:System.ArgumentNullException"> <paramref name="filePath" /> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException"> <paramref name="filePath" /> is not a valid
+            file path.</exception>
+            <exception cref="T:System.IO.IOException">I/O error.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Helpers.BinaryFile.Save(System.String,System.Byte[])">
+            <summary>
+            Saves a byte array to a file.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="bytes">The byte array to save.</param>
+            <exception cref="T:System.ArgumentNullException"> <paramref name="filePath" /> or 
+            <paramref name="bytes"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException"> <paramref name="filePath" /> is not a valid
+            file path.</exception>
+            <exception cref="T:System.IO.IOException">I/O error.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Helpers.BinaryFile.Open(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+            <summary>
+            Opens a file.
+            </summary>
+            <param name="filePath">The file path.</param>
+            <param name="mode">The file mode.</param>
+            <param name="access">The file access.</param>
+            <param name="share">The file share mode.</param>
+            <returns>A newly created <see cref="T:System.IO.FileStream"/>.</returns>
+            
+            <exception cref="T:System.ArgumentNullException"> <paramref name="filePath" /> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException"> <paramref name="filePath" /> is not a valid
+            file path.</exception>
+            <exception cref="T:System.IO.IOException">I/O error.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="mode"/> contains an 
+            invalid value.</exception>
+        </member>
+        <member name="T:FolkerKinzel.Helpers.Polyfills._ArgumentNullException">
+            <summary>
+            Polyfill for <see cref="T:System.ArgumentNullException"/>.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.Helpers.Polyfills._ArgumentNullException.ThrowIfNull(System.Object,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullException"/> if <paramref name="argument"/> is <c>null</c>.
+            </summary>
+            <param name="argument">The argument to check.</param>
+            <param name="paramName">The name of the checked parameter.</param>
+        </member>
+        <member name="T:FolkerKinzel.Helpers.Polyfills._ArgumentOutOfRangeException">
+            <summary>
+            Polyfill for <see cref="T:System.ArgumentOutOfRangeException"/>.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.Helpers.Polyfills._ArgumentOutOfRangeException.ThrowIfNegative(System.Int32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if <paramref name="argument"/>
+            is negative.
+            </summary>
+            <param name="argument">The argument to check.</param>
+            <param name="paramName">The name of the checked parameter.</param>
+        </member>
+        <member name="M:FolkerKinzel.Helpers.Polyfills._ArgumentOutOfRangeException.ThrowIfNegativeOrZero(System.Int32,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if <paramref name="argument"/>
+            is negative or zero.
+            </summary>
+            <param name="argument">The argument to check.</param>
+            <param name="paramName">The name of the checked parameter.</param>
+        </member>
+        <member name="T:FolkerKinzel.Helpers.TextFile">
+            <summary>
+            Helper class for operations with text files.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.Helpers.TextFile.OpenRead(System.String,System.Text.Encoding)">
+            <summary> Opens a text file for reading. </summary>
+            <param name="filePath">The file path.</param>
+            <param name="textEncoding">The text encoding to be used to read the file,
+            or <c>null</c> for <see cref="P:System.Text.Encoding.UTF8" />.</param>
+            <returns>A <see cref="T:System.IO.StreamReader" /> instance for reading the file.</returns>
+            <exception cref="T:System.ArgumentNullException"> <paramref name="filePath" /> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException"> <paramref name="filePath" /> is not a valid
+            file path.</exception>
+            <exception cref="T:System.IO.IOException">I/O error.</exception>
+        </member>
+        <member name="M:FolkerKinzel.Helpers.TextFile.OpenWrite(System.String,System.Text.Encoding,System.String,System.Boolean)">
+            <summary> Initializes a new <see cref="T:System.IO.StreamWriter" /> instance. </summary>
+            <param name="filePath">The file path.</param>
+            <param name="textEncoding">The text encoding to be used to write the CSV file
+            or <c>null</c> for <see cref="P:System.Text.Encoding.UTF8" />.</param>
+            <param name="newLine">The line terminator string to be used, or <c>null</c> for 
+            <see cref="P:System.Environment.NewLine"/>.</param>
+            <param name="append">If <c>true</c>, the file is opened for appending; otherwise, 
+            the file will be truncated and overwritten. If the specified file does not exist,
+            this parameter has no effect, and a new file will be created.
+            </param>
+            <returns> The newly created <see cref="T:System.IO.StreamWriter" /> instance. </returns>
+            
+            
+            <exception cref="T:System.ArgumentNullException"> <paramref name="filePath" /> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException"> <paramref name="filePath" /> is not a valid
+            file path.</exception>
+            <exception cref="T:System.IO.IOException">I/O-Error</exception>
+        </member>
+    </members>
+</doc>

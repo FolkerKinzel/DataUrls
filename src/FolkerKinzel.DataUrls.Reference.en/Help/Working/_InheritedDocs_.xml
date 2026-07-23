@@ -1,0 +1,50 @@
+<doc>
+  <assembly>
+    <name>_InheritedDocs_</name>
+  </assembly>
+  <members>
+  <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.System#ICloneable#Clone">
+  
+  <remarks>
+            If you intend to hold a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo" /> for a long time in memory 
+            and if this <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo" /> is parsed from a 
+            <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> that comes from a 
+            very long <see cref="T:System.String" />, keep in mind, that the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo" /> 
+            holds a reference to that <see cref="T:System.String" />. Consider in this case to make
+            a copy of the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo" /> structure: The copy is built on a separate 
+            <see cref="T:System.String" /> that is case-normalized and only as long as needed.
+            <note type="tip">
+            Use the instance method <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Clone" />, if you can, to avoid the 
+            costs of boxing.
+            </note></remarks>
+<summary>Creates a new object that is a copy of the current instance.</summary><returns>A new object that is a copy of this instance.</returns></member><member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.System#ICloneable#Clone">
+  
+  <remarks>
+            If you intend to hold a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo" /> for a long time 
+            in memory and if this <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo" /> is parsed from a 
+            <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> that comes from 
+            a very long <see cref="T:System.String" />, keep in mind, that the 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo" /> holds a reference to that <see cref="T:System.String" />.
+            Consider in this case to make a copy of the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo" /> 
+            structure: The copy is built on a separate <see cref="T:System.String" /> that is case-normalized 
+            and only as long as needed.
+            <note type="tip">
+            Use the instance method <see cref="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Clone" />, if you can, to avoid 
+            the costs of boxing.
+            </note></remarks>
+<summary>Creates a new object that is a copy of the current instance.</summary><returns>A new object that is a copy of this instance.</returns></member><member name="M:FolkerKinzel.DataUrls.DataUrlInfo.System#ICloneable#Clone">
+  
+  <remarks>
+            If you intend to hold a <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> for a long time in memory and 
+            if this <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> is parsed from a 
+            <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> that comes from a 
+            very long <see cref="T:System.String" />, keep in mind, that the <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> 
+            holds a reference to that <see cref="T:System.String" />. Consider in this case to make a 
+            copy of the <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> structure: The copy is built on a separate 
+            <see cref="T:System.String" /> that is case-normalized and only as long as needed.
+            <note type="tip">
+            Use the instance method <see cref="M:FolkerKinzel.DataUrls.DataUrlInfo.Clone" />, if you can, to avoid the 
+            costs of boxing.
+            </note></remarks>
+<summary>Creates a new object that is a copy of the current instance.</summary><returns>A new object that is a copy of this instance.</returns></member></members>
+</doc>

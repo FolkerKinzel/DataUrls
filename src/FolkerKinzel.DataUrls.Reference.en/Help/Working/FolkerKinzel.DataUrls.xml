@@ -1,0 +1,1179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>FolkerKinzel.DataUrls</name>
+  </assembly>
+  <members>
+    <member name="T:FolkerKinzel.DataUrls.DataEncoding">
+      <summary>
+            Named constants to specify the encoding of embedded data.
+            </summary>
+    </member>
+    <member name="F:FolkerKinzel.DataUrls.DataEncoding.Url">
+      <summary>
+            URL encoding
+            </summary>
+    </member>
+    <member name="F:FolkerKinzel.DataUrls.DataEncoding.Base64">
+      <summary>
+            Base64 encoding
+            </summary>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.DataType">
+      <summary>
+            Named constants to specify the type of data embedded in a "data" URL.
+            </summary>
+    </member>
+    <member name="F:FolkerKinzel.DataUrls.DataType.Text">
+      <summary>
+            The embedded data represents a <see cref="T:System.String" />.
+            </summary>
+    </member>
+    <member name="F:FolkerKinzel.DataUrls.DataType.Binary">
+      <summary>
+            The embedded data represents a <see cref="T:System.Byte" /> array that can't be 
+            converted to a <see cref="T:System.String" />.
+            </summary>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.DataUrl">
+      <summary>
+            Provides methods to handle <see cref="T:System.String" />s that represent "data" URLs (RFC 2397).
+            </summary>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="F:FolkerKinzel.DataUrls.DataUrl.Scheme">
+      <summary>
+            The scheme that indicates a "data" Url (RFC 2397).
+            </summary>
+    </member>
+    <member name="F:FolkerKinzel.DataUrls.DataUrl.DefaultMediaType">
+      <summary>
+            The default Internet Media Type for a "data" Url (RFC 2397) if no other is specified.
+            </summary>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.FromText(System.String,System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Embeds text URL-encoded in a "data" URL (RFC 2397).
+            </summary>
+      <param name="text">The text to embed in the "data" URL. <paramref name="text" /> MUST 
+            not be passed URL-encoded.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="text" />, or 
+            <c>null</c> for <see cref="F:FolkerKinzel.DataUrls.DataUrl.DefaultMediaType" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="text" />.</param>
+      <returns>A "data" URL, into which <paramref name="text" /> is embedded.</returns>
+      <exception cref="T:System.FormatException">
+        <paramref name="text" /> could not URL-encoded.
+            </exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.FromText(System.String,FolkerKinzel.MimeTypes.MimeType,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Embeds text URL-encoded in a "data" URL (RFC 2397).
+            </summary>
+      <param name="text">The text to embed in the "data" URL. <paramref name="text" /> MUST not 
+            be passed URL-encoded.</param>
+      <param name="mimeType">The <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> of the <paramref name="text" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="text" />.</param>
+      <returns>A "data" URL, into which <paramref name="text" /> is embedded.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="mimeType" /> is <c>null</c>.</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="text" /> could not URL-encoded.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.FromBytes(System.Byte[],System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Embeds binary data in a "data" URL (RFC 2397).
+            </summary>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or <c>null</c> 
+            for <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A "data" URL, into which the binary data provided by the parameter 
+            <paramref name="bytes" /> is embedded.</returns>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.FromBytes(System.Collections.Generic.IEnumerable{System.Byte},System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Embeds binary data in a "data" URL (RFC 2397).
+            </summary>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or 
+            <c>null</c> for <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A "data" URL, into which the binary data provided by the parameter 
+            <paramref name="bytes" /> is embedded.</returns>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.FromBytes(System.ReadOnlySpan{System.Byte},System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Embeds binary data in a "data" URL (RFC 2397).
+            </summary>
+      <param name="bytes">The binary data to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or 
+            <c>null</c> for <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A "data" URL, into which the binary data provided by the parameter 
+            <paramref name="bytes" /> is embedded.</returns>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.FromBytes(System.Byte[],FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Embeds binary data in a "data" URL (RFC 2397).
+            </summary>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> of the <paramref name="bytes" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A "data" URL, into which the binary data provided by the parameter 
+            <paramref name="bytes" /> is embedded.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mimeType" /> is an empty struct.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.FromBytes(System.Collections.Generic.IEnumerable{System.Byte},FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Embeds binary data in a "data" URL (RFC 2397).
+            </summary>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> of the <paramref name="bytes" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A "data" URL, into which the binary data provided by the parameter 
+            <paramref name="bytes" /> is embedded.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mimeType" /> is an empty struct.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.FromBytes(System.ReadOnlySpan{System.Byte},FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Embeds binary data in a "data" URL (RFC 2397).
+            </summary>
+      <param name="bytes">The binary data to embed in the "data" URL.</param>
+      <param name="mimeType">The <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> of the <paramref name="bytes" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A "data" URL, into which the binary data provided by the parameter 
+            <paramref name="bytes" /> is embedded.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mimeType" /> is an empty struct.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.FromFile(System.String,System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Embeds the content of a file in a "data" URL (RFC 2397).
+            </summary>
+      <param name="filePath">Path to the file whose content is to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to
+            embed, or <c>null</c> to let the method automatically retrieve the <paramref name="mimeType" />
+            from the file type extension.</param>
+      <param name="encoding">The encoding to use to embed the file content.</param>
+      <returns>A "data" URL, into which the content of the file provided by the parameter 
+            <paramref name="filePath" /> is embedded.</returns>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="filePath" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="filePath" /> is not a valid file path.</exception>
+      <exception cref="T:System.IO.IOException">I/O error.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.FromFile(System.String,FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+             Embeds the content of a file in a "data" URL (RFC 2397).
+             </summary>
+      <param name="filePath">Path to the file whose content is to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet media Type ("MIME type") of the file whose content is to embed.
+             </param>
+      <param name="encoding">The encoding to use to embed the file content.</param>
+      <returns>A "data" URL into which the content of the file provided by the parameter 
+             <paramref name="filePath" /> is embedded.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="filePath" /> or <paramref name="mimeType" />
+            is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <para>
+          <paramref name="filePath" /> is not a valid file path
+             </para>
+        <para>- or -</para>
+        <para>
+          <paramref name="mimeType" /> is an empty struct.</para>
+      </exception>
+      <exception cref="T:System.IO.IOException">I/O error.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.AppendTextTo(System.Text.StringBuilder,System.String,System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends embedded text as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="text">The text to embed in the "data" URL. <paramref name="text" /> MUST not be 
+            passed URL-encoded.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="text" />, or <c>null</c> for 
+            <see cref="F:FolkerKinzel.DataUrls.DataUrl.DefaultMediaType" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="text" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" />
+            is <c>null</c>.</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="text" /> could not URL-encoded.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.AppendTextTo(System.Text.StringBuilder,System.String,FolkerKinzel.MimeTypes.MimeType,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends embedded text as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="text">The text to embed in the "data" URL. <paramref name="text" /> MUST not be 
+            passed URL-encoded.</param>
+      <param name="mimeType">The <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> of the <paramref name="text" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="text" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> or <paramref name="mimeType" /> 
+            is <c>null</c>.</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="text" /> could not URL-encoded.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.AppendBytesTo(System.Text.StringBuilder,System.Byte[],System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or <c>null</c> for 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.AppendBytesTo(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Byte},System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or <c>null</c> for 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.AppendBytesTo(System.Text.StringBuilder,System.ReadOnlySpan{System.Byte},System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or <c>null</c> for 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.AppendBytesTo(System.Text.StringBuilder,System.Byte[],FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mimeType" /> is an empty struct.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.AppendBytesTo(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Byte},FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or <c>null</c> for 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.AppendBytesTo(System.Text.StringBuilder,System.ReadOnlySpan{System.Byte},FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mimeType" /> is an empty struct.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.AppendFileTo(System.Text.StringBuilder,System.String,System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends the content of a file as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="filePath">Abolute path to the file whose content is to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed, 
+            or <c>null</c> to let the method automatically retrieve the <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> from the file type
+            extension.</param>
+      <param name="encoding">The encoding to use to embed the file content.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> or <paramref name="filePath" /> is
+            <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="filePath" /> is not a valid file path.</exception>
+      <exception cref="T:System.IO.IOException">I/O error.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.AppendFileTo(System.Text.StringBuilder,System.String,FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends the content of a file as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="filePath">Abolute path to the file whose content is to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed.
+            </param>
+      <param name="encoding">The encoding to use to embed the file content.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> or <paramref name="filePath" />, 
+            is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <para>
+          <paramref name="filePath" /> is not a valid file path
+            </para>
+        <para>- or -</para>
+        <para>
+          <paramref name="mimeType" /> is an empty struct.</para>
+      </exception>
+      <exception cref="T:System.IO.IOException">I/O error.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.TryGetData(System.String,FolkerKinzel.DataUrls.EmbeddedData@,System.String@)">
+      <summary>
+            Tries to retrieve the embedded data as a union that contains either a <see cref="T:System.String" /> 
+            or an array of <see cref="T:System.Byte" />s, and also an appropriate file type extension for this data.
+            </summary>
+      <param name="dataUrl">A "data" URL according to RFC 2397.</param>
+      <param name="data">If the method returns <c>true</c>, the parameter contains the embedded
+            data as an <see cref="T:FolkerKinzel.DataUrls.EmbeddedData" /> union. The parameter is passed uninitialized.</param>
+      <param name="fileTypeExtension">If the method returns <c>true</c>, the parameter contains an 
+            appropriate file type extension for <paramref name="data" />. The extension starts with 
+            the period ".". The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="dataUrl" /> is a valid "data" URL, otherwise <c>false</c>.
+            </returns>
+      <remarks>Use this method if you want to use the data in the application.</remarks>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.TryGetData(System.ReadOnlyMemory{System.Char},FolkerKinzel.DataUrls.EmbeddedData@,System.String@)">
+      <summary>
+            Tries to retrieve the embedded data as a union that contains either a <see cref="T:System.String" /> 
+            or an array of <see cref="T:System.Byte" />s, and also an appropriate file type extension for this data.
+            </summary>
+      <param name="dataUrl">A read-only memory that contains a "data" URL according to RFC 2397.</param>
+      <param name="data">If the method returns <c>true</c>, the parameter contains the embedded
+            data as an <see cref="T:FolkerKinzel.DataUrls.EmbeddedData" /> union. The parameter is passed uninitialized.</param>
+      <param name="fileTypeExtension">If the method returns <c>true</c>, the parameter contains an 
+            appropriate file type extension for <paramref name="data" />. The extension starts with 
+            the period ".". The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="dataUrl" /> is a valid "data" URL, otherwise <c>false</c>.
+            </returns>
+      <remarks>Use this method if you want to use the data in the application.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.TryGetBytes(System.String,System.Byte[]@,System.String@)">
+      <summary>
+            Tries to retrieve the embedded data as a <see cref="T:System.Byte" /> array, and also an appropriate file 
+            type extension for this data.
+            </summary>
+      <param name="dataUrl">A "data" URL according to RFC 2397.</param>
+      <param name="bytes">If the method returns <c>true</c>, the parameter contains the embedded data. 
+            The parameter is passed uninitialized.</param>
+      <param name="fileTypeExtension">If the method returns <c>true</c>, the parameter contains an 
+            appropriate file type extension for <paramref name="bytes" />. The extension
+            starts with the period ".". The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="dataUrl" /> is a valid "data" URL, otherwise <c>false</c>.
+            </returns>
+      <remarks> The method fails only if a decoding error occurs. The use of the method is particularly 
+            recommended if the embedded data of the "data" URL should be saved in a file.</remarks>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.TryGetBytes(System.ReadOnlyMemory{System.Char},System.Byte[]@,System.String@)">
+      <summary>
+            Tries to retrieve the embedded data as a <see cref="T:System.Byte" /> array, and also an appropriate file 
+            type extension for this data.
+            </summary>
+      <param name="dataUrl">A read-only memory that contains a "data" URL according to RFC 2397.</param>
+      <param name="bytes">If the method returns <c>true</c>, the parameter contains the embedded data. 
+            The parameter is passed uninitialized.</param>
+      <param name="fileTypeExtension">If the method returns <c>true</c>, the parameter contains an 
+            appropriate file type extension for <paramref name="bytes" />. The extension
+            starts with the period ".". The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="dataUrl" /> is a valid "data" URL, otherwise <c>false</c>.
+            </returns>
+      <remarks> The method fails only if a decoding error occurs. The use of the method is particularly 
+            recommended if the embedded data of the "data" URL should be saved in a file.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.TryGetText(System.String,System.String@,System.String@)">
+      <summary>
+            Tries to retrieve the embedded text and the file type extension from the <paramref name="dataUrl" />.
+            </summary>
+      <param name="dataUrl">A "data" URL according to RFC 2397.</param>
+      <param name="text">If the method returns <c>true</c>, the parameter contains the embedded text. 
+            The parameter is passed uninitialized.</param>
+      <param name="fileTypeExtension">If the method returns <c>true</c>, the parameter contains an 
+            appropriate file type extension for <paramref name="text" />. The extension starts with the period ".". 
+            The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="dataUrl" /> is a valid "data" URL that contains embedded text,
+            otherwise <c>false</c>.</returns>
+      <remarks>
+            Use this method if you are only interested in a specific text that may be embedded in the "data" URL.
+            </remarks>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.TryGetText(System.ReadOnlyMemory{System.Char},System.String@,System.String@)">
+      <summary>
+            Tries to retrieve the embedded text and the file type extension from the <paramref name="dataUrl" />.
+            </summary>
+      <param name="dataUrl">A read-only memory that contains a "data" URL according to RFC 2397.</param>
+      <param name="text">If the method returns <c>true</c>, the parameter contains the embedded text. 
+            The parameter is passed uninitialized.</param>
+      <param name="fileTypeExtension">If the method returns <c>true</c>, the parameter contains an 
+            appropriate file type extension for <paramref name="text" />. The extension starts with the period ".". 
+            The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="dataUrl" /> is a valid "data" URL that contains embedded text,
+            otherwise <c>false</c>.</returns>
+      <remarks>
+            Use this method if you are only interested in a specific text that may be embedded in the "data" URL.
+            </remarks>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.TryParse(System.String,FolkerKinzel.DataUrls.DataUrlInfo@)">
+      <summary>
+            Tries to parse a <see cref="T:System.String" /> that represents a "data" URL in order to make its content available
+            as <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" />.
+            </summary>
+      <param name="value">The <see cref="T:System.String" /> to parse.</param>
+      <param name="info">If the method returns <c>true</c>, the parameter contains a <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> 
+            structure that provides the contents of the "data" URL. The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> could be parsed as <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" />, otherwise 
+            <c>false</c>.</returns>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrl.TryParse(System.ReadOnlyMemory{System.Char},FolkerKinzel.DataUrls.DataUrlInfo@)">
+      <summary>
+            Tries to parse a <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> that represents a "data" 
+            URL in order to make its content available as <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" />.
+            </summary>
+      <param name="value">The <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> to parse.</param>
+      <param name="info">If the method returns <c>true</c>, the parameter contains a <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> 
+            structure that provides the contents
+            of the "data" URL. The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <paramref name="value" /> could be parsed as <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" />, 
+            <c>false</c> otherwise.</returns>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.DataUrlInfo">
+      <summary>
+            Provides the information stored in a "data" URL (RFC 2397).
+            </summary>
+      <remarks>
+        <note type="tip">
+          <para>
+            <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> is a quite large structure. Pass it to other methods by reference 
+            (in, ref or out parameters in C#)!
+            </para>
+          <para>
+            If you intend to hold a <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> for a long time in memory and if this 
+            <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> is parsed from a <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see>
+            that comes from a very long <see cref="T:System.String" />, keep in mind, that the <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> holds 
+            a reference to that <see cref="T:System.String" />. Consider in this case to make a copy of the 
+            <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> structure with <see cref="M:FolkerKinzel.DataUrls.DataUrlInfo.Clone" />: The copy is built on a separate
+            <see cref="T:System.String" /> that is case-normalized and only as long as needed.
+            </para>
+        </note>
+      </remarks>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.GetHashCode">
+      <summary>
+            Creates a hash code for this instance.
+            </summary>
+      <returns>The hash code.</returns>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.System#ICloneable#Clone">
+      <inheritdoc />
+      <remarks>
+            If you intend to hold a <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> for a long time in memory and 
+            if this <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> is parsed from a 
+            <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> that comes from a 
+            very long <see cref="T:System.String" />, keep in mind, that the <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> 
+            holds a reference to that <see cref="T:System.String" />. Consider in this case to make a 
+            copy of the <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> structure: The copy is built on a separate 
+            <see cref="T:System.String" /> that is case-normalized and only as long as needed.
+            <note type="tip">
+            Use the instance method <see cref="M:FolkerKinzel.DataUrls.DataUrlInfo.Clone" />, if you can, to avoid the 
+            costs of boxing.
+            </note></remarks>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.Clone">
+      <summary>
+            Creates a new <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> that is a copy of the current instance.
+            </summary>
+      <returns>A new <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" />, which is a copy of this instance.</returns>
+      <remarks>
+            The copy is built on a separate <see cref="T:System.String" />,
+            which is case-normalized and only as long as needed.
+            </remarks>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.Equals(System.Object)">
+      <summary>
+            Determines whether <paramref name="obj" /> is a <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> structure whose
+            value is equal to that of this instance.
+            </summary>
+      <param name="obj">The <see cref="T:System.Object" /> to compare with.</param>
+      <returns>
+        <c>true</c> if <paramref name="obj" /> is a <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> structure whose
+            value is equal to that of this instance; <c>false</c>, otherwise.</returns>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.Equals(FolkerKinzel.DataUrls.DataUrlInfo)">
+      <summary>
+            Determines whether the value of this instance is equal to the value of <paramref name="other" />. 
+            </summary>
+      <param name="other">The <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> instance to compare with.</param>
+      <returns>
+        <c>true</c> if this the value of this instance is equal to that of <paramref name="other" />;
+            <c>false</c>, otherwise.</returns>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.Equals(FolkerKinzel.DataUrls.DataUrlInfo@)">
+      <summary>
+            Determines whether the value of this instance is equal to the value of <paramref name="other" />. 
+            </summary>
+      <param name="other">The <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> instance to compare with.</param>
+      <returns>
+        <c>true</c> if this the value of this instance is equal to that of <paramref name="other" />;
+            <c>false</c>, otherwise.</returns>
+      <remarks>This is the most performant overload of the Equals methods but unfortunately it's not CLS 
+            compliant. Use it if you can!</remarks>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.op_Equality(FolkerKinzel.DataUrls.DataUrlInfo,FolkerKinzel.DataUrls.DataUrlInfo)">
+      <summary>
+            Returns a value that indicates whether the values of two specified 
+            <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> instances are equal.
+            </summary>
+      <param name="value1">The first <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> to compare.</param>
+      <param name="value2">The second <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> to compare.</param>
+      <returns>
+        <c>true</c> if the values of <paramref name="value1" /> and 
+            <paramref name="value2" /> are equal; otherwise, <c>false</c>.</returns>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.op_Inequality(FolkerKinzel.DataUrls.DataUrlInfo,FolkerKinzel.DataUrls.DataUrlInfo)">
+      <summary>
+            Returns a value that indicates whether the values of two specified 
+            <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> instances are not equal.
+            </summary>
+      <param name="value1">The first <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> to compare.</param>
+      <param name="value2">The second <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> to compare.</param>
+      <returns>
+        <c>true</c> if the values of <paramref name="value1" /> and 
+            <paramref name="value2" /> are not equal; otherwise, <c>false</c>.</returns>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.DataUrlInfo.MimeType">
+      <summary>
+            Internet Media Type of the embedded <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Data" />.
+            </summary>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.DataUrlInfo.Encoding">
+      <summary>
+            The encoding of <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Data" />.
+            </summary>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.DataUrlInfo.Data">
+      <summary>
+            The part of the "data" URL, which contains the embedded data.
+            </summary>
+      <remarks>
+            This part is either URL- or base64-encoded (see <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Encoding" />) and represents
+            either a <see cref="T:System.String" /> or an array of <see cref="T:System.Byte" />s.
+            </remarks>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+      <seealso cref="P:FolkerKinzel.DataUrls.DataUrlInfo.DataType" />
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.DataUrlInfo.DataType">
+      <summary>
+            Gets the data type of the embedded data.
+            </summary>
+      <remarks>
+            The return value depends on the <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.MimeType" /> property.
+            </remarks>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.DataUrlInfo.IsEmpty">
+      <summary>
+            Indicates whether the instance contains no data.
+            </summary>
+      <value>
+        <c>true</c> if the instance contains no data, otherwise <c>false</c>.
+            </value>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.DataUrlInfo.Empty">
+      <summary>
+            Returns an empty <see cref="T:FolkerKinzel.DataUrls.DataUrlInfo" /> instance.
+            </summary>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.TryAsText(System.String@)">
+      <summary>
+            Tries to retrieve the text, which is embedded in the "data" URL.
+            </summary>
+      <param name="text">If the method returns <c>true</c>, the parameter contains 
+            the embedded text. The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if the embedded <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Data" /> could 
+            be converted to a <see cref="T:System.String" />, otherwise <c>false</c>.</returns>
+      <remarks>
+        <para>
+            The method succeeds only if the 
+            <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.DataType" /> property returns <see cref="F:FolkerKinzel.DataUrls.DataType.Text" />.
+            </para>
+        <para>
+            Use this method if you are only interested in a specific text that may be
+            embedded in the "data" URL.
+            </para>
+      </remarks>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.TryAsBytes(System.Byte[]@)">
+      <summary>
+            Tries to retrieve the embedded <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Data" /> as a <see cref="T:System.Byte" /> array.
+            </summary>
+      <param name="bytes">If the method returns <c>true</c>, the parameter contains 
+            the embedded data. The parameter is passed uninitialized.</param>
+      <returns>
+        <c>true</c> if the <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Data" /> embedded in the "data" URL could be 
+            converted to a <see cref="T:System.Byte" /> array, otherwise <c>false</c>.</returns>
+      <remarks> The method fails only if a decoding error occurs. The use of the method 
+            is particularly recommended if the embedded data of the "data" URL should be saved
+            in a file.</remarks>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.TryGetData(FolkerKinzel.DataUrls.EmbeddedData@)">
+      <summary>
+            Tries to retrieve the embedded <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Data" /> as a union that contains either a 
+            <see cref="T:System.String" /> or an array of <see cref="T:System.Byte" />s (depending on the value of 
+            the <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.DataType" /> property).
+            </summary>
+      <param name="data">If the method returns <c>true</c>, the parameter contains the 
+            embedded <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Data" /> as an <see cref="T:FolkerKinzel.DataUrls.EmbeddedData" /> union. The parameter is 
+            passed uninitialized.</param>
+      <returns>
+        <c>true</c> if <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Data" /> could be converted to an 
+            <see cref="T:FolkerKinzel.DataUrls.EmbeddedData" /> instance, otherwise <c>false</c>.</returns>
+      <remarks>Use this method if you want to use the data in the application.</remarks>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.DataUrlInfo.GetFileTypeExtension">
+      <summary>
+             Returns an appropriate file type extension for the <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Data" /> embedded in the 
+             "data" URL. The file type extension contains the period (".").
+             </summary>
+      <returns>An appropriate file type extension for the embedded <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.Data" />. The 
+             extension starts with the period ".".</returns>
+      <remarks>
+             The returned file name extension depends on the value of the <see cref="P:FolkerKinzel.DataUrls.DataUrlInfo.MimeType" /> 
+             property.
+             </remarks>
+      <example>
+        <note type="note">
+             For the sake of better readability, exception handling is ommitted in the example.
+             </note>
+        <para>
+             Creating and parsing a "data" URL:
+             </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.EmbeddedData">
+      <summary>
+            A union that contains either an array of <see cref="T:System.Byte" />s 
+            or a <see cref="T:System.String" /> (text).
+            </summary>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in 
+            the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.EmbeddedData.Bytes">
+      <summary>
+            Gets the array of <see cref="T:System.Byte" />s,
+            or <c>null</c> if the union contains text.
+            </summary>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.EmbeddedData.Text">
+      <summary>
+            Gets the text,
+            or <c>null</c> if the union contains an array of <see cref="T:System.Byte" />s.
+            </summary>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.EmbeddedData.Switch(System.Action{System.Byte[]},System.Action{System.String})">
+      <summary>
+            Performs an <see cref="T:System.Action`1" /> depending on the <see cref="T:System.Type" /> of 
+            the embedded data.
+            </summary>
+      <param name="bytesAction">
+        <c>null</c>, or the <see cref="T:System.Action`1" /> to 
+            be executed if the encapsulated value is an array of <see cref="T:System.Byte" />s.
+            </param>
+      <param name="textAction">
+        <c>null</c>, or the <see cref="T:System.Action`1" /> to be
+            executed if the encapsulated value is a <see cref="T:System.String" />.</param>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.EmbeddedData.Switch``1(``0,System.Action{System.Byte[],``0},System.Action{System.String,``0})">
+      <summary>
+            Performs an <see cref="T:System.Action`1" /> depending on the <see cref="T:System.Type" /> of the 
+            encapsulated value and allows to pass an argument to the delegates.
+            </summary>
+      <typeparam name="TArg">Generic type parameter for the type of the argument to pass
+            to the delegates.</typeparam>
+      <param name="arg">The argument to pass to the delegates.</param>
+      <param name="bytesAction">
+        <c>null</c>, or the <see cref="T:System.Action`1" /> to be executed 
+            if the encapsulated value is an array of <see cref="T:System.Byte" />s.</param>
+      <param name="textAction">
+        <c>null</c>, or the <see cref="T:System.Action`1" /> to be executed 
+            if the encapsulated value is a <see cref="T:System.String" />.</param>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.EmbeddedData.Convert``1(System.Func{System.Byte[],``0},System.Func{System.String,``0})">
+      <summary>
+            Converts the encapsulated value to <typeparamref name="TResult" />.
+            </summary>
+      <typeparam name="TResult">Generic type parameter for the return type of the delegates.
+            </typeparam>
+      <param name="bytesFunc">The <see cref="T:System.Func`2" /> to call if the encapsulated 
+            value is an array of <see cref="T:System.Byte" />s.</param>
+      <param name="textFunc">The <see cref="T:System.Func`2" /> to call if the encapsulated
+            value is a <see cref="T:System.String" />.</param>
+      <returns>An instance of <typeparamref name="TResult" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+            One of the arguments is <c>null</c> and the encapsulated value is of that <see cref="T:System.Type" />.
+            </exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.EmbeddedData.Convert``2(``0,System.Func{System.Byte[],``0,``1},System.Func{System.String,``0,``1})">
+      <summary>
+            Converts the encapsulated value to <typeparamref name="TResult" /> and allows to specify 
+            an argument for the conversion.
+            </summary>
+      <typeparam name="TArg">Generic type parameter for the type of the argument to pass
+            to the delegates.</typeparam>
+      <typeparam name="TResult">Generic type parameter for the return type of the delegates.
+            </typeparam>
+      <param name="arg">The argument to pass to the delegates.</param>
+      <param name="bytesFunc">The <see cref="T:System.Func`2" /> to call if the encapsulated 
+            value is an array of <see cref="T:System.Byte" />s.</param>
+      <param name="textFunc">The <see cref="T:System.Func`2" /> to call if the encapsulated
+            value is a <see cref="T:System.String" />.</param>
+      <returns>An instance of <typeparamref name="TResult" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+            One of the arguments is <c>null</c> and the encapsulated value is of that <see cref="T:System.Type" />.
+            </exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.EmbeddedData.ToString">
+      <summary>
+            Returns a <see cref="T:System.String" /> representation of the instance that
+            helps in debugging.
+            </summary>
+      <returns>A <see cref="T:System.String" />-representation of the instance.</returns>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.Extensions.ReadOnlySpanExtension">
+      <summary>
+            Extension methods for the <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> 
+            structure.</summary>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.ReadOnlySpanExtension.IsDataUrl(System.ReadOnlySpan{System.Char})">
+      <summary>
+            Determines whether the <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see>
+            contains a "data" URL (RFC 2397).
+            </summary>
+      <param name="span">The <see cref="T:System.ReadOnlySpan`1">ReadOnlySpan&lt;Char&gt;</see> to
+            examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="span" /> contains a "data" URL; otherwise, 
+            <c>false</c>.</returns>
+      <remarks>Leading white space is skipped.</remarks>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension">
+      <summary>
+            Extension methods for the <see cref="T:System.Text.StringBuilder" /> class.
+            </summary>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension.AppendDataUrl(System.Text.StringBuilder,System.String,System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends embedded text as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="text">The text to embed in the "data" URL. <paramref name="text" /> MUST not be 
+            passed URL-encoded.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="text" />, or <c>null</c> for 
+            <see cref="F:FolkerKinzel.DataUrls.DataUrl.DefaultMediaType" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="text" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" />
+            is <c>null</c>.</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="text" /> could not URL-encoded.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension.AppendDataUrl(System.Text.StringBuilder,System.String,FolkerKinzel.MimeTypes.MimeType,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends embedded text as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="text">The text to embed in the "data" URL. <paramref name="text" /> MUST not be 
+            passed URL-encoded.</param>
+      <param name="mimeType">The <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> of the <paramref name="text" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="text" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> or <paramref name="mimeType" /> 
+            is <c>null</c>.</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="text" /> could not URL-encoded.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension.AppendDataUrl(System.Text.StringBuilder,System.Byte[],System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or <c>null</c> for 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension.AppendDataUrl(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Byte},System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or <c>null</c> for 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension.AppendDataUrl(System.Text.StringBuilder,System.ReadOnlySpan{System.Byte},System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or <c>null</c> for 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension.AppendDataUrl(System.Text.StringBuilder,System.Byte[],FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mimeType" /> is an empty struct.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension.AppendDataUrl(System.Text.StringBuilder,System.Collections.Generic.IEnumerable{System.Byte},FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL, or <c>null</c>.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />, or <c>null</c> for 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension.AppendDataUrl(System.Text.StringBuilder,System.ReadOnlySpan{System.Byte},FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet Media Type of the <paramref name="bytes" />.</param>
+      <param name="encoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mimeType" /> is an empty struct.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension.AppendFileAsDataUrl(System.Text.StringBuilder,System.String,System.String,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends the content of a file as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="filePath">Abolute path to the file whose content is to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed, or 
+            <c>null</c> to let the method automatically retrieve the <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> from the file type 
+            extension.</param>
+      <param name="encoding">The encoding to use to embed the file content.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> or <paramref name="filePath" /> is 
+            <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="filePath" /> is not a valid file path.</exception>
+      <exception cref="T:System.IO.IOException">I/O error.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringBuilderExtension.AppendFileAsDataUrl(System.Text.StringBuilder,System.String,FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends the content of a file as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="filePath">Abolute path to the file whose content is to embed in the "data" URL.</param>
+      <param name="mimeType">The Internet Media Type ("MIME type") of the file whose content is to embed.
+            </param>
+      <param name="encoding">The encoding to use to embed the file content.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="builder" /> or <paramref name="filePath" />, 
+            is <c>null</c>.</exception>
+      <exception cref="T:System.ArgumentException">
+        <para>
+          <paramref name="filePath" /> is not a valid file path
+            </para>
+        <para>- or -</para>
+        <para>
+          <paramref name="mimeType" /> is an empty struct.</para>
+      </exception>
+      <exception cref="T:System.IO.IOException">I/O error.</exception>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.Extensions.StringExtension">
+      <summary>
+            Extension methods for the <see cref="T:System.String" /> class.
+            </summary>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.StringExtension.IsDataUrl(System.String)">
+      <summary>
+            Returns <c>true</c> if the <see cref="T:System.String" /> is a "data" URL. (RFC 2397)
+            </summary>
+      <param name="urlString">The <see cref="T:System.String" /> to examine, or <c>null</c>.</param>
+      <returns>
+        <c>true</c> if <paramref name="urlString" /> is a "data" URL. If 
+            <paramref name="urlString" /> is <c>null</c>, <see cref="F:System.String.Empty" />, or consists
+            only of white space characters, <c>false</c> is returned.</returns>
+      <remarks>Leading white space is skipped.</remarks>
+      <example>
+        <note type="note">
+            For the sake of better readability, exception handling is ommitted in the example.
+            </note>
+        <para>
+            Creating and parsing a "data" URL:
+            </para>
+        <code language="c#" source="./../Examples/DataUrlExample.cs" />
+      </example>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.Extensions.UriExtension">
+      <summary>
+            Extension methods for the <see cref="T:System.Uri" /> class.
+            </summary>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Extensions.UriExtension.IsDataUrl(System.Uri)">
+      <summary>
+            Returns <c>true</c> if the <see cref="T:System.Uri" /> is a "data" URL. (RFC 2397)
+            </summary>
+      <param name="uri">The <see cref="T:System.Uri" /> to examine.</param>
+      <returns>
+        <c>true</c> if <paramref name="uri" /> is a "data" URL.</returns>
+      <remarks>Leading white space is skipped.</remarks>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="uri" /> is <c>null</c>.</exception>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.Intls.DataUrlBuilder">
+      <summary>
+            Provides functionality to build a "data" URL (RFC 2397) that 
+            embeds data in-line in a URL. A "data" URL can be created automatically from 
+            the data to embed. This can be a file, a byte array or a <see cref="T:System.String" />. 
+            </summary>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Intls.DataUrlBuilder.AppendEmbeddedTextInternal(System.Text.StringBuilder,System.String,FolkerKinzel.MimeTypes.MimeType,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends embedded text as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="text">The text to embed into the "data" URL. <paramref name="text" /> MUST not be 
+            URL-encoded.</param>
+      <param name="mimeType">The <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> of the <paramref name="text" />.</param>
+      <param name="dataEncoding">The encoding to use to embed the <paramref name="text" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.FormatException">
+        <paramref name="text" /> could not URL-encoded.</exception>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Intls.DataUrlBuilder.AppendEmbeddedBytesIntl(System.Text.StringBuilder,System.ReadOnlySpan{System.Byte},FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends binary data as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="bytes">The binary data to embed into the "data" URL.</param>
+      <param name="mimeType">The <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> of the <paramref name="bytes" />.</param>
+      <param name="dataEncoding">The encoding to use to embed the <paramref name="bytes" />.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+    </member>
+    <member name="M:FolkerKinzel.DataUrls.Intls.DataUrlBuilder.AppendFileContentInternal(System.Text.StringBuilder,System.String,FolkerKinzel.MimeTypes.MimeTypeInfo@,FolkerKinzel.DataUrls.DataEncoding)">
+      <summary>
+            Appends the content of a file as "data" URL (RFC 2397) to the end of a <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+      <param name="builder">The <see cref="T:System.Text.StringBuilder" /> to which a "data" URL is appended.</param>
+      <param name="filePath">Abolute path to the file whose content is to embed in the "data" URL.</param>
+      <param name="mimeType">The <see cref="T:FolkerKinzel.MimeTypes.MimeType" /> of the file whose content is to embed.</param>
+      <param name="dataEncoding">The encoding to use to embed the file.</param>
+      <returns>A reference to <paramref name="builder" />.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="filePath" /> is not a valid file path.</exception>
+      <exception cref="T:System.IO.IOException">I/O error.</exception>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.Intls.StringBuilderExtension">
+      <summary>
+            Extension methods that support the <see cref="T:System.Text.StringBuilder" /> class.
+            </summary>
+    </member>
+    <member name="T:FolkerKinzel.DataUrls.Properties.Res">
+      <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.Properties.Res.ResourceManager">
+      <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.Properties.Res.Culture">
+      <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.Properties.Res.EmptyStruct">
+      <summary>
+              Looks up a localized string similar to An empty struct is not allowed..
+            </summary>
+    </member>
+    <member name="P:FolkerKinzel.DataUrls.Properties.Res.InvalidDataUrl">
+      <summary>
+              Looks up a localized string similar to {0} is not a valid "data" URL..
+            </summary>
+    </member>
+    <member name="N:FolkerKinzel.DataUrls">
+      <summary>Classes and structs that support working with "data" URLs (RFC 2397) .</summary>
+    </member>
+    <member name="N:FolkerKinzel.DataUrls.Extensions">
+      <summary>Static classes that provide extension methods for String, Uri and ReadOnlySpan&lt;Char&gt;.</summary>
+    </member>
+    <member name="N:FolkerKinzel.MimeTypes">
+      <summary>Classes and structs that support working with Internet Media Types ("MIME types").</summary>
+    </member>
+  </members>
+</doc>

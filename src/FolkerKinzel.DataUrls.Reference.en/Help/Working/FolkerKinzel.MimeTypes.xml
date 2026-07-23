@@ -1,0 +1,2079 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FolkerKinzel.MimeTypes</name>
+    </assembly>
+    <members>
+        <member name="T:FolkerKinzel.MimeTypes.Intls.FileTypeExtensions.ResourceParser">
+            <summary>
+            Parses MIME types and file type extensions from the resources.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.MimeTypeCtorParametersValidator.Validate(System.String,System.String)">
+            <summary>Validates <paramref name="mediaType"/> and <paramref name="subType"/>.</summary>
+            <param name="mediaType"></param>
+            <param name="subType"></param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="mediaType"/> or 
+            <paramref name="subType"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="mediaType"/> or <paramref name="subType"/> is <see cref="F:System.String.Empty"/> or is
+            a <see cref="T:System.String"/> that is longer than <see cref="F:System.Int16.MaxValue"/> or contains characters,
+            which are not permitted by the standard (RFC 2045).
+            </exception>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.Intls.Parameters.Creations.ParameterModelDictionary">
+            <summary>
+            A Dictionary for the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> structure. <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Key"/> 
+            is used as the Dictionary-Key. The key comparison is not case sensitive. The elements in the
+            Dictionary keep the order in which they are inserted.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Creations.ParameterModelDictionary.#ctor">
+            <summary>
+            Initializes a new <see cref="T:FolkerKinzel.MimeTypes.Intls.Parameters.Creations.ParameterModelDictionary"/> object.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Creations.ParameterModelDictionary.GetKeyForItem(FolkerKinzel.MimeTypes.MimeTypeParameter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.#ctor(System.ReadOnlySpan{System.Char})">
+            <summary>
+            ctor
+            </summary>
+            <param name="span"></param>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.Span">
+            <summary>
+            The span to examine.
+            </summary>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.KeyLength">
+            <summary>
+            Returns the length of the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Key"/> part.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.KeyValueOffset">
+            <summary>
+            <c>1</c> indicates that 1 aditional <see cref="T:System.Char"/> has to be skipped between <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Key"/>
+            and <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Value"/>.
+            </summary>
+            <returns>The number of additional characters that have to be skipped between 
+            <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Key"/> and <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Value"/>.</returns>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.ValuePartStart">
+            <summary>
+            Returns the index where the parameter value part starts (<see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Value"/> 
+            including <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.CharSet"/> and <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Language"/>,
+            if present.
+            </summary>
+            <returns>The index where the parameter value starts.</returns>
+            
+            <seealso cref="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.ValueStart"/>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.CharsetLength">
+            <summary>
+            Gets the length of the CharSet part.
+            </summary>
+            <returns>The length of the CharSet part.</returns>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.LanguageStart">
+            <summary>
+            Start index of <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Language"/>.
+            </summary>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.LanguageLength">
+            <summary>
+            Length of <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Language"/>.
+            </summary>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.ValueStart">
+            <summary>
+            Returns the index, where <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Value"/> starts.
+            </summary>
+            <returns>The index, where <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Value"/> starts.</returns>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.Starred">
+            <summary>
+            Indicates whether the parameter key ends with '*' (and is probably URL encoded).
+            </summary>
+            <returns><c>true</c> if the parameter key ends with '*', otherwise false. The return value 
+            dependens on the state of <see cref="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.KeyLength"/>.</returns>
+            <remarks>
+            <para>
+            A trailing '*' in the Key indicates that charset and/or language might be present (RFC 2231)
+            and the value is URL encoded.
+            If the value is in Double-Quotes, no trailing '*' in the Key is allowed.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.IsValueQuoted">
+            <summary>
+            Indicates whether the parameter value is enclosed with double quotes.
+            </summary>
+            <returns><c>true</c> if the parameter key is enclosed with double quotes, otherwise false.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.Verify">
+            <summary>
+            Verifies the indexes.
+            </summary>
+            <returns><c>true</c> if the instance is valid, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.InitMimeTypeParameterCtorIdx">
+            <summary>
+            Prepares all indexes in a single <see cref="T:System.Int32"/> for the use in the
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> ctor.
+            </summary>
+            <returns>All indexes in one <see cref="T:System.Int32"/>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.VerifyKeyLength(System.Int32)">
+            <summary>
+            Returns <c>true</c> if <see cref="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.KeyLength"/> is valid.
+            </summary>
+            <returns><c>true</c> if <see cref="F:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes.KeyLength"/> is valid, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterParser.TryParseParameter(System.Text.StringBuilder,FolkerKinzel.MimeTypes.MimeTypeParameterInfo@)">
+            <summary>
+            Tries to parse the content in a <see cref="T:System.Text.StringBuilder"/> as <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>.
+            </summary>
+            <param name="sb">The <see cref="T:System.Text.StringBuilder"/>.</param>
+            <param name="concatenated">The parsed <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> concatenated.</param>
+            <returns><c>false</c> if <paramref name="sb"/> doesn't contain valid data, <c>true</c> otherwise.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterSanitizer.RemoveCommentAtTheEnd(System.Int32)">
+            <summary>
+            Removes a comment at the end.
+            </summary>
+            <param name="valueStart"></param>
+            <returns><c>true</c> if success.</returns>
+            <remarks>
+            IMPORTANT: This method does not update _span!
+            </remarks>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterValueDecoder">
+            <summary>
+            Helper class that supports the parsing of <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> objects
+            in bringing URL encoded or masked or quoted parameter values in a readable form.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterValueDecoder.TryDecodeValue(FolkerKinzel.MimeTypes.Intls.Parameters.Deserializers.ParameterIndexes@,System.ReadOnlyMemory{System.Char}@)">
+            <summary>
+            Removes characters from <paramref name="parameterString"/> that are not thought for human
+            reading.
+            </summary>
+            <param name="idx"></param>
+            <param name="parameterString">The <see cref="T:System.Char"/> memory to change.</param>
+            <returns><c>true</c> if successful, otherwise <c>false</c>.</returns>
+            <remarks>
+            <note type="important">
+            This method may only be called once on <paramref name="parameterString"/> !
+            </note>
+            </remarks>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.Intls.Parameters.Encodings.HttpQuotedString">
+            <summary>
+            Encodes and decodes quoted HTTP quoted strings
+            </summary>
+            <remarks>
+            <para>The algorithm is described at </para>
+            <list type="bullet">
+            <item>https://mimesniff.spec.whatwg.org/#parsing-a-mime-type</item>
+            <item>https://fetch.spec.whatwg.org/#collect-an-http-quoted-string</item>
+            <item>https://mimesniff.spec.whatwg.org/#serializing-a-mime-type</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.EncodingActionAnalyzer.IsMaskChar(System.Char)">
+            <summary>
+            Indicates whether <paramref name="c"/> has to be masked with a backslash.
+            </summary>
+            <param name="c">The <see cref="T:System.Char"/> to exmine.</param>
+            <returns><c>true</c> if <paramref name="c"/> has to be masked because it is 
+            a double quote or a backslash.</returns>
+            <remarks>
+            <para>
+            In the RFCs is nothing said about what should happen if a '\"' appears inside
+            of a parameter value.
+            </para>
+            <para>The suggestions came from
+            https://mimesniff.spec.whatwg.org/#parsing-a-mime-type § 4.5.:
+            </para>
+            <list type="bullet">
+            <item>4.1. Precede each occurrence of U+0022 (") or U+005C (\) in value with U+005C (\).</item>
+            <item>4.2. Prepend U+0022 (") to value.</item>
+            <item>4.3. Append U+0022 (") to value.</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSerializer">
+            <summary>
+            Serializes <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> and <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> 
+            objects as character sequence an appends this to a <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSerializer.AppendTo(System.Text.StringBuilder,FolkerKinzel.MimeTypes.MimeTypeParameter,System.Boolean)">
+            <summary>
+            Appends a RFC 2231 serialized <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/>
+            to a <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder"></param>
+            <param name="parameter"></param>
+            <param name="urlFormat"></param>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSerializer.AppendTo(System.Text.StringBuilder,FolkerKinzel.MimeTypes.MimeTypeParameterInfo,System.Boolean)">
+            <summary>
+            Appends a RFC 2231 serialized <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>
+            to a <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder"></param>
+            <param name="parameter"></param>
+            <param name="urlFormat"></param>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSerializer.ComputeMinimumLineLength(System.Int32,System.Int32,FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.EncodingAction)">
+            <summary>
+            Computes the minimum length that is needed for a line. (Depends on key, charset,
+            language and the <see cref="T:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.EncodingAction"/>.)
+            </summary>
+            <param name="givenLength">The length that can't be wrapped (key, language, charset).</param>
+            <param name="desiredLineLength"></param>
+            <param name="enc"></param>
+            <returns>The minimum length that is needed for a line.</returns>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSplitter.MINIMUM_VARIABLE_LINE_LENGTH">
+            <summary>
+            *0= and 6 value chars per line at least
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSplitter.IsParameterSplitted(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Indicates whether the parameter is splitted.
+            </summary>
+            <param name="keySpan"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSplitter.GetSplitIndicatorIndex(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Gets the index of the first '*' sign after the key name, which indicates that the 
+            parameter is splitted. ("key*0" or "key*0*" or "key*42*")
+            </summary>
+            <param name="keySpan">A span that contains the parameters key without the equals sign.</param>
+            <returns>The index of the split indicator if found, otherwise -1.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSplitter.SplitParameter(System.Text.StringBuilder,System.Int32,FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.EncodingAction)">
+            <summary>
+            Splits a long Internet Media Type parameter into several parts and returns them as a collection
+            of <see cref="T:System.Text.StringBuilder"/> objects.
+            </summary>
+            <param name="worker">A <see cref="T:System.Text.StringBuilder"/> that holds the serialized parameter.</param>
+            <param name="lineLength">The line length at which the parameter should be splitted.</param>
+            <param name="enc">The <see cref="T:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.EncodingAction"/> the parameter had been serialized to worker.</param>
+            
+            
+            <returns>A collection of <see cref="T:System.Text.StringBuilder"/> objects that represents the splitted parameter.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSplitter.RemoveKeyFromWorker(System.Text.StringBuilder,FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.EncodingAction)">
+            <summary>
+            Removes anything from worker except the parameter value.
+            </summary>
+            <param name="worker"></param>
+            <param name="enc">The <see cref="T:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.EncodingAction"/> that had been used to
+            serialize the content in <paramref name="worker"/>.</param>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSplitter.MoveChunk(System.Text.StringBuilder,System.Boolean,System.Text.StringBuilder,System.Int32)">
+            <summary>
+            Moves a chunk of the parameters value from <paramref name="worker"/> 
+            to <paramref name="tmp"/>.
+            </summary>
+            <param name="worker"></param>
+            <param name="quoted">Indicates whether the chunk shall be quoted in 
+            <paramref name="tmp"/>.</param>
+            <param name="tmp"></param>
+            <param name="chunkLength"></param>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSplitter.ClearValue(System.Text.StringBuilder,System.Int32,System.Int32)">
+            <summary>
+            Clears the value from <paramref name="builder"/>, beginning at <paramref name="valueStart"/>.
+            </summary>
+            <param name="builder"></param>
+            <param name="counter"></param>
+            <param name="valueStart"></param>
+            <returns><paramref name="builder"/></returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.Parameters.Serializers.ParameterSplitter.UpdateCounter(System.Text.StringBuilder,System.Int32,System.Int32@)">
+            <summary>
+            Updates the <paramref name="counter"/> in <paramref name="builder"/> to be prepared
+            for the next iteration.
+            </summary>
+            <param name="builder"></param>
+            <param name="counterIdx"></param>
+            <param name="counter">The current counter. After the method has returned, the current counter
+            that is in <paramref name="builder"/>.</param>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.Intls.TokenValidator">
+            <summary>
+            Validates tokens.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.TokenValidator.ValidateTokenParameter(System.String,System.String,System.Boolean)">
+            <summary>
+            Tests whether a <see cref="T:System.String"/> method parameter represents a valid token.
+            </summary>
+            <param name="value">The string to test.</param>
+            <param name="paraName">The parameter's name.</param>
+            <param name="parameterKeyValidation">If <c>true</c>, three aditional characters ('*', '\'', '%') 
+            are treated as invalid since RFC 2231 doesn't allow these characters in parameter keys.</param>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> is not a valid token.</exception>
+            <remarks>
+            Throws if <paramref name="value"/> is an empty string or consists only of white space. Leading 
+            and trailing white space around a valid token is accepted.
+            </remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.Intls.TokenValidator.IsToken(System.ReadOnlySpan{System.Char},System.Boolean)">
+            <summary>
+            Tests whether <paramref name="value"/> is a valid token.
+            </summary>
+            <param name="value">The span to test.</param>
+            <param name="parameterKeyValidation">If <c>true</c>, three aditional characters ('*', '\'', '%') 
+            are treated as invalid since RFC 2231 doesn't allow these characters in parameter keys.</param>
+            <returns><c>true</c> if <paramref name="value"/> is a valid token, otherwise <c>false</c>.</returns>
+            <remarks>
+            Returns <c>false</c> even when <paramref name="value"/> is empty or consists only of white space. 
+            Leading and trailing white space around a valid token is accepted.
+            </remarks>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.MimeCache">
+            <summary>
+            A memory cache that's used to retrieve often used file type extensions or MIME types faster.
+            </summary>
+            <threadsafety static="true" instance="true"/>
+            <remarks>
+            <para>
+            It's an expensive operation to parse the resources for MIME types and file type extensions. 
+            To overcome this issue, a small cache is is hold in memory to retrieve the most frequently 
+            used MIME types and file type extensions faster.
+            </para>
+            <para>
+            The cache is pre-populated with some of the most frequently used file type extensions and MIME 
+            types but it "learns" with every query and stores after some time only the data it is recently 
+            asked for. The cache doesn't exceed a given <see cref="P:FolkerKinzel.MimeTypes.MimeCache.Capacity"/>. The default value for this 
+            is <see cref="F:FolkerKinzel.MimeTypes.MimeCache.DefaultCapacity"/>, but you can enlarge the <see cref="P:FolkerKinzel.MimeTypes.MimeCache.Capacity"/> with 
+            <see cref="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)"/> if your application uses more than 16 different file types.
+            </para>
+            <para>
+            There is no way to reduce the <see cref="P:FolkerKinzel.MimeTypes.MimeCache.Capacity"/>, but you can <see cref="M:FolkerKinzel.MimeTypes.MimeCache.Clear"/> the whole 
+            cache. After that, the next time <see cref="T:FolkerKinzel.MimeTypes.MimeCache"/> is asked for data, it creates a new 
+            cache with the <see cref="F:FolkerKinzel.MimeTypes.MimeCache.DefaultCapacity"/> or a larger one, if you have called 
+            <see cref="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)"/> before.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.MimeCache.DefaultFileTypeExtension">
+            <summary>
+            The file type extension that is used as a fallback value.
+            </summary>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.MimeCache.DefaultCapacity">
+            <summary>
+            The default capacity of the cache.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeCache.Capacity">
+            <summary>
+            Gets the current capacity of the cache.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)">
+            <summary>
+            Enlarges the <see cref="P:FolkerKinzel.MimeTypes.MimeCache.Capacity"/> of the cache to the specified value.
+            </summary>
+            <param name="newCapacity">The new value for <see cref="P:FolkerKinzel.MimeTypes.MimeCache.Capacity"/>. If <paramref name="newCapacity"/>
+            is smaller than the current value of <see cref="P:FolkerKinzel.MimeTypes.MimeCache.Capacity"/>, nothing changes.</param>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeCache.Clear">
+            <summary>
+            Clears the cache.
+            </summary>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.MimeFormats">
+            <summary>
+            Named constants to specify options to format <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> objects as <see cref="T:System.String"/>.
+            The flags can be combined.
+            </summary>
+            <example>
+            <para>Format a <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance into a standards-compliant string using several 
+            options:</para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FormattingOptionsExample.cs"/>
+            </example>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.MimeFormats.Default">
+            <summary>
+            Specifies the default format (including the <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/>, without 
+            line wrapping, and with one <c>SPACE</c> character (U+0020) before each parameter).
+            </summary>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.MimeFormats.IgnoreParameters">
+            <summary>
+            Specifies that the <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/> are not included in the output and
+            any other option is ignored.
+            </summary>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.MimeFormats.AvoidSpace">
+            <summary>
+            Specifies that white space before a parameter is omitted.
+            </summary>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.MimeFormats.Url">
+            <summary>
+            Specifies that the output is formatted for the use within a URI. This option is combined 
+            with <see cref="F:FolkerKinzel.MimeTypes.MimeFormats.AvoidSpace"/>.
+            </summary>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.MimeFormats.LineWrapping">
+            <summary>
+            Specifies that long parameters will be wrapped according to RFC 2231 if its 
+            length exceeds a given maximum. This option is ignored if any of the flags
+            <see cref="F:FolkerKinzel.MimeTypes.MimeFormats.IgnoreParameters"/> or <see cref="F:FolkerKinzel.MimeTypes.MimeFormats.Url"/> is set.
+            </summary>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.MimeString">
+            <summary>
+            Static class that works on <see cref="T:System.String"/>s and offers methods that perform conversions
+            between Internet Media Type strings ("MIME types") and file names.
+            </summary>
+            <example>
+            <para>
+            Convert a file name into an Internet Media Type and get a file type extension from an 
+            Internet Media Type:
+            </para>
+            <code language="c#" source="./../Examples/FileExtensionExample.cs"/>
+            </example>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.MimeString.OctetStream">
+            <summary>
+            The default Internet Media Type <see cref="T:System.String"/> ("MIME type").
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeString.ToFileTypeExtension(System.String,System.Boolean)">
+            <summary>
+            Converts an Internet Media Type to an appropriate file type extension.
+            </summary>
+            <param name="mimeType">A <see cref="T:System.String"/> that represents an Internet Media Type ("MIME type")
+            or <c>null</c>.</param>
+            <param name="includePeriod"><c>true</c> specifies, that the period "." (U+002E) is included in the 
+            retrieved file type extension, <c>false</c>, that it's not.</param>
+            <returns>An appropriate file type extension for <paramref name="mimeType"/>.</returns>
+            <remarks>
+            <para>
+            If no other file type extension can be found, <see cref="F:FolkerKinzel.MimeTypes.MimeCache.DefaultFileTypeExtension"/>
+            is returned. <paramref name="includePeriod"/> specifies whether the period is included.
+            </para>
+            <para>
+            This method doesn't perform any validation on <paramref name="mimeType"/>. If a strong validation 
+            of the input is needed, the instance methods 
+            <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.GetFileTypeExtension(System.Boolean)">MimeTypeInfo.GetFileTypeExtension(bool)</see> and
+            <see cref="M:FolkerKinzel.MimeTypes.MimeType.GetFileTypeExtension(System.Boolean)">MimeType.GetFileTypeExtension(bool)</see> are better
+            suited.
+            </para>
+            <para>
+            Internally a small memory cache is used to retrieve often used file type extensions faster. You
+            can enlarge the size of this cache with 
+            <see cref="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)">MimeCache.EnlargeCapacity(int)</see> or you can delete it with
+            <see cref="M:FolkerKinzel.MimeTypes.MimeCache.Clear">MimeCache.Clear()</see> if your application does not need it anymore.
+            </para>
+            </remarks>
+            
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.GetFileTypeExtension(System.Boolean)"/>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.GetFileTypeExtension(System.Boolean)"/>
+            
+            <example>
+            <para>
+            Convert a file name into an Internet Media Type and get a file type extension from an Internet Media Type:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FileExtensionExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeString.ToFileTypeExtension(System.ReadOnlySpan{System.Char},System.Boolean)">
+             <summary>
+             Converts an Internet Media Type to an appropriate file type extension.
+             </summary>
+             <param name="mimeType">A read-only character span that represents an Internet Media Type ("MIME type").</param>
+             <param name="includePeriod"><c>true</c> specifies, that the period "." (U+002E) is included in the retrieved
+             file type extension, <c>false</c>, that it's not.</param>
+             <returns>An appropriate file type extension for <paramref name="mimeType"/>.</returns>
+             <remarks>
+             <para>
+             If no other file type extension can be found, <see cref="F:FolkerKinzel.MimeTypes.MimeCache.DefaultFileTypeExtension"/>
+             is returned. <paramref name="includePeriod"/> specifies whether the period is included.
+             </para>
+             <para>
+             This method doesn't perform any validation on <paramref name="mimeType"/>. If a strong validation of the input
+             is needed, the instance methods 
+             <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.GetFileTypeExtension(System.Boolean)">MimeTypeInfo.GetFileTypeExtension(bool)</see> and
+             <see cref="M:FolkerKinzel.MimeTypes.MimeType.GetFileTypeExtension(System.Boolean)">MimeType.GetFileTypeExtension(bool)</see> are better suited.
+             </para>
+             <para>
+             Internally a small memory cache is used to retrieve often used file type extensions faster. You
+             can enlarge the size of this cache with <see cref="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)">MimeCache.EnlargeCapacity(int)</see>
+             or you can delete it with <see cref="M:FolkerKinzel.MimeTypes.MimeCache.Clear">MimeCache.Clear()</see> if your application does not 
+             need it anymore.
+             </para>
+             </remarks>
+            
+             <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.GetFileTypeExtension(System.Boolean)"/>
+             <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.GetFileTypeExtension(System.Boolean)"/>
+             
+             <example>
+             <para>
+             Convert a file name into an Internet Media Type and get a file type extension from an Internet Media Type:
+             </para>
+             <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FileExtensionExample.cs"/>
+             </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeString.FromFileName(System.String)">
+            <summary>
+            Converts a file name into an Internet Media Type ("MIME type").
+            </summary>
+            <param name="fileName">A file path, file name, file type extension (no matter whether with or without 
+            the period "."), or <c>null</c>.</param>
+            <returns>An appropriate Internet Media Type ("MIME type") for <paramref name="fileName"/>.</returns>
+            <remarks>
+            <para>
+            If no other Internet Media Type could be found, <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream"/> is returned.
+            </para>
+            <para>
+            Internally a small memory cache is used to retrieve often used Internet Media Types faster. You
+            can enlarge the size of this cache with 
+            <see cref="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)">MimeCache.EnlargeCapacity(int)</see> or you can delete it 
+            with <see cref="M:FolkerKinzel.MimeTypes.MimeCache.Clear">MimeCache.Clear()</see> if your application does not need it anymore.
+            </para>
+            </remarks>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.FromFileName(System.String)"/>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.FromFileName(System.ReadOnlySpan{System.Char})"/>
+            
+            <example>
+            <para>
+            Convert a file name into an Internet Media Type and get a file type extension from an Internet Media Type:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FileExtensionExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeString.FromFileName(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Converts a file name into an Internet Media Type ("MIME type").
+            </summary>
+            <param name="fileName">A file path, file name, file type extension (no matter whether with or without 
+            the period "."), or <c>null</c>.</param>
+            <returns>An appropriate Internet Media Type ("MIME type") for <paramref name="fileName"/>.</returns>
+            <remarks>
+            <para>
+            If no other Internet Media Type could be found, <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream"/>
+            is returned.
+            </para>
+            <para>
+            Internally a small memory cache is used to retrieve often used Internet Media Types faster. You
+            can enlarge the size of this cache with 
+            <see cref="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)">MimeCache.EnlargeCapacity(int)</see> or you can delete it 
+            with <see cref="M:FolkerKinzel.MimeTypes.MimeCache.Clear">MimeCache.Clear()</see> if your application does not need it anymore.
+            </para>
+            </remarks>
+            
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.FromFileName(System.ReadOnlySpan{System.Char})"/>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.FromFileName(System.String)"/>
+            
+            <example>
+            <para>
+            Convert a file name into an Internet Media Type and get a file type extension from an internet media type:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FileExtensionExample.cs"/>
+            </example>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.MimeTypeInfo">
+            <summary>
+            Provides the information stored in an Internet Media Type <see cref="T:System.String"/> ("MIME type").
+            </summary>
+            <remarks>
+            <note type="tip">
+            <para>
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> is a quite large structure. Pass it to other methods by reference 
+            (in, ref or out parameters in C#)!
+            </para>
+            <para>
+            If you intend to hold a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> for a long time in memory and if this 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> is parsed from a <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see>
+            that comes from a very long <see cref="T:System.String"/>, keep in mind, that the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> 
+            holds a reference to that <see cref="T:System.String"/>. Consider in this case to make a copy of the 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> structure with <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Clone"/>: The copy is built on a 
+            separate <see cref="T:System.String"/> that is case-normalized and only as long as needed.
+            </para>
+            </note>
+            </remarks>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.#ctor(System.String,System.String,FolkerKinzel.MimeTypes.Intls.Parameters.Creations.ParameterModelDictionary)">
+            <summary>
+            Initializes a new instance of the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> structure.
+            </summary>
+            <param name="mediaType">The <see cref="P:FolkerKinzel.MimeTypes.MimeTypeInfo.MediaType"/>.</param>
+            <param name="subType">The <see cref="P:FolkerKinzel.MimeTypes.MimeTypeInfo.SubType"/>.</param>
+            <param name="parameters">The <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/> or <c>null</c>.</param>
+            
+            <exception cref="T:System.ArgumentException">
+            <paramref name="mediaType"/> or <paramref name="subType"/> is <see cref="F:System.String.Empty"/> or is
+            a <see cref="T:System.String"/> that is longer than <see cref="F:System.Int16.MaxValue"/> or contains characters,
+            which are not permitted by the standard (RFC 2045).
+            </exception>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.GetHashCode">
+            <summary>
+            Creates a hash code for this instance, which takes the <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/> 
+            into account.
+            </summary>
+            <returns>The hash code.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.GetHashCode(System.Boolean)">
+            <summary>
+            Creates a hash code for this instance and allows to specify whether or not
+            the <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/> are taken into account.
+            </summary>
+            <param name="ignoreParameters">Pass <c>false</c> to take the <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/> 
+            into account; <c>true</c>, otherwise.</param>
+            <returns>The hash code.</returns>
+            <seealso cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.System#ICloneable#Clone">
+            <inheritdoc/>
+            <remarks>
+            If you intend to hold a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> for a long time in memory 
+            and if this <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> is parsed from a 
+            <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> that comes from a 
+            very long <see cref="T:System.String"/>, keep in mind, that the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> 
+            holds a reference to that <see cref="T:System.String"/>. Consider in this case to make
+            a copy of the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> structure: The copy is built on a separate 
+            <see cref="T:System.String"/> that is case-normalized and only as long as needed.
+            <note type="tip">
+            Use the instance method <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Clone"/>, if you can, to avoid the 
+            costs of boxing.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Clone">
+            <summary>
+            Creates a new <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> that is a copy of the current instance.
+            </summary>
+            <returns>A new <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>, which is a copy of this instance.</returns>
+            <remarks>
+            If you intend to hold a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> for a long time in memory and if this 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> is parsed from a 
+            <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> that comes from a very long 
+            <see cref="T:System.String"/>, keep in mind, that the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> holds a reference to 
+            that <see cref="T:System.String"/>. Consider in this case to make a copy of the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>
+            structure: The copy is built on a separate <see cref="T:System.String"/> that is case-normalized and only 
+            as long as needed.
+            </remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Equals(FolkerKinzel.MimeTypes.MimeTypeInfo)">
+            <summary>
+            Determines whether the value of this instance is equal to the value of 
+            <paramref name="other"/>. The <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/> are taken into account.
+            </summary>
+            <param name="other">The <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instance to compare with.</param>
+            <returns><c>true</c> if this the value of this instance is equal to that of 
+            <paramref name="other"/>; <c>false</c>, otherwise.</returns>
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Equals(FolkerKinzel.MimeTypes.MimeTypeInfo@)">
+            <summary>
+            Determines whether the value of this instance is equal to the value of 
+            <paramref name="other"/>. The <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/> are taken into account.
+            </summary>
+            <param name="other">The <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instance to compare with.</param>
+            <returns><c>true</c> if this the value of this instance is equal to that of 
+            <paramref name="other"/>; <c>false</c>, otherwise.</returns>
+            <remarks>This is the most performant overload of the Equals methods but unfortunately
+            it's not CLS compliant. Use it if you can.</remarks>
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Equals(FolkerKinzel.MimeTypes.MimeTypeInfo@,System.Boolean)">
+            <summary>
+            Determines whether this instance is equal to <paramref name="other"/> and allows to specify
+            whether or not the <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/> are taken into account.
+            </summary>
+            <param name="other">The <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instance to compare with.</param>
+            <param name="ignoreParameters">Pass <c>false</c> to take the <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/> into 
+            account; <c>true</c>, otherwise.</param>
+            <returns><c>true</c> if this  instance is equal to <paramref name="other"/>; false, otherwise.</returns>
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Equals(System.Object)">
+            <summary>
+            Determines whether <paramref name="obj"/> is a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> structure whose
+            value is equal to that of this instance. The <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/>
+            are taken into account.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with.</param>
+            <returns><c>true</c> if <paramref name="obj"/> is a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> structure whose
+            value is equal to that of this instance; <c>false</c>, otherwise.</returns>
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.op_Equality(FolkerKinzel.MimeTypes.MimeTypeInfo,FolkerKinzel.MimeTypes.MimeTypeInfo)">
+            <summary>
+            Returns a value that indicates whether two specified <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> 
+            instances are equal. The <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/> are taken into account.
+            </summary>
+            <param name="info1">The first <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> to compare.</param>
+            <param name="info2">The second <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> to compare.</param>
+            <returns><c>true</c> if <paramref name="info1"/> and <paramref name="info2"/> are 
+            equal; otherwise, <c>false</c>.</returns>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Equals(FolkerKinzel.MimeTypes.MimeTypeInfo@)"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.op_Inequality(FolkerKinzel.MimeTypes.MimeTypeInfo,FolkerKinzel.MimeTypes.MimeTypeInfo)">
+            <summary>
+            Returns a value that indicates whether two specified <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> 
+            instances are not equal. The <see cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters"/> are taken into account.
+            </summary>
+            <param name="info1">The first <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> to compare.</param>
+            <param name="info2">The second <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> to compare.</param>
+            <returns><c>true</c> if <paramref name="info1"/> and <paramref name="info2"/> are
+            not equal; otherwise, <c>false</c>.</returns>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Equals(FolkerKinzel.MimeTypes.MimeTypeInfo@)"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parse(System.String)">
+            <summary>
+            Parses a <see cref="T:System.String"/> as <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.String"/> to parse.</param>
+            <returns>The <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instance, which <paramref name="value"/>
+            represents.</returns>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+            
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.TryParse(System.String,FolkerKinzel.MimeTypes.MimeTypeInfo@)"/>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> value could not be parsed as 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>.</exception>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parse(System.ReadOnlyMemory{System.Char})">
+            <summary>
+            Parses a <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> as <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> to parse.</param>
+            <returns>The <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instance, which <paramref name="value"/> represents.</returns>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.TryParse(System.ReadOnlyMemory{System.Char},FolkerKinzel.MimeTypes.MimeTypeInfo@)"/>
+            
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> value could not be parsed as 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>.</exception>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.TryParse(System.String,FolkerKinzel.MimeTypes.MimeTypeInfo@)">
+            <summary>
+            Tries to parse a <see cref="T:System.String"/> as <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.String"/> to parse.</param>
+            <param name="info">When the method successfully returns, the parameter contains the
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> parsed from <paramref name="value"/>. The parameter is passed uninitialized.
+            </param>
+            <returns><c>true</c> if <paramref name="value"/> could be parsed as <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>; 
+            otherwise, <c>false</c>.</returns>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parse(System.String)"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.TryParse(System.ReadOnlyMemory{System.Char},FolkerKinzel.MimeTypes.MimeTypeInfo@)">
+            <summary>
+            Tries to parse a <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> as 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see>
+            to parse.</param>
+            <param name="info">When the method successfully returns, the parameter contains the
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> parsed from <paramref name="value"/>. The parameter is passed
+            uninitialized.</param>
+            <returns><c>true</c> if <paramref name="value"/> could be parsed as 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>; otherwise, <c>false</c>.</returns>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parse(System.ReadOnlyMemory{System.Char})"/>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeInfo.MediaType">
+            <summary>
+            Gets the Top-Level Media Type. (The left part of a MIME-Type.)
+            </summary>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeInfo.SubType">
+            <summary>
+            Gets the Sub Type. (The right part of a MIME-Type.)
+            </summary>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.Parameters">
+            <summary>
+            Gets the parameters.
+            </summary>
+            <returns>The collection of parameters of the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>.</returns>
+            <remarks>
+            <note type="tip">Iterating through the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>s can be an 
+            expensive operation in some cases. Consider to call 
+            <see cref="M:System.Linq.Enumerable.ToArray``1(System.Collections.Generic.IEnumerable{``0})"/> on the return value 
+            if you need it more than once.</note></remarks>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeInfo.Empty">
+            <summary>
+            Gets an empty <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> structure.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeInfo.IsEmpty">
+            <summary>
+            Indicates whether the instance contains no data.
+            </summary>
+            <value><c>true</c> if the instance contains no data, otherwise false.</value>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeInfo.IsText">
+            <summary>
+            Determines whether the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeInfo.MediaType"/> of this instance equals "text".
+            The comparison is case-insensitive.
+            </summary>
+            <returns><c>true</c> if the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeInfo.MediaType"/> of this instance equals "text".
+            </returns>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeInfo.IsTextPlain">
+            <summary>
+            Indicates whether this instance is equal to the MIME type "text/plain". The parameters 
+            are not taken into account. The comparison is case-insensitive.
+            </summary>
+            <value><c>true</c> if this instance is equal to "text/plain".</value>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeInfo.IsOctetStream">
+            <summary>
+            Indicates whether this instance is equal to <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream"/>. The 
+            parameters are not taken into account. The comparison is case-insensitive.
+            </summary>
+            <value><c>true</c> if this instance is equal to <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream"/>, 
+            otherwise <c>false</c>.</value>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.GetFileTypeExtension(System.Boolean)">
+            <summary>
+            Gets an appropriate file type extension for the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instance.
+            </summary>
+            <param name="includePeriod"><c>true</c> specifies, that the period "." (U+002E) is included
+            in the retrieved file type extension, <c>false</c>, that it's not.</param>
+            <returns>An appropriate file type extension for the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instance.</returns>
+            <remarks>
+            <para>
+            If no other file type extension can be found, <see cref="F:FolkerKinzel.MimeTypes.MimeCache.DefaultFileTypeExtension"/>
+            is returned. <paramref name="includePeriod"/> specifies whether the period is included.
+            </para>
+            <para>
+            Internally a small memory cache is used to retrieve often used file type extensions faster. You
+            can enlarge the size of this cache with 
+            <see cref="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)">MimeCache.EnlargeCapacity(int)</see> or you can delete it 
+            with <see cref="M:FolkerKinzel.MimeTypes.MimeCache.Clear">MimeCache.Clear()</see> if your application does not need it anymore.
+            </para>
+            </remarks>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.ToString">
+            <summary>
+            Serializes the instance as Internet Media Type <see cref="T:System.String"/> ("MIME type") using the 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeFormats.Default"/> format.
+            </summary>
+            <returns>A <see cref="T:System.String"/> representation of the instance 
+            according to RFC 2045 and RFC 2231.</returns>
+            <example>
+            <para>
+            Efficient parsing, comparing and reformatting of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.ToString(FolkerKinzel.MimeTypes.MimeFormats,System.Int32)">
+            <summary>
+            Serializes the instance as Internet Media Type <see cref="T:System.String"/> ("MIME type") with several 
+            <paramref name="options"/>.
+            </summary>
+            <param name="options">Named constants to specify options for the serialization of the instance. The
+            flags can be combined.</param>
+            <param name="lineLength">The number of characters in a single line of the serialized instance
+            before a line-wrapping occurs. The parameter is ignored, if the flag <see cref="F:FolkerKinzel.MimeTypes.MimeFormats.LineWrapping"/>
+            is not set. If the value of the argument is smaller than <see cref="F:FolkerKinzel.MimeTypes.MimeType.MinLineLength"/>, the value of 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeType.MinLineLength"/> is taken instead.</param>
+            <returns>A <see cref="T:System.String"/> representation of the instance according to RFC 2045 and RFC 2231.</returns>
+            <example>
+            <para>
+            Efficient parsing, comparing and reformatting of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeInfo.AppendTo(System.Text.StringBuilder,FolkerKinzel.MimeTypes.MimeFormats,System.Int32)">
+            <summary>
+            Appends a <see cref="T:System.String"/> representation of this instance according to RFC 2045 and RFC 2231 to
+            the end of a <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/>.</param>
+            <param name="options">Named constants to specify options for the serialization of the instance. The
+            flags can be combined.</param>
+            <param name="maxLineLength">The number of characters in a single line of the serialized instance
+            before a line-wrapping occurs. The parameter is ignored, if the flag <see cref="F:FolkerKinzel.MimeTypes.MimeFormats.LineWrapping"/>
+            is not set. If the value of the argument is smaller than <see cref="F:FolkerKinzel.MimeTypes.MimeType.MinLineLength"/>, the value of 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeType.MinLineLength"/> is taken instead.</param>
+            <returns>A reference to <paramref name="builder"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo">
+            <summary>
+            Provides the information stored in an Internet Media Type Parameter-<see cref="T:System.String"/>.
+            </summary>
+            <remarks>
+            <note type="tip">
+            <para>
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> is a quite large structure. Pass it to other methods 
+            by reference (in, ref or out parameters in C#)!
+            </para>
+            <para>
+            If you intend to hold a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> for a long time in memory and 
+            if this <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> is parsed from a 
+            <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> that comes from a very long 
+            <see cref="T:System.String"/>, keep in mind, that the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> holds a 
+            reference to that <see cref="T:System.String"/>. Consider in this case to make a copy of the 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> structure with <see cref="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Clone"/>: The 
+            copy is built on a separate <see cref="T:System.String"/> that is case-normalized and only as long 
+            as needed.
+            </para>
+            </note>
+            </remarks>
+            
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.#ctor(System.ReadOnlyMemory{System.Char}@,System.Int32)">
+            <summary>
+            Initializes a new <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> structure.
+            </summary>
+            <param name="parameterString">The trimmed Parameter.</param>
+            <param name="idx">An Int32, which stores the indexes.</param>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.GetHashCode">
+            <summary>
+            Computes a hash code for the instance.
+            </summary>
+            <returns>The hash code for the instance.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.System#ICloneable#Clone">
+            <inheritdoc/>
+            <remarks>
+            If you intend to hold a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> for a long time 
+            in memory and if this <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> is parsed from a 
+            <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> that comes from 
+            a very long <see cref="T:System.String"/>, keep in mind, that the 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> holds a reference to that <see cref="T:System.String"/>.
+            Consider in this case to make a copy of the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> 
+            structure: The copy is built on a separate <see cref="T:System.String"/> that is case-normalized 
+            and only as long as needed.
+            <note type="tip">
+            Use the instance method <see cref="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Clone"/>, if you can, to avoid 
+            the costs of boxing.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Clone">
+            <summary>
+            Creates a new <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> that is a copy of the current instance.
+            </summary>
+            <returns>A new <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>, which is a copy of this instance.</returns>
+            <remarks>
+            The copy is built on a separate <see cref="T:System.String"/>,
+            which is case-normalized and only as long as needed.
+            </remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.CompareTo(FolkerKinzel.MimeTypes.MimeTypeParameterInfo)">
+            <summary>
+            Compares the current instance with another <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> and 
+            returns an <see cref="T:System.Int32"/> that indicates whether the current instance precedes, 
+            follows, or occurs in the same position in the sort order as the other 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>.
+            </summary>
+            <param name="other">The other <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> instance to compare
+            with.</param>
+            <returns>A value that indicates the relative order of the instances being compared.
+            </returns>
+            <remarks>The method takes only the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Key"/>s into 
+            account.</remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Equals(FolkerKinzel.MimeTypes.MimeTypeParameterInfo)">
+            <summary>
+            Determines if the content of <paramref name="other"/> is equal to that of the 
+            current instance.
+            </summary>
+            <param name="other">A <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> structure to compare with.</param>
+            <returns><c>true</c> if the content of <paramref name="other"/> is equal to that of the 
+            current instance.</returns>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Equals(FolkerKinzel.MimeTypes.MimeTypeParameterInfo@)">
+            <summary>
+            Determines if the content of <paramref name="other"/> is equal to that of the 
+            current instance.
+            </summary>
+            <param name="other">A <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> structure to compare with.</param>
+            <returns><c>true</c> if the content of <paramref name="other"/> is equal to that of the 
+            current instance.</returns>
+            <remarks>This is the most performant overload of the Equals methods but unfortunately it's 
+            not CLS compliant. Use it if you can.</remarks>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Equals(System.Object)">
+            <summary>
+            Determines whether <paramref name="obj"/> is a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> structure
+            whose content is equal to that of the current instance.
+            </summary>
+            <param name="obj">A <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> structure to compare with.</param>
+            <returns><c>true</c> if <paramref name="obj"/> is a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> 
+            structure whose content is equal to that of the current instance.</returns>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.op_Equality(FolkerKinzel.MimeTypes.MimeTypeParameterInfo,FolkerKinzel.MimeTypes.MimeTypeParameterInfo)">
+            <summary>
+            Returns a value that indicates whether two specified 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> values are equal.
+            </summary>
+            <param name="parameterInfo1">The first <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>
+            to compare.</param>
+            <param name="parameterInfo2">The second <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> 
+            to compare.</param>
+            <returns><c>true</c> if <paramref name="parameterInfo1"/> and 
+            <paramref name="parameterInfo2"/> are equal; otherwise, <c>false</c>.</returns>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Equals(FolkerKinzel.MimeTypes.MimeTypeParameterInfo@)"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.op_Inequality(FolkerKinzel.MimeTypes.MimeTypeParameterInfo,FolkerKinzel.MimeTypes.MimeTypeParameterInfo)">
+            <summary>
+            Returns a value that indicates whether two specified 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> values are not equal.
+            </summary>
+            <param name="parameterInfo1">The first <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>
+            to compare.</param>
+            <param name="parameterInfo2">The second <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>
+            to compare.</param>
+            <returns><c>true</c> if <paramref name="parameterInfo1"/> and 
+            <paramref name="parameterInfo2"/> are not equal; otherwise, <c>false</c>.</returns>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Equals(FolkerKinzel.MimeTypes.MimeTypeParameterInfo@)"/>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Key">
+             <summary>
+             Gets the name of the parameter.
+             </summary>
+            <example>
+             <para>
+             Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+             </para>
+             <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+             </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Value">
+            <summary>
+            Gets the value of the parameter.
+            </summary>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Language">
+            <summary>
+            Gets an IETF-Language tag that indicates the language of the parameter's value.
+            </summary>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.CharSet">
+            <summary>
+            Gets the character set in which <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Value"/> is encoded.
+            </summary>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.IsEmpty">
+            <summary>
+            Indicates whether the instance contains no data.
+            </summary>
+            <value><c>true</c> if the instance contains no data, otherwise false.</value>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Empty">
+            <summary>
+            Gets an empty <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> structure.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.IsCharSetParameter">
+            <summary>
+            Indicates whether the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> has the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Key"/>
+            "charset". The comparison is case-insensitive.
+            </summary>
+            <value><c>true</c> if <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Key"/> equals "charset"; otherwise, <c>false</c>.</value>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.IsAccessTypeParameter">
+            <summary>
+            Indicates whether the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> has the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Key"/> "access-type". 
+            The comparison is case-insensitive.
+            </summary>
+            <value><c>true</c> if <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Key"/> equals "access-type"; otherwise, <c>false</c>.</value>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.IsAsciiCharSetParameter">
+            <summary>
+            Indicates whether this instance equals "charset=us-ascii". The comparison is case-insensitive.
+            </summary>
+            <value><c>true</c> if this instance equals "charset=us-ascii"; otherwise, <c>false</c>.</value>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.IsValueCaseSensitive">
+            <summary>
+            Indicates whether the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.Value"/> should be treated case sensitive.
+            </summary>
+            <example>
+            <para>
+            Efficient parsing of an Internet Media Type <see cref="T:System.String"/>:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/MimeTypeInfoExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.ToString">
+            <summary>
+            Creates a <see cref="T:System.String"/> representation of the instance.
+            </summary>
+            <returns>A <see cref="T:System.String"/> representation of the instance.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.ToString(System.Boolean)">
+            <summary>
+            Creates a <see cref="T:System.String"/> representation of the instance.
+            </summary>
+            <param name="urlFormat">Pass <c>true</c> to get an URL-encoded string representation 
+            that can be used within a URI, <c>false</c> to get the default format.</param>
+            <returns>A <see cref="T:System.String"/> representation of the instance.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.AppendTo(System.Text.StringBuilder,System.Boolean)">
+            <summary>
+            Appends a <see cref="T:System.String"/> representation of this instance according to RFC 2045 
+            and RFC 2231 to a <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/>.</param>
+            <param name="urlFormat">Pass <c>true</c> to get an URL-encoded string representation 
+            that can be used within a URI, <c>false</c> to get the default format.</param>
+            <returns>A reference to <paramref name="builder"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameterInfo.TryParse(System.Boolean,System.ReadOnlyMemory{System.Char}@,FolkerKinzel.MimeTypes.MimeTypeParameterInfo@,System.Boolean@)">
+            <summary>
+            Tries to parse a read-only character memory as <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>.
+            </summary>
+            <param name="sanitizeParameterString"><c>true</c> indicates that the 
+            <paramref name="parameterString"/> should be examinated and sanitized.</param>
+            <param name="parameterString">The ReadOnlyMemory&lt;char&gt; to be parsed.</param>
+            <param name="parameterInfo">When the method returns <c>true</c> the parameter holds 
+            the parsed <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>.</param>
+            <param name="starred">After the method has returned, the argument value indicates 
+            whether the MIME type parameter's key have had a trailing '*' character that indicates
+            that language and charset has been present and URL-encoding has been used. This information 
+            is important because the trailing '*' is eaten by the method.</param>
+            
+            <returns><c>true</c> if <paramref name="parameterString"/> could be parsed as 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>.</returns>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.MimeTypeParameter">
+            <summary>
+            Encapsulates the data of an Internet Media Type parameter.
+            </summary>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            <para>Formatting a <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance into a standards-compliant <see cref="T:System.String"/> 
+            using several options:</para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FormattingOptionsExample.cs"/>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameter.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> instance.
+            </summary>
+            <param name="key">The name of the parameter.</param>
+            <param name="value">The value of the parameter.</param>
+            <param name="language">An IETF-Language tag that indicates the language of the parameter's 
+            value.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException">
+            <para>
+            <paramref name="key"/> is <see cref="F:System.String.Empty"/>
+            </para>
+            <para>
+            - or -
+            </para>
+            <para>
+            <paramref name="key"/> is not a valid MIME type parameter name
+            according to RFC 2231,
+            </para>
+            <para>
+            - or -
+            </para>
+            <para>
+            <paramref name="key"/> is longer than 4095 characters
+            </para>
+            <para>
+            - or -
+            </para>
+            <para>
+            <paramref name="language"/> is neither <c>null</c> nor empty nor a valid IETF-Language-Tag
+            according to RFC-1766.
+            </para>
+            </exception>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameter.GetHashCode">
+            <summary>
+            Computes a hash code for the instance.
+            </summary>
+            <returns>The hash code for the instance.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameter.CompareTo(FolkerKinzel.MimeTypes.MimeTypeParameter)">
+            <summary>
+            Compares the current instance with another <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> and returns 
+            an <see cref="T:System.Int32"/> that indicates whether the current instance precedes, follows, or 
+            occurs in the same position in the sort order as the other <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/>.
+            </summary>
+            <param name="other">The other <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> instance to compare with.</param>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <remarks>The method takes only the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Key"/>s into account.</remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameter.Equals(FolkerKinzel.MimeTypes.MimeTypeParameter)">
+            <summary>
+            Determines if the content of <paramref name="other"/> is equal to that of the 
+            current instance.
+            </summary>
+            <param name="other">A <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> object to compare with or
+            <c>null</c>.</param>
+            <returns><c>true</c> if the content of <paramref name="other"/> is equal to that 
+            of the current instance.</returns>
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameter.Equals(System.Object)">
+            <summary>
+            Determines whether <paramref name="obj"/> is a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> object
+            whose content is equal to that of the current instance.
+            </summary>
+            <param name="obj">A <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> object to compare with or <c>null</c>.</param>
+            <returns><c>true</c> if <paramref name="obj"/> is a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> object
+            whose content is equal to that of the current instance.</returns>
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameter.op_Equality(FolkerKinzel.MimeTypes.MimeTypeParameter,FolkerKinzel.MimeTypes.MimeTypeParameter)">
+            <summary>
+            Returns a value that indicates whether two specified <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> instances are 
+            equal.
+            </summary>
+            <param name="parameter1">The first <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> to compare or <c>null</c>.</param>
+            <param name="parameter2">The second <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> to compare or <c>null</c>.</param>
+            <returns><c>true</c> if <paramref name="parameter1"/> and <paramref name="parameter2"/> are equal;
+            otherwise, <c>false</c>.</returns>
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeParameter.Equals(FolkerKinzel.MimeTypes.MimeTypeParameter)"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameter.op_Inequality(FolkerKinzel.MimeTypes.MimeTypeParameter,FolkerKinzel.MimeTypes.MimeTypeParameter)">
+            <summary>
+            Returns a value that indicates whether two specified <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> instances are
+            not equal.
+            </summary>
+            <param name="parameter1">The first <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> to compare or <c>null</c>.</param>
+            <param name="parameter2">The second <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> to compare or <c>null</c>.</param>
+            <returns><c>true</c> if <paramref name="parameter1"/> and <paramref name="parameter2"/> are not equal;
+            otherwise, <c>false</c>.</returns>
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeTypeParameter.Equals(FolkerKinzel.MimeTypes.MimeTypeParameter)"/>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Key">
+            <summary>
+            Gets the name of the parameter.
+            </summary>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Value">
+            <summary>
+            Gets the value of the parameter.
+            </summary>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Language">
+            <summary>
+            Gets an IETF-Language tag that indicates the language of the parameter's value.
+            </summary>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameter.IsAsciiCharSetParameter">
+            <summary>
+            Indicates whether this instance equals "charset=us-ascii". The comparison is case-insensitive.
+            </summary>
+            <value><c>true</c> if this instance equals "charset=us-ascii"; otherwise, <c>false</c>.</value>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameter.IsCharSetParameter">
+            <summary>
+            Indicates whether the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> has the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Key"/> "charset". 
+            The comparison is case-insensitive.
+            </summary>
+            <value><c>true</c> if <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Key"/> equals "charset"; otherwise, <c>false</c>.</value>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameter.IsAccessTypeParameter">
+            <summary>
+            Indicates whether the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/> has the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Key"/> "access-type".
+            The comparison is case-insensitive.
+            </summary>
+            <value><c>true</c> if <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Key"/> equals "access-type"; otherwise, <c>false</c>.</value>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeTypeParameter.IsValueCaseSensitive">
+            <summary>
+            Indicates whether the <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Value"/> should be treated case sensitive.
+            </summary>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameter.ToString">
+            <summary>
+            Creates a <see cref="T:System.String"/> representation of the instance.
+            </summary>
+            <returns>A <see cref="T:System.String"/> representation of the instance.</returns>
+            <example>
+            <para>Formatting a <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance into a standards-compliant 
+            <see cref="T:System.String"/> using several options:</para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FormattingOptionsExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameter.ToString(System.Boolean)">
+            <summary>
+            Creates a <see cref="T:System.String"/> representation of the instance.
+            </summary>
+            <param name="urlFormat">Pass <c>true</c> to get an URL-encoded string representation 
+            that can be used within a URI, <c>false</c> to get the default format.</param>
+            <returns>A <see cref="T:System.String"/> representation of the instance.</returns>
+            <example>
+            <para>Formatting a <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance into a standards-compliant 
+            <see cref="T:System.String"/> using several options:</para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FormattingOptionsExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeTypeParameter.AppendTo(System.Text.StringBuilder,System.Boolean)">
+            <summary>
+            Appends a <see cref="T:System.String"/> representation of this instance according to RFC 2045 and RFC 2231
+            to a <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/>.</param>
+            <param name="urlFormat">Pass <c>true</c> to get an URL-encoded string representation 
+            that can be used within a URI, <c>false</c> to get the default format.</param>
+            <returns>A reference to <paramref name="builder"/>.</returns>
+            <example>
+            <para>Formatting a <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance into a standards-compliant <see cref="T:System.String"/> 
+            using several options:</para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FormattingOptionsExample.cs"/>
+            </example>
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.MimeType">
+            <summary>
+            Encapsulates the data of an Internet Media Type ("MIME type").
+            </summary>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            <para>Formatting a <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance into a standards-compliant <see cref="T:System.String"/> 
+            using several options:</para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FormattingOptionsExample.cs"/>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+            <seealso cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>
+        </member>
+        <member name="F:FolkerKinzel.MimeTypes.MimeType.MinLineLength">
+            <summary>
+            Minimum count of characters at which a line of an Internet Media Type <see cref="T:System.String"/> is wrapped.
+            </summary>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> object.
+            </summary>
+            <param name="mediaType">The <see cref="P:FolkerKinzel.MimeTypes.MimeType.MediaType"/>.</param>
+            <param name="subType">The <see cref="P:FolkerKinzel.MimeTypes.MimeType.SubType"/>.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="mediaType"/> 
+            or <paramref name="subType"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="mediaType"/> or <paramref name="subType"/> is <see cref="F:System.String.Empty"/> or is
+            a <see cref="T:System.String"/> that is longer than <see cref="F:System.Int16.MaxValue"/> or contains characters,
+            which are not permitted by the standard (RFC 2045).
+            </exception>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.GetHashCode">
+            <summary>
+            Creates a hash code for this instance, which takes the <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/> 
+            into account.
+            </summary>
+            <returns>The hash code.</returns>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.GetHashCode(System.Boolean)">
+            <summary>
+            Creates a hash code for this instance and allows to specify whether or not
+            the <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/> are taken into account.
+            </summary>
+            <param name="ignoreParameters">Pass <c>false</c> to take the <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/>
+            into account; <c>true</c>, otherwise.</param>
+            <returns>The hash code.</returns>
+            <seealso cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.Equals(FolkerKinzel.MimeTypes.MimeType)">
+            <summary>
+            Determines whether the value of this instance is equal to the value of 
+            <paramref name="other"/>. The <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/> are taken into account.
+            </summary>
+            <param name="other">The <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance to compare with or 
+            <c>null</c>.</param>
+            <returns><c>true</c> if this the value of this instance is equal to that of 
+            <paramref name="other"/>; <c>false</c>, otherwise.</returns>
+            
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.Equals(FolkerKinzel.MimeTypes.MimeType,System.Boolean)">
+            <summary>
+            Determines whether this instance is equal to <paramref name="other"/> and allows to specify
+            whether or not the <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/> are taken into account.
+            </summary>
+            <param name="other">The <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance to compare with or <c>null</c>.</param>
+            <param name="ignoreParameters">Pass <c>false</c> to take the <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/> into account;
+            <c>true</c>, otherwise.</param>
+            <returns><c>true</c> if this  instance is equal to <paramref name="other"/>; false, otherwise.</returns>
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.Equals(System.Object)">
+            <summary>
+            Determines whether <paramref name="obj"/> is a <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> object
+            whose
+            value is equal to that of this instance. The <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/>
+            are taken into account.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with or <c>null</c>.</param>
+            <returns><c>true</c> if <paramref name="obj"/> is a <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> object whose
+            value is equal to that of this instance; <c>false</c>, otherwise.</returns>
+            <example>
+            <para>
+            Comparison of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.Create(System.String,System.String)">
+            <summary>
+            Creates a new <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> object.
+            </summary>
+            <param name="mediaType">The <see cref="P:FolkerKinzel.MimeTypes.MimeType.MediaType"/>.</param>
+            <param name="subType">The <see cref="P:FolkerKinzel.MimeTypes.MimeType.SubType"/>.</param>
+            <returns>A reference to the <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> that is created.</returns>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="mediaType"/> 
+            or <paramref name="subType"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="mediaType"/> or <paramref name="subType"/> is <see cref="F:System.String.Empty"/> or is
+            a <see cref="T:System.String"/> that is longer than <see cref="F:System.Int16.MaxValue"/> or contains characters,
+            which are not permitted by the standard (RFC 2045).
+            </exception>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.Create(FolkerKinzel.MimeTypes.MimeTypeInfo@)">
+            <summary>
+            Creates a new <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> object that's filled with the data of an existing 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instance.
+            </summary>
+            <param name="info">The <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instance whose data will be copied into the 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>.</param>
+            <returns>A reference to the <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> that is created.</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="info"/> is empty. (See 
+            <see cref="P:FolkerKinzel.MimeTypes.MimeTypeInfo.IsEmpty">MimeTypeInfo.IsEmpty</see>.)</exception>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.AppendParameter(System.String,System.String,System.String)">
+            <summary>
+            Appends a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> to the end of the <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>.
+            </summary>
+            <param name="key">The name of the parameter.</param>
+            <param name="value">The value of the parameter.</param>
+            <param name="language">An IETF-Language tag that indicates the language of the parameter's 
+            value.</param>
+            <returns>A reference to the <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance on which the method was called.
+            </returns>
+            
+            <remarks>
+            The <paramref name="key"/> of a parameter must be unique inside of a <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>.
+            It's compared case insensitive. If this method is called several times with equal keys, the last 
+            wins.
+            </remarks>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException">
+            <para>
+            <paramref name="key"/> is <see cref="F:System.String.Empty"/>
+            </para>
+            <para>
+            - or -
+            </para>
+            <para>
+            <paramref name="key"/> is not a valid MIME type parameter name
+            according to RFC 2231,
+            </para>
+            <para>
+            - or -
+            </para>
+            <para>
+            <paramref name="key"/> is longer than 4095 characters
+            </para>
+            <para>
+            - or -
+            </para>
+            <para>
+            <paramref name="language"/> is neither <c>null</c> nor <see cref="F:System.String.Empty"/> nor a valid 
+            IETF-Language-Tag according to RFC-1766.
+            </para>
+            </exception>
+            
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+            <seealso cref="T:FolkerKinzel.MimeTypes.MimeTypeParameterInfo"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.ClearParameters">
+            <summary>
+            Removes all <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/>s.
+            </summary>
+            <returns>A reference to the <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance on which the method was called.</returns>
+            <seealso cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.RemoveParameter(System.String)">
+            <summary>
+            Removes the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> with the specified <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Key"/>
+            from the <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> if such a parameter has existed.
+            </summary>
+            <param name="key">The <see cref="P:FolkerKinzel.MimeTypes.MimeTypeParameter.Key"/> of the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeParameter"/> 
+            to remove.</param>
+             <returns>A reference to the <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance on which the method was called.</returns>
+             
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+            <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.AsInfo">
+            <summary>
+            Gets the <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> of the <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>s content.
+            </summary>
+            <returns>The new <see cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/> instance.</returns>
+            
+            <seealso cref="T:FolkerKinzel.MimeTypes.MimeTypeInfo"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.Parse(System.String)">
+            <summary>
+            Parses a <see cref="T:System.String"/> as <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.String"/> to parse.</param>
+            <returns>The <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance that <paramref name="value"/> represents.</returns>
+            
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+            
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.TryParse(System.String,FolkerKinzel.MimeTypes.MimeType@)"/>
+            
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> value could not be parsed as 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>.</exception>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.Parse(System.ReadOnlyMemory{System.Char}@)">
+            <summary>
+            Parses a <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> as <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> to parse.
+            </param>
+            <returns>The <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance that <paramref name="value"/> represents.</returns>
+            
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.TryParse(System.ReadOnlyMemory{System.Char}@,FolkerKinzel.MimeTypes.MimeType@)"/>
+            
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> value could not be parsed as 
+            <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>.</exception>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.TryParse(System.String,FolkerKinzel.MimeTypes.MimeType@)">
+            <summary>
+            Tries to parse a <see cref="T:System.String"/> as <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.String"/> to parse.</param>
+            <param name="mimeType">When the method successfully returns, the parameter contains the
+            <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> parsed from <paramref name="value"/>. The parameter is passed uninitialized.
+            </param>
+            <returns><c>true</c> if <paramref name="value"/> could be parsed as <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>; 
+            otherwise, <c>false</c>.</returns>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.Parse(System.String)"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.TryParse(System.ReadOnlyMemory{System.Char}@,FolkerKinzel.MimeTypes.MimeType@)">
+            <summary>
+            Tries to parse a <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> as <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>.
+            </summary>
+            <param name="value">The <see cref="T:System.ReadOnlyMemory`1">ReadOnlyMemory&lt;Char&gt;</see> to parse.</param>
+            <param name="mimeType">When the method successfully returns, the parameter contains the
+            <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> parsed from <paramref name="value"/>. The parameter is passed uninitialized.</param>
+            <returns><c>true</c> if <paramref name="value"/> could be parsed as <see cref="T:FolkerKinzel.MimeTypes.MimeType"/>; otherwise,
+            <c>false</c>.</returns>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.Parse(System.ReadOnlyMemory{System.Char}@)"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.GetFileTypeExtension(System.Boolean)">
+            <summary>
+            Gets an appropriate file type extension.
+            </summary>
+            <param name="includePeriod"><c>true</c> specifies, that the period "." (U+002E) is included in 
+            the retrieved file type extension, <c>false</c>, that it's not.</param>
+            <returns>An appropriate file type extension.</returns>
+            <remarks>
+            <para>
+            If no other file type extension can be found, <see cref="F:FolkerKinzel.MimeTypes.MimeCache.DefaultFileTypeExtension"/>
+            is returned. <paramref name="includePeriod"/> specifies whether the period is included.
+            </para>
+            <para>
+            Internally a small memory cache is used to retrieve often used file type extensions faster. You
+            can enlarge the size of this cache with 
+            <see cref="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)">MimeCache.EnlargeCapacity(int)</see> or you can
+            delete it with <see cref="M:FolkerKinzel.MimeTypes.MimeCache.Clear">MimeCache.Clear()</see> if your application does not 
+            need it anymore.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.FromFileName(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Creates an appropriate <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance for a given
+            file name.
+            </summary>
+            <param name="fileName">A file path, file name, file type extension (no matter whether with or without
+            the period "."), or <c>null</c>.</param>
+            <returns>An appropriate <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance for <paramref name="fileName"/>.</returns>
+            <remarks>
+            Internally a small memory cache is used to find often used file type extensions faster. You
+            can enlarge the size of this cache with 
+            <see cref="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)">MimeCache.EnlargeCapacity(int)</see> or you can delete it 
+            with <see cref="M:FolkerKinzel.MimeTypes.MimeCache.Clear">MimeCache.Clear()</see> if your application does not need it anymore.
+            </remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.FromFileName(System.String)">
+            <summary>
+            Creates an appropriate <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance for a given
+            file name.
+            </summary>
+            <param name="fileName">A file path, file name, file type extension (no matter whether with or without 
+            the period "."), or <c>null</c>.</param>
+            <returns>An appropriate <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance for <paramref name="fileName"/>.</returns>
+            <remarks>
+            Internally a small memory cache is used to find often used file type extensions faster. You
+            can enlarge the size of this cache with 
+            <see cref="M:FolkerKinzel.MimeTypes.MimeCache.EnlargeCapacity(System.Int32)">MimeCache.EnlargeCapacity(int)</see> or you can delete it 
+            with <see cref="M:FolkerKinzel.MimeTypes.MimeCache.Clear">MimeCache.Clear()</see> if your application does not need it anymore.
+            </remarks>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.op_Equality(FolkerKinzel.MimeTypes.MimeType,FolkerKinzel.MimeTypes.MimeType)">
+            <summary>
+            Returns a value that indicates whether two specified <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances are equal.
+            The <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/> are taken into account.
+            </summary>
+            <param name="mimeType1">The first <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> to compare or <c>null</c>.</param>
+            <param name="mimeType2">The second <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> to compare or <c>null</c>.</param>
+            <returns><c>true</c> if <paramref name="mimeType1"/> and <paramref name="mimeType2"/> are equal;
+            otherwise, <c>false</c>.</returns>
+            <example>
+            <para>
+            Comparison of MimeType instances:
+            </para>
+            <code source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.Equals(FolkerKinzel.MimeTypes.MimeType)"/>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.op_Inequality(FolkerKinzel.MimeTypes.MimeType,FolkerKinzel.MimeTypes.MimeType)">
+            <summary>
+            Returns a value that indicates whether two specified <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances are not equal.
+            The <see cref="P:FolkerKinzel.MimeTypes.MimeType.Parameters"/> are taken into account.
+            </summary>
+            <param name="mimeType1">The first <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> to compare or <c>null</c>.</param>
+            <param name="mimeType2">The second <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> to compare or <c>null</c>.</param>
+            <returns><c>true</c> if <paramref name="mimeType1"/> and <paramref name="mimeType2"/> are not equal;
+            otherwise, <c>false</c>.</returns>
+            <example>
+            <para>
+            Comparison of MimeType instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/EqualityExample.cs"/>
+            </example>
+            <seealso cref="M:FolkerKinzel.MimeTypes.MimeType.Equals(FolkerKinzel.MimeTypes.MimeType)"/>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeType.MediaType">
+            <summary>
+            Gets the Top-Level Media Type. (The left part of a MIME-Type.)
+            </summary>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeType.SubType">
+            <summary>
+            Gets the Sub Type. (The right part of a MIME-Type.)
+            </summary>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeType.Parameters">
+            <summary>
+            Gets the parameters.
+            </summary>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeType.IsText">
+            <summary>
+            Determines whether the <see cref="P:FolkerKinzel.MimeTypes.MimeType.MediaType"/> of this instance equals "text".
+            The comparison is case-insensitive.
+            </summary>
+            <returns><c>true</c> if the <see cref="P:FolkerKinzel.MimeTypes.MimeType.MediaType"/> of this instance equals "text".</returns>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeType.IsTextPlain">
+            <summary>
+            Indicates whether this instance is equal to the MIME type "text/plain". The parameters 
+            are not taken into account. The comparison is case-insensitive.
+            </summary>
+            <value><c>true</c> if this instance is equal to "text/plain".</value>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.MimeType.IsOctetStream">
+            <summary>
+            Indicates whether this instance is equal to <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream"/>. The 
+            parameters are not taken into account. The comparison is case-insensitive.
+            </summary>
+            <value><c>true</c> if this instance is equal to <see cref="F:FolkerKinzel.MimeTypes.MimeString.OctetStream"/>, 
+            otherwise <c>false</c>.</value>
+            <example>
+            <para>
+            Building, serializing, parsing, and editing of  <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instances:
+            </para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/BuildAndParseExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.ToString">
+            <summary>
+            Serializes the instance as Internet Media Type <see cref="T:System.String"/> ("MIME type") using 
+            the <see cref="F:FolkerKinzel.MimeTypes.MimeFormats.Default"/> format.
+            </summary>
+            <returns>A <see cref="T:System.String"/> representation of the instance 
+            according to RFC 2045 and RFC 2231.</returns>
+            <example>
+            <para>Formatting a <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance into a standards-compliant 
+            <see cref="T:System.String"/> using several options:</para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FormattingOptionsExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.ToString(FolkerKinzel.MimeTypes.MimeFormats,System.Int32)">
+            <summary>
+            Serializes the instance as Internet Media Type <see cref="T:System.String"/> ("MIME type") with several 
+            <paramref name="options"/>.
+            </summary>
+            <param name="options">Named constants to specify options for the serialization of the instance. The
+            flags can be combined.</param>
+            <param name="lineLength">The number of characters in a single line of the serialized instance
+            before a line-wrapping occurs. The parameter is ignored, if the flag <see cref="F:FolkerKinzel.MimeTypes.MimeFormats.LineWrapping"/>
+            is not set. If the value of the argument is smaller than <see cref="F:FolkerKinzel.MimeTypes.MimeType.MinLineLength"/>, the value of 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeType.MinLineLength"/> is taken instead.</param>
+            <returns>A <see cref="T:System.String"/> representation of the instance according to RFC 2045 and RFC 2231.</returns>
+            <example>
+            <para>Formatting a <see cref="T:FolkerKinzel.MimeTypes.MimeType"/> instance into a standards-compliant <see cref="T:System.String"/> using 
+            several options:</para>
+            <code language="c#" source="./../../../FolkerKinzel.MimeTypes/src/Examples/FormattingOptionsExample.cs"/>
+            </example>
+        </member>
+        <member name="M:FolkerKinzel.MimeTypes.MimeType.AppendTo(System.Text.StringBuilder,FolkerKinzel.MimeTypes.MimeFormats,System.Int32)">
+            <summary>
+            Appends a <see cref="T:System.String"/> representation of this instance according to RFC 2045 and RFC 2231 to the 
+            end of a <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/>.</param>
+            <param name="options">Named constants to specify options for the serialization of the instance. The
+            flags can be combined.</param>
+            <param name="maxLineLength">The number of characters in a single line of the serialized instance
+            before a line-wrapping occurs. The parameter is ignored, if the flag <see cref="F:FolkerKinzel.MimeTypes.MimeFormats.LineWrapping"/>
+            is not set. If the value of the argument is smaller than <see cref="F:FolkerKinzel.MimeTypes.MimeType.MinLineLength"/>, the value of 
+            <see cref="F:FolkerKinzel.MimeTypes.MimeType.MinLineLength"/> is taken instead.</param>
+            <returns>A reference to <paramref name="builder"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="builder"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:FolkerKinzel.MimeTypes.Properties.Res">
+            <summary>
+              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.Properties.Res.ResourceManager">
+            <summary>
+              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.Properties.Res.Culture">
+            <summary>
+              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.Properties.Res.EmptyStruct">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die The struct is empty. ähnelt.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.Properties.Res.InvalidIetfLanguageTag">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die {0} is not a valid IETF language tag. ähnelt.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.Properties.Res.InvalidMimeType">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die {0} is not a valid Internet Media (MIME) type. ähnelt.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.Properties.Res.NotAToken">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die {0} is not a valid token. ähnelt.
+            </summary>
+        </member>
+        <member name="P:FolkerKinzel.MimeTypes.Properties.Res.StringTooLong">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die The string is too long. ähnelt.
+            </summary>
+        </member>
+    </members>
+</doc>

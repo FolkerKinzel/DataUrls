@@ -12,7 +12,7 @@
     <PackageIcon>Logo.png</PackageIcon>
     <PackageReadmeFile>NugetReadme.md</PackageReadmeFile>
     <PackageVersion>2.0.7</PackageVersion>
-    <FileVersion>2.0.7.6</FileVersion>
+    <FileVersion>2.0.7.8</FileVersion>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <Description>.NET library that supports working with "data" URLs (RFC 2397)</Description>
     <PackageTags>dataURL RFC2397</PackageTags>
